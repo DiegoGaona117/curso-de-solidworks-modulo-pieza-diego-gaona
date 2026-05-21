@@ -49,6 +49,22 @@
     /></noscript>
     <!-- End Facebook Pixel -->
     <style>
+
+        .hd-tip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9731610;
+    border: 1px solid #f9731630;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: #f97316;
+    line-height: 1.5;
+}
+
+.hd-tip span { font-size: 18px; flex-shrink: 0; }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -791,6 +807,10 @@ if (embed) {
     html += `
         <div class="video-wrap">
             <iframe src="${embed}" allowfullscreen></iframe>
+        </div>
+        <div class="hd-tip">
+            <span>💡</span>
+            <div>Para mejor calidad, reproduce el video en <strong>Full HD (1080p)</strong>. Haz clic en el ícono de configuración del video ⚙️ → Calidad → 1080p.</div>
         </div>
     `;
 }
