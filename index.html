@@ -321,10 +321,10 @@
         .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
         .content-inner {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 36px 32px 60px;
-        }
+    max-width: 1000px; /* era 860px */
+    margin: 0 auto;
+    padding: 36px 32px 60px;
+}
 
         .lesson-title-main {
             font-size: 22px;
@@ -337,14 +337,15 @@
 
         /* ── VIDEO ── */
         .video-wrap {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: var(--surface);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-        }
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px; /* era 24px */
+    border: 1px solid var(--border);
+    max-width: 100%; /* ya lo tiene implícito, está bien */
+}
 
         .video-wrap iframe {
             width: 100%;
