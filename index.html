@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>Domina el diseño 3D con el Módulo de Pieza — Curso Diego Gaona</title>
+    <title>Curso de Solidworks desde cero hasta Certificación CSWA — Curso Diego Gaona</title>
     <meta name="description" content="Aprende SolidWorks desde cero con el Módulo de Pieza. Videos paso a paso, ejercicios prácticos y planos técnicos para dominar el diseño 3D.">
 
     <!-- Facebook App -->
@@ -13,7 +13,7 @@
     <meta property="fb:admins" content="100003831708496" />
 
     <!-- Open Graph (imagen para redes sociales) -->
-    <meta property="og:title" content="Módulo de Pieza SolidWorks — Curso Diego Gaona">
+    <meta property="og:title" content="Curso de SolidWorks desde cero a certificación CSWA — Curso Diego Gaona">
     <meta property="og:description" content="Aprende SolidWorks con práctica real. Videos explicativos y ejercicios paso a paso para dominar el diseño 3D.">
     <meta property="og:image" content="https://static.wixstatic.com/media/32c95b_6e808bd13c5b4fc786fdc4365110507f~mv2.webp">
     <meta property="og:url" content="https://cursodiegogaona.com">
@@ -60,7 +60,7 @@
     padding: 10px 16px;
     margin-bottom: 24px;
     font-size: 13px;
-    color: #f97316;
+    color: #ececec;
     line-height: 1.5;
 }
 
@@ -80,7 +80,7 @@
             --text-muted: white;
             --text-dim:  #9ca3af;
             --green:     #10b981;
-            --sidebar-w: 290px;
+            --sidebar-w: 350px;
             --topbar-h:  58px;
         }
 
@@ -92,6 +92,7 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
+            background-color: white;
         }
 
         /* ── TOP BAR ── */
@@ -218,11 +219,11 @@
 
         .section-label {
             padding: 18px 16px 8px;
-            font-size: 10px;
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: rgb(252, 246, 218);
         }
 
         .lesson-item {
@@ -274,7 +275,7 @@
         .lesson-meta { flex: 1; min-width: 0; }
 
         .lesson-name {
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--text);
             line-height: 1.4;
             white-space: nowrap;
@@ -485,7 +486,7 @@
 <!-- TOP BAR -->
 <div class="topbar">
     <button class="menu-toggle" id="menuToggle">☰</button>
-    <div class="topbar-brand">Domina el diseño 3D <span style="color: orange;">— Módulo de Pieza</span></div>
+    <div class="topbar-brand">SolidWorks desde cero a<span style="color: orange;"> — Certificación CSWA</span></div>
     <div class="topbar-sep"></div>
     <div class="topbar-progress">
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -669,8 +670,110 @@ const lessons = [
     { id:125, title:"Plano para la siguiente clase: Florero",                 dur:"PDF",   section:"Práctica 17",                       type:"pdf",   pdfUrl: "https://drive.google.com/file/d/1clVbbAbJpHjP03nt6HHFR0v6kQkC-RHV/view?usp=drive_link", },
     { id:126, title:"Operación de vaciado: Florero",                          dur:"3:23",  section:"Práctica 17",                       type:"video", videoUrl:"https://drive.google.com/file/d/1KcQTtvm8qPo4C4vmavigW4Ty_h7sxrk9/preview?usp=drive_link", pdfUrl: "https://drive.google.com/file/d/1B2iUZe3-9U9GpGA8zl2BYSfQ6dZJmgUj/view?usp=drive_link" },
     { id:127, title:"Proposal Punch Ø2.785 EU Extended",                      dur:"20:04", section:"Práctica 17",                       type:"video", videoUrl:"https://drive.google.com/file/d/1puWE5L8wpvy5-hzWvgR4L_UHcPNKY0zl/preview?usp=drive_link", pdfUrl:null },
-    // Final
-    { id:128, title:"¡Curso completado!",                                     dur:"—",     section:"Conclusión",                        type:"congrats" }
+    // ── FABRICACIÓN MANUAL DE PLANOS 2D ──────────────────────
+    { id:129, title:"Documentos Asociados",               dur:"2:37",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/14oqNdw0Q7P_C3R4ELQMQVvhmT24AnZ_S/preview?usp=drive_link", pdfUrl:null },
+    { id:130, title:"Crear nuevo documento 2D",           dur:"2:55",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1X9IAHd2544nw0x4__qx8o8rGymq_jbcV/preview?usp=drive_link", pdfUrl:null },
+    { id:131, title:"Añadir margen",                      dur:"1:57",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1Mx9_ctbscx182xbaf-JuDTigsxDMGaMe/preview?usp=drive_link", pdfUrl:null },
+    { id:132, title:"Editar formato de hoja",             dur:"7:06",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1bCUXNsjQTOjPVs-ptC1xesErbYI5Yjzo/preview?usp=drive_link", pdfUrl:null },
+    { id:133, title:"Estilo de linea",                    dur:"2:27",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1wH-DdI6X7jXx423Dmfs8POVkRDGMN_MX/preview?usp=drive_link", pdfUrl:null },
+    { id:134, title:"Añadir texto",                       dur:"2:04",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/13RyQQsLtFIOk039NuQ6Z2EQtDQLN8uZt/preview?usp=drive_link", pdfUrl:null },
+    { id:135, title:"Matriz lineal de notas",             dur:"2:30",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1qaQZfPwBwdYR_vWzEO_HYFcSDE8_hwqr/preview?usp=drive_link", pdfUrl:null },
+    { id:136, title:"Guardar Plantilla 2D",               dur:"2:21",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1VPAW3MGOPoFW9zmLuf5JP19HDSf6R3qk/preview?usp=drive_link", pdfUrl:null },
+    { id:137, title:"Insertar pieza a plano 2D",          dur:"3:45",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1AB7SDqOpbjimzRhgmIolLjYDh4Hqz6HK/preview?usp=drive_link", pdfUrl:null },
+    { id:138, title:"Escala",                             dur:"2:39",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1OqT-93683Qvu-ZQsAJSoL-ul09SY0aYh/preview?usp=drive_link", pdfUrl:null },
+    { id:139, title:"Problema con escala",                dur:"1:18",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1GfPYjP9sMu8ZnrWgOqDAP9f2ijQwu84o/preview?usp=drive_link", pdfUrl:null },
+    { id:140, title:"Cotas Importadas y no importadas",   dur:"2:38",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1RRbZHDpN8i4nWJx9zsBU9k5vGGdwgbCJ/preview?usp=drive_link", pdfUrl:null },
+    { id:141, title:"Insertar cotas al dibujo",           dur:"2:18",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1px9Sbvtb778wxCVlZCsrnV7suwI67gU3/preview?usp=drive_link", pdfUrl:null },
+    { id:142, title:"Cambiar el color de las cotas",      dur:"1:29",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1TOPs5hqp6dSMMlVx6cNYgIhcmPRhcqXp/preview?usp=drive_link", pdfUrl:null },
+    { id:143, title:"Editar datos de la pieza",           dur:"1:29",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/16ZPZ04LFLeKpii10oUpVRwrM5xc3gZju/preview?usp=drive_link", pdfUrl:null },
+    { id:144, title:"Exportar como PDF",                  dur:"1:10",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1QJPIqLsXeU-B0FyA7rt-Q4e7fxJXq-ft/preview?usp=drive_link", pdfUrl:null },
+    { id:145, title:"Ceros decimales y texto en cotas",   dur:"0:52",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1BRZXFZNxcpNwVobzibaJ94PMS5ugcFyZ/preview?usp=drive_link", pdfUrl:null },
+    { id:146, title:"Cambiar el tamaño de las cotas",     dur:"2:02",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1V091YBe_jwBs7uh8GQG87KqeV1XkXgy0/preview?usp=drive_link", pdfUrl:null },
+    { id:147, title:"Operación y anotación de chaflán",   dur:"4:37",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/19zXydnKMVdgpYQ4qVGS6F2qdcu6xPvXI/preview?usp=drive_link", pdfUrl:null },
+    { id:148, title:"Vista de detalle",                   dur:"3:13",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1EO4Mo71UFiC16TCAJOLFaWklzedjQUPn/preview?usp=drive_link", pdfUrl:null },
+    { id:149, title:"Sección parcial",                    dur:"3:32",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1kb98amSKBhPKOq2oRtye7k6-jvaOl9Qz/preview?usp=drive_link", pdfUrl:null },
+    { id:150, title:"Vista de rotura",                    dur:"2:24",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1p5hrNlRyypowjWrZfZUuxgfe4ZxYPmpF/preview?usp=drive_link", pdfUrl:null },
+    { id:151, title:"Vista de posición alternativa",      dur:"—",     section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://www.youtube.com/watch?v=bu84glaUsb8", pdfUrl:null },
+    { id:152, title:"Operación y anotación de Taladro",   dur:"9:52",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/15s0_jMs3c0NIncZy5_-XupVzQ8vdIDh4/preview?usp=drive_link", pdfUrl:null },
+    { id:153, title:"Girar vista del dibujo",             dur:"0:53",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1osQpLFu7luZkYtxN25ggKetTIenFzOty/preview?usp=drive_link", pdfUrl:null },
+    { id:154, title:"Servomotor MG995 — Generar plano en 2D", dur:"9:08", section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1DfZFwkS0xpQcJ7CexeE_V9t-eGd1PCkf/preview?usp=drive_link", pdfUrl:null },
+    // Módulo de Ensamble
+//{ id:156, title:"Introducción al Módulo de Ensamble",                      dur:"2:03",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl:null },
+{ id:157, title:"Puntos importantes antes de crear un ensamblaje",         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/113COOVia4pJJ-eP9nm6h8nBot0YpNnye/preview?usp=drive_link", pdfUrl:null },
+{ id:158, title:"Crear archivo de ensamblaje",                             dur:"0:30",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1d4x95UBsXBxyBs2VaSJybJJ78tk73Zq8/preview?usp=drive_link", pdfUrl:null },
+{ id:159, title:"Insertar componentes",                                    dur:"1:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1zLxjNH_mzHHKlraWbWQfkccuNPpgRji4/preview?usp=drive_link", pdfUrl:null },
+{ id:160, title:"Planos base y origen del ensamblaje",                     dur:"2:00",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1bjNn9VIAmmMkTFMzmNNAcwfZyLt3InAS/preview?usp=drive_link", pdfUrl:null },
+{ id:161, title:"Pieza fija",                                              dur:"1:02",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1lCn7c8TwQt-rn8dairhUBMO76XklfJGD/preview?usp=drive_link", pdfUrl:null },
+{ id:162, title:"Fijar | Flotar",                                          dur:"0:40",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/11hJfKS3T8llwtCwmDxiJ75gIR3rNwvmV/preview?usp=drive_link", pdfUrl:null },
+{ id:163, title:"Centrar la pieza principal",                              dur:"1:37",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+{ id:164, title:"Mover con sistema de referencia",                         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+{ id:165, title:"Archivos para la siguiente clase",                        dur:"0:18",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl: "https://drive.google.com/drive/u/0/folders/1JzdJAqcu02FxRQZdtR1oUdnMeNi5jvew" },
+{ id:166, title:"Ensamble bote de basura forma 1",                         dur:"4:08",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/159YrnvIz3nV0xdBrk2ZR7Io_U__Wi-eM/preview?usp=drive_link", pdfUrl:null },
+{ id:167, title:"Ensamble bote de basura forma 2",                         dur:"2:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1MDkAbZB2QmRi3Y-quT8yQ-aQadnMSjbp/preview?usp=drive_link", pdfUrl:null },
+{ id:168, title:"Eliminar | Suprimir | Editar relaciones de posición",     dur:"4:10",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1kv8nCrDttR52I8-NpEDVkSLPNlMOWgcW/preview?usp=drive_link", pdfUrl:null },
+{ id:169, title:"Property Manager",                                        dur:"2:50",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1HEL-jLwjm7KLhKKsp2gHrgBo09uMwKvO/preview?usp=drive_link", pdfUrl:null },
+{ id:170, title:"Guardar ensamblaje",                                      dur:"0:46",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1k7ca6IIfyC5QWvyR_6a1o_PrA4oCz1R4/preview?usp=drive_link", pdfUrl:null },
+{ id:171, title:"Abrir ensamblaje",                                        dur:"0:38",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1mn5kw30KGnXlUFs06nGgbo5wcbplH8lp/preview?usp=drive_link", pdfUrl:null },
+// Ensamble Tijeras 1
+{ id:172, title:"Ensamble tijeras 1",                                      dur:"6:36",  section:"Ensamble Tijeras 1", type:"video", videoUrl:"https://drive.google.com/file/d/1Qq07EyTUijTXpr-gQ1wIehUesaILd6FU/preview?usp=drive_link", pdfUrl:null },
+//{ id:173, title:"Ensamblaje tijeras 2",                                    dur:"—",     section:"Ensamble Tijeras 1", type:"video", videoUrl:"", pdfUrl:null },
+// Relación ángulo de limite
+{ id:174, title:"Ángulo de limite bote de basura",                         dur:"6:56",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/1KxrGTObFuFQJuaTNJOBKIPHPloxZzKBj/preview?usp=drive_link", pdfUrl:null },
+{ id:175, title:"Ángulo de limite tijeras 1",                              dur:"4:12",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/161fxV46HxrEQXvp2lc7cmsHosggxkYfh/preview?usp=drive_link", pdfUrl:null },
+// Sistema de coordenadas
+{ id:176, title:"Sistema de coordenadas",                                  dur:"—",     section:"Sistema de coordenadas",   type:"video", videoUrl:"https://drive.google.com/file/d/11N9Vy0MlPvhcL9QJ1JuEQX9trO5K3TN4/preview?usp=drive_link", pdfUrl:null },
+// Ensamble brazo para micrófono
+{ id:177, title:"Ensamblaje brazo para micrófono",                         dur:"17:00", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1xGZVO1UaQeVzKc56_TmYvHThycjgISua/preview?usp=drive_link", pdfUrl:null },
+{ id:178, title:"Relación distancia de límite",                            dur:"5:48",  section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1vHBEZiYCPyBKQwam86NXaOM3PRKo3jSM/preview?usp=drive_link", pdfUrl:null },
+{ id:179, title:"Relaciones ángulo de limite",                             dur:"16:22", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/17xjsB9vWuEYNlE-Q8FkiN1Z2v70vNTv3/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje botella 1
+{ id:180, title:"Ensamblaje botella | relación de tornillo",               dur:"12:41", section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1icE5dFKEvvHQHeVu6hufo1T9atDSk0Js/preview?usp=drive_link", pdfUrl:null },
+{ id:181, title:"Ejercicio relación de tornillo",                          dur:"3:25",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1wNiMM-fM4ty7hOO1B22tytBQyJRAbEZV/preview?usp=drive_link", pdfUrl:null },
+{ id:182, title:"Animación motor rotatorio",                               dur:"5:20",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1lscRIb5kQJDuR3acodz2WCy5cjD-252O/preview?usp=drive_link", pdfUrl:null },
+// Explosionado
+{ id:183, title:"Explosionado y contracción de un ensamblaje",             dur:"3:20",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1ozy1EXw7kQKjFypSzFeWRRhnh7X-TNsA/preview?usp=drive_link", pdfUrl:null },
+{ id:184, title:"Brazo para micrófono explosionado",                       dur:"7:19",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1g35gfyMVjZYBcf_fkV4LPYLuXM7mgnZH/preview?usp=drive_link", pdfUrl:null },
+{ id:185, title:"Lineas de explosión inteligentes",                        dur:"1:01",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1h2SbcaHJ2tI2SJRFMOY_KWR8K4TC-y84/preview?usp=drive_link", pdfUrl:null },
+// Engrane planetario
+{ id:186, title:"Ensamblaje engrane planetario",                           dur:"4:43",  section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/15JQUQiuu6FQ0wYEt-NkBdyw6V7-fKEhm/preview?usp=drive_link", pdfUrl:null },
+{ id:187, title:"Engrane planetario | Relación de engrane",                dur:"10:31", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/1D5RvRFGZKdrteVfXqNZ-8wMonU073ndH/preview?usp=drive_link", pdfUrl:null },
+{ id:188, title:"Ejercicio | Engrane planetario Udemy",                    dur:"10:16", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/10w6yMiRjbDe_XL51GNQP-b_aIOW2MF5T/preview?usp=drive_link", pdfUrl:null },
+// Ensamble pistón
+{ id:189, title:"Ensamble pistón",                                         dur:"7:06",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1NGGsVkfEXz6mdq3T_xGq6BZNxUYfG0-K/preview?usp=drive_link", pdfUrl:null },
+{ id:190, title:"Insertar componentes de toolbox",                         dur:"9:12",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1DVDLHLgg6Yog_Yw13UEKh1eEgvIFmYBG/preview?usp=drive_link", pdfUrl:null },
+{ id:191, title:"Ensamble pistón animación",                               dur:"6:03",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1OHaYXSw3n0hzii9w61qXb3iWtM4dlaUz/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje Cardán
+{ id:192, title:"Ensamblaje cardán",                                       dur:"18:27", section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1JG6pumdNVxyYBO8iP2aP59zCAc_SyegX/preview?usp=drive_link", pdfUrl:null },
+{ id:193, title:"Matriz de componente circular",                           dur:"2:39",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1dOZo44my5n7Tj8bX94_1zNBDeNXgfIfL/preview?usp=drive_link", pdfUrl:null },
+{ id:194, title:"Smart Fastener",                                          dur:"3:24",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/15JdRtnwd2eRYcpmAyqDVArarhNlud1wQ/preview?usp=drive_link", pdfUrl:null },
+{ id:195, title:"Cambiar tipo de tornillo",                                dur:"2:19",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1t-R_ngLOg93AJd9c9YifHxtRioGDcrcA/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje Motor estrella
+{ id:196, title:"Ensamble motor estrella",                                 dur:"1:47",  section:"Ensamblaje Motor estrella", type:"video", videoUrl:"https://drive.google.com/file/d/1Y_jlYkN1pWrxDbAetAmciyMmTixMcg1b/preview?usp=drive_link", pdfUrl:null },
+
+// Preparación para CSWA — Examen 1
+{ id:197, title:"Examen 1 — Iniciar simulador", dur:"13 preguntas", 
+  section:"Preparación para CSWA — Examen 1", 
+  type:"exam", examUrl:"examen1.html" },
+  // Preparación para CSWA — Examen 2
+{ id:197, title:"Examen 2 — Iniciar simulador", dur:"9 preguntas", 
+  section:"Preparación para CSWA — Examen 2", 
+  type:"exam", examUrl:"examen1.html" },
+
+// Preparación para CSWA — Examen 3
+{ id:221, title:"Tester PRO — Simula CSWA y CSWP", dur:"—", 
+  section:"Preparación para CSWA — Examen 3", 
+  type:"video", 
+  videoUrl:"https://drive.google.com/file/d/1pcmwu7zZn5mG-j4HXfsfwEWBj761aFAr/preview?usp=drive_link", 
+  pdfUrl:null,
+  desc: `Practica en el simulador oficial de SolidWorks: 
+<a href="https://3dexperience.virtualtester.com/#home" 
+   target="_blank" 
+   style="color:var(--accent); text-decoration:none;">
+   3DExperience Virtual Tester →
+</a>` },
+
+    // ── FINAL ────────────────────────────────────────────────
+    { id:128, title:"¡Curso completado!", dur:"—", section:"Conclusión", type:"congrats" }
 ];
 
 // ── STATE ───────────────────────────────────────────────────
@@ -803,7 +906,10 @@ if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
 }
 
 let html = `<h1 class="lesson-title-main">${l.title}</h1>`;
-
+// ← Agrega esto:
+if (l.desc) {
+    html += `<p style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px;">${l.desc}</p>`;
+}
 if (embed) {
     html += `
         <div class="video-wrap">
@@ -822,6 +928,24 @@ if (l.pdfUrl) {
         'Plano de la pieza',
         'Descarga el PDF para seguir la práctica'
     );
+}
+
+// ── EXAMEN ──
+if (l.type === 'exam') {
+    el.innerHTML = `
+        <h1 class="lesson-title-main">${l.title}</h1>
+        <div class="pdf-card">
+            <div class="pdf-icon-box">📝</div>
+            <div class="pdf-card-info">
+                <div class="pdf-card-title">Simulador de examen CSWA</div>
+                <div class="pdf-card-sub">${l.dur} · Condiciones reales de examen</div>
+            </div>
+            <button class="btn-download" style="background:#f97316; border-color:#f97316;"
+                onclick="window.open('${l.examUrl}','_blank')">
+                Iniciar examen →
+            </button>
+        </div>`;
+    return;
 }
 
 el.innerHTML = html;
