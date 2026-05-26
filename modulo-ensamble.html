@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Curso de Solidworks desde cero hasta Certificación CSWA — Curso Diego Gaona</title>
+    <meta name="description" content="Aprende SolidWorks desde cero con el Módulo de Pieza. Videos paso a paso, ejercicios prácticos y planos técnicos para dominar el diseño 3D.">
+
+    <!-- Facebook App -->
+    <meta property="fb:app_id" content="392241650294847" />
+    <meta property="fb:admins" content="100003831708496" />
+
+    <!-- Open Graph (imagen para redes sociales) -->
+    <meta property="og:title" content="Curso de SolidWorks desde cero a certificación CSWA — Curso Diego Gaona">
+    <meta property="og:description" content="Aprende SolidWorks con práctica real. Videos explicativos y ejercicios paso a paso para dominar el diseño 3D.">
+    <meta property="og:image" content="https://static.wixstatic.com/media/32c95b_7f99b4c9cba240f6a8a0843909a702cc~mv2.webp">
+    <meta property="og:url" content="https://cursodiegogaona.com">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233b82f6'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='white'>3D</text></svg>">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://static.wixstatic.com">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Facebook Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '373277814132384');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel -->
+    <style>
+
+        .hd-tip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9731610;
+    border: 1px solid #f9731630;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+.hd-tip span { font-size: 18px; flex-shrink: 0; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:        #0d0f14;
+            --surface:   #13161d;
+            --surface2:  #1a1e28;
+            --border:    #ffffff0f;
+            --border2:   #ffffff2e;
+            --accent:    #3b82f6;
+            --accent-dim:#3b82f620;
+            --orange:    #f97316;
+            --text:      #e8eaf0;
+            --text-muted: white;
+            --text-dim:  #9ca3af;
+            --green:     #10b981;
+            --sidebar-w: 350px;
+            --topbar-h:  58px;
+        }
+
+        html, body { height: 100%; overflow: hidden; }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            height: var(--topbar-h);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 12px;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .topbar-brand {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        .topbar-brand span {
+            color: var(--accent);
+        }
+
+        .topbar-sep { flex: 1; }
+
+        .topbar-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 15px;
+            background: var(--border2);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--orange);
+            border-radius: 99px;
+            transition: width 0.4s ease;
+        }
+
+        .btn-nav { 
+            height: 34px;
+            padding: 0 14px;
+            border-radius: 7px;
+            border: 1px solid var(--border2);
+            background: transparent;
+            color: var(--text);
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .btn-nav:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+        .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .btn-nav.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .btn-nav.primary:hover { background: #2563eb; border-color: #2563eb; }
+
+        .menu-toggle {
+            display: none;
+            height: 34px;
+            padding: 0 12px;
+            border-radius: 7px;
+            border: 1px solid var(--border2);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ── LAYOUT ── */
+        .layout {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border2) transparent;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+        .section-label {
+            padding: 18px 16px 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 16px;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            transition: all 0.15s;
+            user-select: none;
+        }
+
+        .lesson-item:hover { background: var(--surface2); }
+
+        .lesson-item.active {
+            background: var(--accent-dim);
+            border-left-color: var(--accent);
+        }
+
+        .lesson-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border2);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .lesson-check.done {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .lesson-check.done::after {
+            content: '';
+            width: 5px;
+            height: 8px;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(45deg) translate(-1px, -1px);
+            display: block;
+        }
+
+        .lesson-meta { flex: 1; min-width: 0; }
+
+        .lesson-name {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .lesson-item.active .lesson-name { color: var(--text); font-weight: 500; }
+
+        .lesson-dur {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 2px;
+        }
+
+        .lesson-type-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .badge-pdf { background: #7c3aed20; color: #a78bfa; }
+
+        /* ── MAIN CONTENT ── */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--bg);
+        }
+
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border2) transparent;
+        }
+
+        .content-scroll::-webkit-scrollbar { width: 4px; }
+        .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+        .content-inner {
+    max-width: 1000px; /* era 860px */
+    margin: 0 auto;
+    padding: 36px 32px 60px;
+}
+
+        .lesson-title-main {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        /* ── VIDEO ── */
+        .video-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px; /* era 24px */
+    border: 1px solid var(--border);
+    max-width: 100%; /* ya lo tiene implícito, está bien */
+}
+
+        .video-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ── PDF CARD ── */
+        .pdf-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pdf-icon-box {
+            width: 48px;
+            height: 48px;
+            background: #7c3aed20;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .pdf-card-info { flex: 1; }
+
+        .pdf-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .pdf-card-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .btn-download {
+            height: 36px;
+            padding: 0 18px;
+            background: #7c3aed;
+            border: none;
+            border-radius: 7px;
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+
+        .btn-download:hover { background: #6d28d9; }
+
+        /* ── SECTION DIVIDER ── */
+        .section-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 24px 0;
+        }
+
+        /* ── CONGRATS ── */
+        .congrats-wrap {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .congrats-emoji { font-size: 72px; margin-bottom: 24px; display: block; }
+
+        .congrats-title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .congrats-sub {
+            font-size: 16px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ── OVERLAY (mobile) ── */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #00000080;
+            z-index: 90;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            :root { --sidebar-w: 280px; }
+
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 95;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open { transform: translateX(0); }
+            .overlay.active { display: block; }
+            .menu-toggle { display: flex; }
+
+            .topbar-progress { display: none; }
+
+            .content-inner { padding: 20px 16px 48px; }
+
+            .pdf-card { flex-wrap: wrap; }
+            .btn-download { width: 100%; justify-content: center; }
+
+            .lesson-title-main { font-size: 18px; }
+        }
+        body.light {
+    --bg:        #f0f2f5;
+    --surface:   #ffffff;
+    --surface2:  #e8eaef;
+    --border:    #0000000f;
+    --border2:   #00000018;
+    --text:      #1a1a2e;
+    --text-muted: #333;
+    --text-dim:  #555;
+    background-color: #f0f2f5;
+}
+    </style>
+</head>
+<body>
+
+  <div id="loginScreen" style="
+    position:fixed; inset:0; background:#0d0f14;
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999; padding:24px;">
+
+    <div style="background:#13161d; border:1px solid #ffffff18; border-radius:16px;
+                padding:40px; width:100%; max-width:400px; text-align:center;">
+
+        <div style="font-size:13px; font-weight:500; color:#f97316;
+                    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px;">
+            Curso Diego Gaona
+        </div>
+
+        <h2 style="font-size:22px; font-weight:600; color:#e8eaf0;
+                   margin-bottom:8px; letter-spacing:-0.03em;">
+            Bienvenido al curso
+        </h2>
+
+        <p style="font-size:14px; color:#9ca3af; margin-bottom:32px; line-height:1.6;">
+            Ingresa la clave de acceso que recibiste al comprar
+        </p>
+
+        <input type="password" id="claveInput" placeholder="Clave de acceso"
+            style="width:100%; padding:12px 16px; background:#1a1e28;
+                   border:1px solid #ffffff18; border-radius:8px; color:#e8eaf0;
+                   font-size:14px; margin-bottom:12px; outline:none;
+                   font-family:'Sora',sans-serif;"
+            onkeydown="if(event.key==='Enter') verificarClave()">
+
+        <div id="loginError" style="font-size:13px; color:#f87171;
+                                     margin-bottom:12px; display:none;">
+            Clave incorrecta. Verifica con Diego por WhatsApp.
+        </div>
+
+        <button onclick="verificarClave()" style="width:100%; padding:14px;
+            background:#f97316; border:none; border-radius:8px; color:#fff;
+            font-family:'Sora',sans-serif; font-size:15px; font-weight:600;
+            cursor:pointer; transition:background 0.15s;">
+            Entrar al curso →
+        </button>
+
+        <p style="font-size:12px; color:#4b5563; margin-top:20px;">
+            ¿No tienes acceso? Escríbeme por 
+            <a href="https://wa.me/+5214621579719" target="_blank" 
+               style="color:#f97316; text-decoration:none;">WhatsApp</a>
+        </p>
+    </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+<div class="topbar-brand">Experto en Ensamblajes y Mecanismos<span id="brandAccent"> — CSWA</span></div>    <div class="topbar-sep"></div>
+    <div class="topbar-progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <span id="progressText">0%</span>
+    </div>
+    <button class="btn-nav" id="btnPrev">← Anterior</button>
+    <button class="btn-nav primary" id="btnNext">Completar y continuar →</button>
+    <button class="btn-nav" id="btnTheme" onclick="toggleTheme()">☀️ Modo claro</button>
+    <a href="https://diegogaona117.github.io/mis-cursos-diego-gaona/" target="" class="btn-nav" style="text-decoration:none;">
+    📚 Mis cursos
+</a>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-scroll" id="sidebarScroll"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <div class="content-scroll">
+            <div class="content-inner" id="contentInner"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const _0x4f2a = 'SL269300Q';
+
+function verificarClave() {
+    const input = document.getElementById('claveInput').value.trim();
+    if (input === _0x4f2a) {
+        localStorage.setItem('acceso_curso', 'ok');
+        document.getElementById('loginScreen').style.display = 'none';
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('claveInput').value = '';
+        document.getElementById('claveInput').focus();
+    }
+}
+
+// Verificar acceso al cargar la página
+(function() {
+    if (localStorage.getItem('acceso_curso') !== 'ok') {
+        document.getElementById('loginScreen').style.display = 'flex';
+    } else {
+        document.getElementById('loginScreen').style.display = 'none';
+    }
+})();
+// ── LESSON DATA ──────────────────────────────────────────────
+const lessons = [
+     // Módulo de Ensamble
+//{ id:156, title:"Introducción al Módulo de Ensamble",                      dur:"2:03",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl:null },
+{ id:157, title:"Puntos importantes antes de crear un ensamblaje",         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/113COOVia4pJJ-eP9nm6h8nBot0YpNnye/preview?usp=drive_link", pdfUrl:null },
+{ id:158, title:"Crear archivo de ensamblaje",                             dur:"0:30",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1d4x95UBsXBxyBs2VaSJybJJ78tk73Zq8/preview?usp=drive_link", pdfUrl:null },
+{ id:159, title:"Insertar componentes",                                    dur:"1:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1zLxjNH_mzHHKlraWbWQfkccuNPpgRji4/preview?usp=drive_link", pdfUrl:null },
+{ id:160, title:"Planos base y origen del ensamblaje",                     dur:"2:00",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1bjNn9VIAmmMkTFMzmNNAcwfZyLt3InAS/preview?usp=drive_link", pdfUrl:null },
+{ id:161, title:"Pieza fija",                                              dur:"1:02",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1lCn7c8TwQt-rn8dairhUBMO76XklfJGD/preview?usp=drive_link", pdfUrl:null },
+{ id:162, title:"Fijar | Flotar",                                          dur:"0:40",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/11hJfKS3T8llwtCwmDxiJ75gIR3rNwvmV/preview?usp=drive_link", pdfUrl:null },
+{ id:163, title:"Centrar la pieza principal",                              dur:"1:37",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+{ id:164, title:"Mover con sistema de referencia",                         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+{ id:165, title:"Archivos para la siguiente clase",                        dur:"0:18",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl: "https://drive.google.com/drive/u/0/folders/1JzdJAqcu02FxRQZdtR1oUdnMeNi5jvew" },
+{ id:166, title:"Ensamble bote de basura forma 1",                         dur:"4:08",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/159YrnvIz3nV0xdBrk2ZR7Io_U__Wi-eM/preview?usp=drive_link", pdfUrl:null },
+{ id:167, title:"Ensamble bote de basura forma 2",                         dur:"2:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1MDkAbZB2QmRi3Y-quT8yQ-aQadnMSjbp/preview?usp=drive_link", pdfUrl:null },
+{ id:168, title:"Eliminar | Suprimir | Editar relaciones de posición",     dur:"4:10",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1kv8nCrDttR52I8-NpEDVkSLPNlMOWgcW/preview?usp=drive_link", pdfUrl:null },
+{ id:169, title:"Property Manager",                                        dur:"2:50",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1HEL-jLwjm7KLhKKsp2gHrgBo09uMwKvO/preview?usp=drive_link", pdfUrl:null },
+{ id:170, title:"Guardar ensamblaje",                                      dur:"0:46",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1k7ca6IIfyC5QWvyR_6a1o_PrA4oCz1R4/preview?usp=drive_link", pdfUrl:null },
+{ id:171, title:"Abrir ensamblaje",                                        dur:"0:38",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1mn5kw30KGnXlUFs06nGgbo5wcbplH8lp/preview?usp=drive_link", pdfUrl:null },
+// Ensamble Tijeras 1
+{ id:172, title:"Ensamble tijeras 1",                                      dur:"6:36",  section:"Ensamble Tijeras 1", type:"video", videoUrl:"https://drive.google.com/file/d/1Qq07EyTUijTXpr-gQ1wIehUesaILd6FU/preview?usp=drive_link", pdfUrl:null },
+//{ id:173, title:"Ensamblaje tijeras 2",                                    dur:"—",     section:"Ensamble Tijeras 1", type:"video", videoUrl:"", pdfUrl:null },
+// Relación ángulo de limite
+{ id:174, title:"Ángulo de limite bote de basura",                         dur:"6:56",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/1KxrGTObFuFQJuaTNJOBKIPHPloxZzKBj/preview?usp=drive_link", pdfUrl:null },
+{ id:175, title:"Ángulo de limite tijeras 1",                              dur:"4:12",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/161fxV46HxrEQXvp2lc7cmsHosggxkYfh/preview?usp=drive_link", pdfUrl:null },
+// Sistema de coordenadas
+{ id:176, title:"Sistema de coordenadas",                                  dur:"—",     section:"Sistema de coordenadas",   type:"video", videoUrl:"https://drive.google.com/file/d/11N9Vy0MlPvhcL9QJ1JuEQX9trO5K3TN4/preview?usp=drive_link", pdfUrl:null },
+// Ensamble brazo para micrófono
+{ id:177, title:"Ensamblaje brazo para micrófono",                         dur:"17:00", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1xGZVO1UaQeVzKc56_TmYvHThycjgISua/preview?usp=drive_link", pdfUrl:null },
+{ id:178, title:"Relación distancia de límite",                            dur:"5:48",  section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1vHBEZiYCPyBKQwam86NXaOM3PRKo3jSM/preview?usp=drive_link", pdfUrl:null },
+{ id:179, title:"Relaciones ángulo de limite",                             dur:"16:22", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/17xjsB9vWuEYNlE-Q8FkiN1Z2v70vNTv3/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje botella 1
+{ id:180, title:"Ensamblaje botella | relación de tornillo",               dur:"12:41", section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1icE5dFKEvvHQHeVu6hufo1T9atDSk0Js/preview?usp=drive_link", pdfUrl:null },
+{ id:181, title:"Ejercicio relación de tornillo",                          dur:"3:25",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1wNiMM-fM4ty7hOO1B22tytBQyJRAbEZV/preview?usp=drive_link", pdfUrl:null },
+{ id:182, title:"Animación motor rotatorio",                               dur:"5:20",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1lscRIb5kQJDuR3acodz2WCy5cjD-252O/preview?usp=drive_link", pdfUrl:null },
+// Explosionado
+{ id:183, title:"Explosionado y contracción de un ensamblaje",             dur:"3:20",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1ozy1EXw7kQKjFypSzFeWRRhnh7X-TNsA/preview?usp=drive_link", pdfUrl:null },
+{ id:184, title:"Brazo para micrófono explosionado",                       dur:"7:19",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1g35gfyMVjZYBcf_fkV4LPYLuXM7mgnZH/preview?usp=drive_link", pdfUrl:null },
+{ id:185, title:"Lineas de explosión inteligentes",                        dur:"1:01",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1h2SbcaHJ2tI2SJRFMOY_KWR8K4TC-y84/preview?usp=drive_link", pdfUrl:null },
+// Engrane planetario
+{ id:186, title:"Ensamblaje engrane planetario",                           dur:"4:43",  section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/15JQUQiuu6FQ0wYEt-NkBdyw6V7-fKEhm/preview?usp=drive_link", pdfUrl:null },
+{ id:187, title:"Engrane planetario | Relación de engrane",                dur:"10:31", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/1D5RvRFGZKdrteVfXqNZ-8wMonU073ndH/preview?usp=drive_link", pdfUrl:null },
+{ id:188, title:"Ejercicio | Engrane planetario Udemy",                    dur:"10:16", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/10w6yMiRjbDe_XL51GNQP-b_aIOW2MF5T/preview?usp=drive_link", pdfUrl:null },
+// Ensamble pistón
+{ id:189, title:"Ensamble pistón",                                         dur:"7:06",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1NGGsVkfEXz6mdq3T_xGq6BZNxUYfG0-K/preview?usp=drive_link", pdfUrl:null },
+{ id:190, title:"Insertar componentes de toolbox",                         dur:"9:12",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1DVDLHLgg6Yog_Yw13UEKh1eEgvIFmYBG/preview?usp=drive_link", pdfUrl:null },
+{ id:191, title:"Ensamble pistón animación",                               dur:"6:03",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1OHaYXSw3n0hzii9w61qXb3iWtM4dlaUz/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje Cardán
+{ id:192, title:"Ensamblaje cardán",                                       dur:"18:27", section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1JG6pumdNVxyYBO8iP2aP59zCAc_SyegX/preview?usp=drive_link", pdfUrl:null },
+{ id:193, title:"Matriz de componente circular",                           dur:"2:39",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1dOZo44my5n7Tj8bX94_1zNBDeNXgfIfL/preview?usp=drive_link", pdfUrl:null },
+{ id:194, title:"Smart Fastener",                                          dur:"3:24",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/15JdRtnwd2eRYcpmAyqDVArarhNlud1wQ/preview?usp=drive_link", pdfUrl:null },
+{ id:195, title:"Cambiar tipo de tornillo",                                dur:"2:19",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1t-R_ngLOg93AJd9c9YifHxtRioGDcrcA/preview?usp=drive_link", pdfUrl:null },
+// Ensamblaje Motor estrella
+{ id:196, title:"Ensamble motor estrella",                                 dur:"1:47",  section:"Ensamblaje Motor estrella", type:"video", videoUrl:"https://drive.google.com/file/d/1Y_jlYkN1pWrxDbAetAmciyMmTixMcg1b/preview?usp=drive_link", pdfUrl:null },
+
+
+    // ── FINAL ────────────────────────────────────────────────
+    { id:128, title:"¡Curso completado!", dur:"—", section:"Conclusión", type:"congrats" }
+];
+
+// ── STATE ───────────────────────────────────────────────────
+let currentIdx = 0;
+let completed = new Set();
+
+function loadState() {
+    try {
+        const i = localStorage.getItem('ensamble_idx');
+        const c = localStorage.getItem('ensamble_done');
+        if (i) currentIdx = Math.min(parseInt(i), lessons.length - 1);
+        if (c) completed = new Set(JSON.parse(c));
+    } catch {}
+}
+
+function saveState() {
+    try {
+        localStorage.setItem('ensamble_idx', currentIdx);
+        localStorage.setItem('ensamble_done', JSON.stringify([...completed]));
+    } catch {}
+}
+
+function getLessonFromURL() {
+    const id = new URLSearchParams(location.search).get('l');
+    if (id !== null) {
+        const idx = lessons.findIndex(l => l.id === parseInt(id));
+        if (idx !== -1) return idx;
+    }
+    return null;
+}
+
+function pushURL(idx) {
+    history.pushState({ idx }, '', `?l=${lessons[idx].id}`);
+}
+
+// ── YOUTUBE ─────────────────────────────────────────────────
+function ytEmbed(url) {
+    if (!url) return null;
+    let id = null;
+    if (url.includes('watch?v=')) id = url.split('watch?v=')[1].split('&')[0];
+    else if (url.includes('youtu.be/')) id = url.split('youtu.be/')[1].split('?')[0];
+    return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1` : null;
+}
+
+// ── PROGRESS ────────────────────────────────────────────────
+function updateProgress() {
+    const pct = Math.round((completed.size / lessons.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = pct + '%';
+}
+
+// ── SIDEBAR ─────────────────────────────────────────────────
+function renderSidebar() {
+    const el = document.getElementById('sidebarScroll');
+    el.innerHTML = '';
+    let section = '';
+
+    lessons.forEach((l, idx) => {
+        if (l.section !== section) {
+            section = l.section;
+            const lbl = document.createElement('div');
+            lbl.className = 'section-label';
+            lbl.textContent = section;
+            el.appendChild(lbl);
+        }
+
+        const item = document.createElement('div');
+        item.className = 'lesson-item' + (idx === currentIdx ? ' active' : '');
+
+        const check = document.createElement('div');
+        check.className = 'lesson-check' + (completed.has(idx) ? ' done' : '');
+        check.addEventListener('click', e => { e.stopPropagation(); toggleDone(idx); });
+
+        const meta = document.createElement('div');
+        meta.className = 'lesson-meta';
+        meta.innerHTML = `<div class="lesson-name">${l.title}</div><div class="lesson-dur">${l.dur}</div>`;
+
+        item.appendChild(check);
+        item.appendChild(meta);
+
+        if (l.type === 'pdf') {
+            const badge = document.createElement('span');
+            badge.className = 'lesson-type-badge badge-pdf';
+            badge.textContent = 'PDF';
+            item.appendChild(badge);
+        }
+
+        item.addEventListener('click', () => { navigate(idx); closeSidebar(); });
+        el.appendChild(item);
+    });
+
+    // scroll active into view
+    const active = el.querySelector('.lesson-item.active');
+    if (active) active.scrollIntoView({ block: 'nearest' });
+}
+
+// ── CONTENT ─────────────────────────────────────────────────
+function renderContent() {
+    const el = document.getElementById('contentInner');
+    const l = lessons[currentIdx];
+
+    document.getElementById('btnPrev').disabled = currentIdx === 0;
+
+    if (l.type === 'congrats') {
+    const total = lessons.length - 1; // sin contar la lección congrats
+    const done = completed.size;
+    const pct = Math.round((done / total) * 100);
+    const remaining = total - done;
+    const isComplete = pct >= 100;
+
+    if (isComplete) {
+        el.innerHTML = `
+            <div class="congrats-wrap">
+                <span class="congrats-emoji">🎓</span>
+                <h1 class="congrats-title">¡Curso completado!</h1>
+                <p class="congrats-sub">Has terminado todo el contenido. Ahora tienes las bases sólidas para diseñar en SolidWorks de forma profesional. ¡Excelente trabajo!</p>
+                <div class="section-divider" style="max-width:200px;margin:32px auto;"></div>
+                <p style="font-size:14px;color:var(--text-muted);">— Diego Gaona</p>
+            </div>`;
+    } else {
+        el.innerHTML = `
+            <div style="max-width:560px; margin:0 auto; padding:20px 0;">
+
+                <h1 class="lesson-title-main" style="margin-bottom:6px;">Tu progreso</h1>
+                <p style="font-size:14px; color:var(--text-dim); margin-bottom:32px;">
+                    Completa todas las lecciones para desbloquear esta pantalla.
+                </p>
+
+                <!-- Porcentaje grande -->
+                <div style="text-align:center; margin-bottom:28px;">
+                    <span style="font-size:72px; font-weight:600; letter-spacing:-0.04em; color:var(--text);">${pct}<span style="font-size:36px; color:var(--text-dim);">%</span></span>
+                    <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">completado</p>
+                </div>
+
+                <!-- Barra de progreso -->
+                <div style="height:8px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-bottom:32px;">
+                    <div style="height:100%; width:${pct}%; background:var(--orange); border-radius:99px; transition:width 0.6s ease;"></div>
+                </div>
+
+                <!-- Stats -->
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:36px;">
+                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                        <div style="font-size:22px; font-weight:600; color:var(--green); margin-bottom:4px;">${done}</div>
+                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Completadas</div>
+                    </div>
+                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                        <div style="font-size:22px; font-weight:600; color:var(--orange); margin-bottom:4px;">${remaining}</div>
+                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Pendientes</div>
+                    </div>
+                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                        <div style="font-size:22px; font-weight:600; color:var(--text); margin-bottom:4px;">${total}</div>
+                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Total</div>
+                    </div>
+                </div>
+
+                <!-- Mensaje motivacional -->
+                <div style="background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:8px; padding:16px 20px;">
+                    <p style="font-size:13px; color:var(--text-dim); line-height:1.7; margin:0;">
+                        ${pct < 25  ? '¡Buen comienzo! Sigue avanzando lección por lección.' :
+                          pct < 50  ? '¡Ya vas por la primera mitad! Mantén el ritmo.' :
+                          pct < 75  ? '¡Más de la mitad completado! Ya casi llegas.' :
+                                      '¡Estás muy cerca de terminar! Solo un último esfuerzo.'}
+                    </p>
+                </div>
+
+            </div>`;
+    }
+    return;
+}
+
+    if (l.type === 'pdf') {
+        el.innerHTML = `
+            <h1 class="lesson-title-main">${l.title}</h1>
+            ${pdfCard(l.pdfUrl, 'Material de ejercicios', 'Descarga el plano y crea la pieza en SolidWorks')}`;
+        return;
+    }
+
+    // video
+let embed = null;
+
+if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
+    embed = l.videoUrl;
+} else {
+    embed = ytEmbed(l.videoUrl);
+}
+
+let html = `<h1 class="lesson-title-main">${l.title}</h1>`;
+// ← Agrega esto:
+if (l.desc) {
+    html += `<p style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px;">${l.desc}</p>`;
+}
+if (embed) {
+    html += `
+        <div class="video-wrap">
+            <iframe src="${embed}" allowfullscreen></iframe>
+        </div>
+        <div class="hd-tip">
+            <span>💡</span>
+            <div>Para mejor calidad, reproduce el video en <strong>Full HD (1080p)</strong>. Haz clic en el ícono de configuración del video ⚙️ → Calidad → 1080p.</div>
+        </div>
+    `;
+}
+
+if (l.pdfUrl) {
+    html += pdfCard(
+        l.pdfUrl,
+        'Plano de la pieza',
+        'Descarga el PDF para seguir la práctica'
+    );
+}
+
+// ── EXAMEN ──
+if (l.type === 'exam') {
+    el.innerHTML = `
+        <h1 class="lesson-title-main">${l.title}</h1>
+        <div class="pdf-card">
+            <div class="pdf-icon-box">📝</div>
+            <div class="pdf-card-info">
+                <div class="pdf-card-title">Simulador de examen CSWA</div>
+                <div class="pdf-card-sub">${l.dur} · Condiciones reales de examen</div>
+            </div>
+            <button class="btn-download" style="background:#f97316; border-color:#f97316;"
+                onclick="window.open('${l.examUrl}','_blank')">
+                Iniciar examen →
+            </button>
+        </div>`;
+    return;
+}
+
+el.innerHTML = html;
+}
+
+function pdfCard(url, title, sub) {
+    return `
+        <div class="pdf-card">
+            <div class="pdf-icon-box">📄</div>
+            <div class="pdf-card-info">
+                <div class="pdf-card-title">${title}</div>
+                <div class="pdf-card-sub">${sub}</div>
+            </div>
+            <button class="btn-download" onclick="window.open('${url}','_blank')">
+                ↓ Descargar PDF
+            </button>
+        </div>`;
+}
+
+// ── AUTO-COMPLETE (15 segundos) ─────────────────────────────
+let autoCompleteTimer = null;
+
+function startAutoComplete(idx) {
+    clearTimeout(autoCompleteTimer);
+    if (completed.has(idx)) return; // ya completada, no hacer nada
+    autoCompleteTimer = setTimeout(() => {
+        if (currentIdx === idx && !completed.has(idx)) {
+            completed.add(idx);
+            saveState();
+            renderSidebar();
+            updateProgress();
+        }
+    }, 15000);
+}
+
+// ── NAVIGATION ──────────────────────────────────────────────
+function navigate(idx) {
+    clearTimeout(autoCompleteTimer);
+    currentIdx = idx;
+    pushURL(idx);
+    saveState();
+    renderSidebar();
+    renderContent();
+    document.querySelector('.content-scroll').scrollTo(0, 0);
+    startAutoComplete(idx);
+}
+
+function toggleDone(idx) {
+    completed.has(idx) ? completed.delete(idx) : completed.add(idx);
+    saveState();
+    renderSidebar();
+    updateProgress();
+}
+
+// ── MOBILE SIDEBAR ──────────────────────────────────────────
+const sidebar  = document.getElementById('sidebar');
+const overlay  = document.getElementById('overlay');
+const menuBtn  = document.getElementById('menuToggle');
+
+function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+});
+
+overlay.addEventListener('click', closeSidebar);
+
+// ── BUTTONS ─────────────────────────────────────────────────
+document.getElementById('btnPrev').addEventListener('click', () => {
+    if (currentIdx > 0) navigate(currentIdx - 1);
+});
+
+document.getElementById('btnNext').addEventListener('click', () => {
+    completed.add(currentIdx);
+    if (currentIdx < lessons.length - 1) navigate(currentIdx + 1);
+    saveState();
+    updateProgress();
+    renderSidebar();
+});
+
+window.addEventListener('popstate', e => {
+    if (e.state?.idx !== undefined) {
+        currentIdx = e.state.idx;
+        renderSidebar();
+        renderContent();
+    }
+});
+
+function toggleTheme() {
+    const isLight = document.body.classList.toggle('light');
+    localStorage.setItem('sw_theme', isLight ? 'light' : 'dark');
+    document.getElementById('btnTheme').textContent = isLight ? '🌙 Modo oscuro' : '☀️ Modo claro';
+    document.getElementById('brandAccent').style.color = isLight ? '#1a4d8c' : 'orange';
+}
+
+// Restaurar tema al cargar
+(function() {
+    if (localStorage.getItem('sw_theme') === 'light') {
+        document.body.classList.add('light');
+        document.getElementById('btnTheme').textContent = '🌙 Modo oscuro';
+        document.getElementById('brandAccent').style.color = '#1a4d8c';
+    }
+})();
+
+// ── INIT ────────────────────────────────────────────────────
+loadState();
+const urlIdx = getLessonFromURL();
+if (urlIdx !== null) currentIdx = urlIdx;
+pushURL(currentIdx);
+renderSidebar();
+renderContent();
+updateProgress();
+startAutoComplete(currentIdx);
+updateProgress();
+</script>
+</body>
+</html>
