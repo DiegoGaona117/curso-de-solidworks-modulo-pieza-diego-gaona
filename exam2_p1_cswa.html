@@ -1,0 +1,410 @@
+<!-- =====================================================================
+  CSWA – Bloque de pregunta: Masa de pieza
+  Reemplaza IMAGE_X_URL con las URLs reales de cada imagen
+  Cambia "Pregunta X de 13" por el número real
+  Cambia "examen2pregunta1" en el localStorage si hay más preguntas
+====================================================================== -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  #TeachableBranding { display: none; }
+  .preview-navbar, .preview-navbar-dark { display: none; }
+  .preview-navbar-header { display: none; }
+  body, html { margin: 0; padding: 0; width: 100%; }
+
+  .cswa-quiz-wrap * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .cswa-quiz-wrap {
+    background: #e8e8e8;
+    border: 2px solid #999;
+    
+    overflow: hidden;
+    max-width: 860px;
+    margin: 20px auto;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+
+  .cswa-header {
+    background: #d0d0d0;
+    border-bottom: 2px solid #aaa;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+  }
+  .cswa-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  /* ── Área principal de imagen ── */
+  .cswa-image-area {
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .cswa-image-area img {
+    max-width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: zoom-in;
+    transition: opacity 0.15s;
+  }
+  .cswa-image-area img:hover { opacity: 0.88; }
+  .cswa-zoom-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 11px;
+    color: #888;
+    pointer-events: none;
+  }
+
+  /* ── Tira de miniaturas ── */
+  .cswa-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #ddd;
+    border-bottom: 2px solid #bbb;
+    overflow-x: auto;
+    justify-content: center;
+  }
+  .cswa-thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 60px;
+    border: 2px solid #bbb;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f0f0f0;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cswa-thumb:hover { border-color: #888; }
+  .cswa-thumb.active {
+    border-color: #2c6fbd;
+    box-shadow: 0 0 0 2px rgba(44,111,189,0.25);
+  }
+  .cswa-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cswa-thumb-label {
+    font-size: 10px;
+    color: #777;
+    text-align: center;
+    padding: 2px 4px;
+    line-height: 1.2;
+  }
+
+  /* ── Texto de la pregunta ── */
+  .cswa-question-text {
+    background: #ececec;
+    border-bottom: 2px solid #bbb;
+    padding: 14px 20px;
+    font-size: 13.5px;
+    color: #222;
+    line-height: 1.6;
+  }
+  .cswa-question-text strong {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Opciones ── */
+  .cswa-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .cswa-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    border: 1px solid #bbb;
+    background: #e8e8e8;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 14px;
+    color: #222;
+    user-select: none;
+  }
+  .cswa-option:hover { background: #d8d8d8; }
+  .cswa-option.selected {
+    background: #c5d8f0;
+    border-color: #4a7fc1;
+  }
+  .cswa-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: all 0.15s;
+  }
+  .cswa-option.selected .cswa-radio {
+    background: #2c6fbd;
+    border-color: #2c6fbd;
+  }
+  .cswa-radio-dot {
+    width: 7px;
+    height: 7px;
+    background: #fff;
+    border-radius: 50%;
+    display: none;
+  }
+  .cswa-option.selected .cswa-radio-dot { display: block; }
+
+  /* ── Lightbox ── */
+  .cswa-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .cswa-lightbox.active { display: flex; }
+  .cswa-lightbox img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    
+    
+    cursor: default;
+  }
+  .cswa-lightbox-close {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+  }
+  .cswa-lightbox-close:hover { opacity: 1; }
+
+  /* Flechas de navegación en lightbox */
+  .cswa-lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 10px 18px;
+    user-select: none;
+    transition: opacity 0.15s;
+  }
+  .cswa-lb-nav:hover { opacity: 1; }
+  .cswa-lb-prev { left: 12px; }
+  .cswa-lb-next { right: 12px; }
+</style>
+
+<div class="cswa-quiz-wrap" id="cswaBlock_masa">
+
+  <div class="cswa-header">
+    <h2>Pregunta 1</h2>
+  </div>
+
+  <!-- Imagen principal -->
+  <div class="cswa-image-area">
+    <img id="cswa-main-img-masa"
+      src="https://static.wixstatic.com/media/32c95b_7428f0eb38094ef1b760c9b84057f5be~mv2.png"
+      alt="Vista del plano"
+      onclick="openLightboxMasa()"
+      onerror="this.style.display='none'"
+    />
+    <span class="cswa-zoom-hint">🔍 Clic para ampliar</span>
+  </div>
+
+  <!-- Tira de miniaturas -->
+  <div class="cswa-thumbs" id="cswa-thumbs-masa">
+
+    <div class="cswa-thumb active" onclick="switchImgMasa(0, this)">
+      <img src="https://static.wixstatic.com/media/32c95b_7428f0eb38094ef1b760c9b84057f5be~mv2.png" alt="Vista 1"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.cswa-thumb-label') && (this.parentElement.querySelector('.cswa-thumb-label').style.display='block')">
+      <span class="cswa-thumb-label" style="display:none">Vista 1</span>
+    </div>
+
+    <div class="cswa-thumb" onclick="switchImgMasa(1, this)">
+      <img src="https://static.wixstatic.com/media/32c95b_b0de84eccd8244569d626d7410c680ba~mv2.png" alt="Vista 2"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.cswa-thumb-label') && (this.parentElement.querySelector('.cswa-thumb-label').style.display='block')">
+      <span class="cswa-thumb-label" style="display:none">Vista 2</span>
+    </div>
+
+    <div class="cswa-thumb" onclick="switchImgMasa(2, this)">
+      <img src="https://static.wixstatic.com/media/32c95b_2ddbf4804677476f8504cfb20cd03f0c~mv2.png" alt="Vista 3"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.cswa-thumb-label') && (this.parentElement.querySelector('.cswa-thumb-label').style.display='block')">
+      <span class="cswa-thumb-label" style="display:none">Vista 3</span>
+    </div>
+
+    <div class="cswa-thumb" onclick="switchImgMasa(3, this)">
+      <img src="https://static.wixstatic.com/media/32c95b_35d9ceddeeb945288f5660c4631ef9a2~mv2.png" alt="Vista 4"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.cswa-thumb-label') && (this.parentElement.querySelector('.cswa-thumb-label').style.display='block')">
+      <span class="cswa-thumb-label" style="display:none">Vista 4</span>
+    </div>
+
+    <div class="cswa-thumb" onclick="switchImgMasa(4, this)">
+      <img src="https://static.wixstatic.com/media/32c95b_1a3c9371897242a1b5a9cfc356e0a7a0~mv2.png" alt="Vista 5"
+           onerror="this.style.display='none'; this.parentElement.querySelector('.cswa-thumb-label') && (this.parentElement.querySelector('.cswa-thumb-label').style.display='block')">
+      <span class="cswa-thumb-label" style="display:none">Vista 5</span>
+    </div>
+
+  </div>
+
+  <!-- Texto de la pregunta -->
+  <div class="cswa-question-text">
+    <strong>B00001 · Modelado de piezas</strong>
+    Construye la pieza en SOLIDWORKS. Sistema de unidades: MMGS (milímetro, gramo, segundo). Decimales: 2. Origen de la pieza: Arbitrario.
+    A = 63 mm, B = 50 mm, C = 100 mm. Todos los orificios son pasantes.
+    Material: Cobre, Densidad = 0.0089 g/mm³.
+    <br><br>
+    ¿Cuál es la masa total de la pieza en gramos?
+  </div>
+
+  <!-- Opciones -->
+  <div class="cswa-options">
+    <div class="cswa-option" data-value="1205.33" data-index="1" onclick="selectOptionMasa(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      1205.33
+    </div>
+    <div class="cswa-option" data-value="1280.33" data-index="2" onclick="selectOptionMasa(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      1280.33
+    </div>
+    <div class="cswa-option" data-value="144.33" data-index="3" onclick="selectOptionMasa(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      144.33
+    </div>
+    <div class="cswa-option" data-value="1108.33" data-index="4" onclick="selectOptionMasa(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      1108.33
+    </div>
+  </div>
+
+</div>
+
+<!-- Lightbox con navegación entre imágenes -->
+<div class="cswa-lightbox" id="cswaLightboxMasa" onclick="closeLightboxMasa()">
+  <span class="cswa-lightbox-close" onclick="closeLightboxMasa()">✕</span>
+  <span class="cswa-lb-nav cswa-lb-prev" onclick="event.stopPropagation(); navLightboxMasa(-1)">‹</span>
+  <img id="cswa-lb-img-masa" src="https://static.wixstatic.com/media/32c95b_7428f0eb38094ef1b760c9b84057f5be~mv2.png" alt="Vista ampliada" onclick="event.stopPropagation()" />
+  <span class="cswa-lb-nav cswa-lb-next" onclick="event.stopPropagation(); navLightboxMasa(1)">›</span>
+</div>
+
+<script>
+(function () {
+  // ── Imágenes (mismo orden que las miniaturas) ──────────────────────
+  window._imgsMasa = [
+    'https://static.wixstatic.com/media/32c95b_7428f0eb38094ef1b760c9b84057f5be~mv2.png',
+    'https://static.wixstatic.com/media/32c95b_b0de84eccd8244569d626d7410c680ba~mv2.png',
+    'https://static.wixstatic.com/media/32c95b_2ddbf4804677476f8504cfb20cd03f0c~mv2.png',
+    'https://static.wixstatic.com/media/32c95b_35d9ceddeeb945288f5660c4631ef9a2~mv2.png',
+    'https://static.wixstatic.com/media/32c95b_1a3c9371897242a1b5a9cfc356e0a7a0~mv2.png'
+  ];
+  window._activeImgMasa = 0;
+
+  // Restaurar selección guardada
+  var saved = localStorage.getItem('examen2pregunta1');
+  if (saved) {
+    var opt = document.querySelector('#cswaBlock_masa [data-index="' + saved + '"]');
+    if (opt) opt.classList.add('selected');
+  }
+})();
+
+// ── Cambiar imagen desde miniatura ────────────────────────────────────
+function switchImgMasa(index, thumbEl) {
+  window._activeImgMasa = index;
+  var mainImg = document.getElementById('cswa-main-img-masa');
+  mainImg.src = window._imgsMasa[index];
+
+  // Actualiza lightbox si está abierto
+  var lbImg = document.getElementById('cswa-lb-img-masa');
+  if (lbImg) lbImg.src = window._imgsMasa[index];
+
+  // Resalta miniatura activa
+  document.querySelectorAll('#cswa-thumbs-masa .cswa-thumb').forEach(function(t) {
+    t.classList.remove('active');
+  });
+  if (thumbEl) thumbEl.classList.add('active');
+}
+
+// ── Selección de respuesta ────────────────────────────────────────────
+function selectOptionMasa(el) {
+  document.querySelectorAll('#cswaBlock_masa .cswa-option').forEach(function(o) {
+    o.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  localStorage.setItem('examen2pregunta1', el.dataset.index);
+  localStorage.setItem('examen2pregunta1texto', el.dataset.value);
+}
+
+function resetMasa() {
+  document.querySelectorAll('#cswaBlock_masa .cswa-option').forEach(function(o) {
+    o.classList.remove('selected');
+  });
+  localStorage.removeItem('examen2pregunta1');
+  localStorage.removeItem('examen2pregunta1texto');
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────
+function openLightboxMasa() {
+  var lb = document.getElementById('cswaLightboxMasa');
+  document.getElementById('cswa-lb-img-masa').src = window._imgsMasa[window._activeImgMasa];
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightboxMasa() {
+  document.getElementById('cswaLightboxMasa').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navLightboxMasa(dir) {
+  var next = (window._activeImgMasa + dir + window._imgsMasa.length) % window._imgsMasa.length;
+  var thumbs = document.querySelectorAll('#cswa-thumbs-masa .cswa-thumb');
+  switchImgMasa(next, thumbs[next]);
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('cswaLightboxMasa');
+  if (!lb.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightboxMasa();
+  if (e.key === 'ArrowRight') navLightboxMasa(1);
+  if (e.key === 'ArrowLeft') navLightboxMasa(-1);
+});
+</script>
