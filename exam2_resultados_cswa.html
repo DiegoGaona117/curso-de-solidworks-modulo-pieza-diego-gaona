@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados Examen 2</title>
+</head>
+<body>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+  #TeachableBranding { display: none; }
+  .preview-navbar, .preview-navbar-dark { display: none; }
+  .preview-navbar-header { display: none; }
+  body, html { margin: 0; padding: 0; width: 100%; }
+
+  .cswa-results * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'IBM Plex Sans', sans-serif; }
+  .cswa-results { max-width: 860px; margin: 20px auto; }
+
+  .cswa-start-screen {
+    background: #e8e8e8; border: 2px solid #999; border-radius: 6px;
+    padding: 40px 24px; text-align: center; box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+  .cswa-start-screen h2 { font-size: 18px; font-weight: 700; color: #222; margin-bottom: 10px; }
+  .cswa-start-screen p { font-size: 14px; color: #555; margin-bottom: 28px; line-height: 1.6; }
+  .cswa-btn-finish {
+    padding: 12px 36px; background: #2c6fbd; color: #fff;
+    font-size: 15px; font-weight: 700; border: none; border-radius: 6px;
+    cursor: pointer; transition: background 0.15s; letter-spacing: 0.02em;
+  }
+  .cswa-btn-finish:hover { background: #1e5498; }
+
+  .cswa-score-card {
+    background: #e8e8e8; border: 2px solid #999; border-radius: 6px;
+    overflow: hidden; margin-bottom: 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+  .cswa-score-header { padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .cswa-score-header.pass { background: #2e7d32; }
+  .cswa-score-header.fail { background: #b71c1c; }
+  .cswa-score-header.incomplete { background: #e65100; }
+  .cswa-score-header h2 { font-size: 17px; font-weight: 700; color: #fff; }
+  .cswa-score-badge {
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%; width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;
+  }
+  .cswa-score-body {
+    padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px; background: #f0f0f0; border-bottom: 2px solid #bbb;
+  }
+  .cswa-stat { text-align: center; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #ddd; }
+  .cswa-stat-num { font-size: 28px; font-weight: 700; color: #222; }
+  .cswa-stat-num.green { color: #2e7d32; }
+  .cswa-stat-num.red { color: #b71c1c; }
+  .cswa-stat-label { font-size: 12px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .cswa-progress-wrap { padding: 16px 24px; background: #e8e8e8; }
+  .cswa-progress-label { font-size: 12px; color: #555; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .cswa-progress-bar { width: 100%; height: 18px; background: #ccc; border-radius: 9px; overflow: hidden; }
+  .cswa-progress-fill { height: 100%; border-radius: 9px; transition: width 0.6s ease; background: #2e7d32; }
+  .cswa-progress-fill.fail { background: #b71c1c; }
+
+  .cswa-table-card { background: #e8e8e8; border: 2px solid #999; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.18); margin-top: 24px; margin-bottom: 24px; }
+  .cswa-table-header { background: #d0d0d0; border-bottom: 2px solid #aaa; padding: 12px 18px; }
+  .cswa-table-header h3 { font-size: 14px; font-weight: 600; color: #222; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #c4c4c4; }
+  thead th { padding: 10px 16px; font-size: 12px; font-weight: 600; color: #333; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; border-bottom: 2px solid #aaa; }
+  tbody tr:nth-child(even) { background: #efefef; }
+  tbody tr:nth-child(odd) { background: #e8e8e8; }
+  tbody td { padding: 16px 16px; font-size: 13.5px; color: #222; border-bottom: 1px solid #ccc; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .badge-correct { background: #c8ecd4; color: #1b5e20; }
+  .badge-incorrect { background: #f5c6c6; color: #b71c1c; }
+  .badge-pending { background: #fff3cd; color: #856404; }
+
+  .cswa-locked-notice {
+    background: #fff3cd; border: 1px solid #ffc107;
+    border-radius: 6px; padding: 10px 16px;
+    font-size: 13px; color: #856404; margin-bottom: 16px; text-align: center;
+  }
+
+  /* ── Retry section ── */
+  .cswa-retry-section {
+    margin-top: 20px; padding: 20px 24px;
+    background: #f9f0f0; border: 2px solid #e8b4b4;
+    border-radius: 6px; text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .cswa-retry-section p { font-size: 14px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+  .cswa-retry-section .intentos-badge {
+    display: inline-block; margin-bottom: 14px;
+    background: #b71c1c; color: #fff;
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 700;
+  }
+  .cswa-btn-retry {
+    padding: 12px 36px; background: #b71c1c; color: #fff;
+    font-size: 15px; font-weight: 700; border: none; border-radius: 6px;
+    cursor: pointer; transition: background 0.15s; letter-spacing: 0.02em; margin-top: 4px;
+  }
+  .cswa-btn-retry:hover { background: #8b0000; }
+  .cswa-no-intentos {
+    margin-top: 20px; padding: 16px 24px;
+    background: #333; color: #fff; border-radius: 6px;
+    text-align: center; font-size: 14px; font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+</style>
+
+<div class="cswa-results" id="cswaResults">
+
+  <div class="cswa-start-screen" id="startScreen">
+    <h2>¿Listo para ver tus resultados?</h2>
+    <p>Una vez que hagas clic en <strong>Finalizar examen</strong>, tus respuestas quedarán bloqueadas y no podrás modificarlas. Asegúrate de haber respondido todas las preguntas antes de continuar.</p>
+    <button class="cswa-btn-finish" onclick="finalizarExamen2()">Finalizar examen</button>
+  </div>
+
+  <div id="resultadosScreen" style="display:none;">
+
+    <div class="cswa-locked-notice">
+      🔒 Examen finalizado — Las respuestas han sido bloqueadas y no pueden modificarse.
+    </div>
+
+    <div class="cswa-score-card">
+      <div class="cswa-score-header" id="scoreHeader">
+        <h2 id="scoreTitle"></h2>
+        <div class="cswa-score-badge" id="scoreBadge"></div>
+      </div>
+      <div class="cswa-score-body">
+        <div class="cswa-stat">
+          <div class="cswa-stat-num green" id="statCorrect">-</div>
+          <div class="cswa-stat-label">Correctas</div>
+        </div>
+        <div class="cswa-stat">
+          <div class="cswa-stat-num red" id="statIncorrect">-</div>
+          <div class="cswa-stat-label">Incorrectas</div>
+        </div>
+        <div class="cswa-stat">
+          <div class="cswa-stat-num" id="statPending">-</div>
+          <div class="cswa-stat-label">Sin responder</div>
+        </div>
+      </div>
+      <div class="cswa-progress-wrap">
+        <div class="cswa-progress-label">Resultado: <span id="progressText"></span></div>
+        <div class="cswa-progress-bar">
+          <div class="cswa-progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cswa-table-card">
+      <div class="cswa-table-header">
+        <h3>Detalle de respuestas</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tema</th>
+            <th>Tu respuesta</th>
+            <th>Respuesta correcta</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Zona de reintentos -->
+    <div id="retryZone"></div>
+
+  </div>
+</div>
+
+<script>
+  var MAX_INTENTOS = 3; // <-- Cambia aquí el límite de intentos
+  var TOTAL = 9;
+
+  var preguntas = [
+    { num: 1, tema: 'Masa de pieza',             key: 'examen2pregunta1texto', correcta: '1280.33',    tipo: 'opcion' },
+    { num: 2, tema: 'Centro de masa (ensamble)', key: 'examen2pregunta2texto', correcta: 'c',          tipo: 'opcion' },
+    { num: 3, tema: 'Centro de masa (ensamble)', key: 'examen2pregunta3texto', correcta: 'd',          tipo: 'opcion' },
+    { num: 4, tema: 'Masa de pieza',             key: 'examen2pregunta4texto', correcta: 'a',          tipo: 'opcion' },
+    { num: 5, tema: 'Tipos de vistas',           key: 'examen2pregunta5texto', correcta: 'd',          tipo: 'opcion' },
+    { num: 6, tema: 'Tipos de vistas',           key: 'examen2pregunta6texto', correcta: 'a',          tipo: 'opcion' },
+    { num: 7, tema: 'Tipos de vistas',           key: 'examen2pregunta7texto', correcta: 'd',          tipo: 'opcion' },
+    { num: 8, tema: 'Masa de pieza',             key: 'examen2pregunta8',      correcta: '8739.90',    tipo: 'numero' },
+    { num: 9, tema: 'Masa de pieza',             key: 'examen2pregunta9',      correcta: '9762.67',    tipo: 'numero' },
+  ];
+
+  var etiquetas = {
+    'examen2pregunta2texto': { a: 'X=-11.05  Y=24.08  Z=-40.19', b: 'X=-11.05  Y=-24.08  Z=40.19', c: 'X=40.24  Y=24.33  Z=20.75', d: 'X=20.75  Y=24.33  Z=40.24' },
+    'examen2pregunta3texto': { a: 'X=-30.00  Y=-40.16  Z=-40.16', b: 'X=30.00  Y=40.16  Z=-43.82', c: 'X=-30.00  Y=-40.16  Z=50.20', d: 'X=30.00  Y=40.16  Z=-53.82' },
+    'examen2pregunta4texto': { a: '2040.57', b: '2004.57', c: '102.63', d: '1561.23' },
+    'examen2pregunta5texto': { a: 'Sección recortada', b: 'Vista auxiliar', c: 'Vista recortada', d: 'Vista de detalle' },
+    'examen2pregunta6texto': { a: 'Vista de sección', b: 'Vista de detalle', c: 'Vista auxiliar', d: 'Vista recortada' },
+    'examen2pregunta7texto': { a: 'Vista de sección', b: 'Vista de detalle', c: 'Vista recortada', d: 'Vista de posición alternativa' },
+  };
+
+  function getLabel(key, val) {
+    if (!val || val === '') return '—';
+    if (etiquetas[key]) return etiquetas[key][val] || val;
+    return val;
+  }
+
+  function normalize(str) {
+    return (str || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function getIntentos() {
+    return parseInt(localStorage.getItem('examen2intentos') || '0', 10);
+  }
+
+  function checkAnswer(p) {
+    var val = localStorage.getItem('snapshot_' + p.key) || '';
+    if (!val) return { val: '', estado: 'pending' };
+    var ok;
+    if (p.tipo === 'numero') {
+      var rv = parseFloat(val);
+      var cv = parseFloat(p.correcta);
+      ok = !isNaN(rv) && (Math.abs(rv - cv) / Math.abs(cv) <= 0.01);
+    } else {
+      ok = normalize(val) === normalize(p.correcta);
+    }
+    return { val: val, estado: ok ? 'correct' : 'incorrect' };
+  }
+
+  function limpiarRespuestas() {
+    preguntas.forEach(function(p) {
+      localStorage.removeItem(p.key);
+      localStorage.removeItem('snapshot_' + p.key);
+    });
+    localStorage.removeItem('examen2finalizado');
+  }
+
+  function reintentar() {
+    if (getIntentos() >= MAX_INTENTOS) return;
+    if (!confirm('¿Deseas reintentar el examen? Tus respuestas actuales se borrarán.')) return;
+    limpiarRespuestas();
+    document.getElementById('resultadosScreen').style.display = 'none';
+    document.getElementById('startScreen').style.display = 'block';
+  }
+
+  function finalizarExamen2() {
+    if (!confirm('¿Estás seguro de que deseas finalizar el examen? Esta acción bloqueará todas tus respuestas.')) return;
+
+    preguntas.forEach(function(p) {
+      localStorage.setItem('snapshot_' + p.key, localStorage.getItem(p.key) || '');
+    });
+
+    var intentos = getIntentos() + 1;
+    localStorage.setItem('examen2intentos', intentos.toString());
+    localStorage.setItem('examen2finalizado', 'true');
+
+    document.getElementById('startScreen').style.display = 'none';
+    mostrarResultados();
+  }
+
+  function mostrarResultados() {
+    document.getElementById('resultadosScreen').style.display = 'block';
+
+    var tbody = document.getElementById('resultsBody');
+    tbody.innerHTML = '';
+    var correctCount = 0, incorrectCount = 0, pendingCount = 0;
+
+    preguntas.forEach(function(p) {
+      var result = checkAnswer(p);
+      var respLabel = getLabel(p.key, result.val);
+      var corrLabel = getLabel(p.key, p.correcta);
+
+      if (result.estado === 'correct') correctCount++;
+      else if (result.estado === 'incorrect') incorrectCount++;
+      else pendingCount++;
+
+      var badgeClass = result.estado === 'correct' ? 'badge-correct' : result.estado === 'incorrect' ? 'badge-incorrect' : 'badge-pending';
+      var badgeText  = result.estado === 'correct' ? '✓ Correcto' : result.estado === 'incorrect' ? '✗ Incorrecto' : '— Sin responder';
+
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td><strong>P' + p.num + '</strong></td>' +
+        '<td style="font-size:12px;color:#666">' + p.tema + '</td>' +
+        '<td>' + respLabel + '</td>' +
+        '<td>' + corrLabel + '</td>' +
+        '<td><span class="badge ' + badgeClass + '">' + badgeText + '</span></td>';
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('statCorrect').textContent  = correctCount;
+    document.getElementById('statIncorrect').textContent = incorrectCount;
+    document.getElementById('statPending').textContent   = pendingCount;
+
+    var pct  = Math.round((correctCount / TOTAL) * 100);
+    document.getElementById('progressText').textContent = correctCount + ' correctas de ' + TOTAL + ' (' + pct + '%)';
+    var fill = document.getElementById('progressFill');
+    fill.style.width = pct + '%';
+
+    var header = document.getElementById('scoreHeader');
+    var title  = document.getElementById('scoreTitle');
+    var badge  = document.getElementById('scoreBadge');
+    var aprobado = false;
+
+    if (pendingCount > 0) {
+      header.className = 'cswa-score-header incomplete';
+      title.textContent = 'Examen incompleto — ' + pendingCount + ' preguntas sin responder';
+      badge.textContent = '⏳';
+      fill.className = 'cswa-progress-fill fail';
+    } else if (pct === 100) {
+      header.className = 'cswa-score-header pass';
+      title.textContent = '¡Excelente! Todas las respuestas son correctas';
+      badge.textContent = '✓';
+      aprobado = true;
+    } else if (correctCount >= Math.ceil(TOTAL * 0.7)) {
+      header.className = 'cswa-score-header pass';
+      title.textContent = correctCount + ' de ' + TOTAL + ' correctas — ¡Aprobado!';
+      badge.textContent = '✓';
+      aprobado = true;
+    } else {
+      header.className = 'cswa-score-header fail';
+      title.textContent = correctCount + ' de ' + TOTAL + ' correctas — No aprobado';
+      badge.textContent = '✗';
+      fill.className = 'cswa-progress-fill fail';
+    }
+
+    // ── Zona de reintentos ──
+    var retryZone = document.getElementById('retryZone');
+    retryZone.innerHTML = '';
+
+    if (!aprobado && pendingCount === 0) {
+      var intentosUsados = getIntentos();
+      var intentosRestantes = MAX_INTENTOS - intentosUsados;
+
+      if (intentosRestantes > 0) {
+        retryZone.innerHTML =
+          '<div class="cswa-retry-section">' +
+            '<span class="intentos-badge">Intento ' + intentosUsados + ' de ' + MAX_INTENTOS + '</span>' +
+            '<p>No alcanzaste el puntaje mínimo. Aún te ' +
+            (intentosRestantes === 1 ? 'queda <strong>1 intento</strong>' : 'quedan <strong>' + intentosRestantes + ' intentos</strong>') +
+            ' disponibles.</p>' +
+            '<button class="cswa-btn-retry" onclick="reintentar()">🔄 Reintentar examen</button>' +
+          '</div>';
+      } else {
+        retryZone.innerHTML =
+          '<div class="cswa-no-intentos">' +
+            '❌ Has agotado los ' + MAX_INTENTOS + ' intentos permitidos. Ya no puedes reintentar este examen.' +
+          '</div>';
+      }
+    }
+  }
+
+  if (localStorage.getItem('examen2finalizado') === 'true') {
+    document.getElementById('startScreen').style.display = 'none';
+    mostrarResultados();
+  }
+</script>
+
+</body>
+</html>
