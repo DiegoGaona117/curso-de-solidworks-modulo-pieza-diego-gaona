@@ -1,0 +1,305 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  #TeachableBranding { display: none; }
+  .preview-navbar, .preview-navbar-dark { display: none; }
+  .preview-navbar-header { display: none; }
+  body, html { margin: 0; padding: 0; width: 100%; }
+
+  .cswa-quiz-wrap * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .cswa-quiz-wrap {
+    background: #e8e8e8;
+    border: 2px solid #999;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 860px;
+    margin: 20px auto;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+
+  .cswa-header {
+    background: #d0d0d0;
+    border-bottom: 2px solid #aaa;
+    padding: 12px 18px;
+  }
+  .cswa-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .cswa-image-area {
+    background: #f0f0f0;
+    border-bottom: 2px solid #bbb;
+    padding: 24px;
+    text-align: center;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .cswa-image-area img {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: zoom-in;
+    transition: opacity 0.15s;
+  }
+  .cswa-image-area img:hover { opacity: 0.88; }
+  .cswa-zoom-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    color: #888;
+    pointer-events: none;
+  }
+
+  .cswa-question-text {
+    background: #ececec;
+    border-bottom: 2px solid #bbb;
+    padding: 14px 20px;
+    font-size: 13.5px;
+    color: #222;
+    line-height: 1.7;
+  }
+  .cswa-question-text strong {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .cswa-question-text b { font-weight: 600; }
+
+  .cswa-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .cswa-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    border: 1px solid #bbb;
+    background: #e8e8e8;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 14px;
+    color: #222;
+    user-select: none;
+  }
+  .cswa-option:hover { background: #d8d8d8; }
+  .cswa-option.selected {
+    background: #c5d8f0;
+    border-color: #4a7fc1;
+  }
+  .cswa-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: all 0.15s;
+  }
+  .cswa-option.selected .cswa-radio {
+    background: #2c6fbd;
+    border-color: #2c6fbd;
+  }
+  .cswa-radio-dot {
+    width: 7px;
+    height: 7px;
+    background: #fff;
+    border-radius: 50%;
+    display: none;
+  }
+  .cswa-option.selected .cswa-radio-dot { display: block; }
+
+  .cswa-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .cswa-lightbox.active { display: flex; }
+  .cswa-lightbox img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    cursor: default;
+  }
+  .cswa-lightbox-close {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+  }
+  .cswa-lightbox-close:hover { opacity: 1; }
+
+  /* ── Banner de navegación ── */
+.cswa-nav-bar {
+  background: #1a1a2e;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 860px;
+  margin: 20px auto 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.cswa-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+.cswa-nav-btn.prev {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #555;
+}
+.cswa-nav-btn.prev:hover { background: rgba(255,255,255,0.08); }
+.cswa-nav-btn.next {
+  background: #2563eb;
+  color: #fff;
+}
+.cswa-nav-btn.next:hover { background: #1d4ed8; }
+</style>
+
+<div class="cswa-quiz-wrap" id="cswaBlock_e2p4">
+
+  <div class="cswa-header">
+    <h2>Pregunta 4</h2>
+  </div>
+
+  <div class="cswa-image-area">
+    <img
+      src="https://static.wixstatic.com/media/32c95b_89912908aa8d4a0e9f058fce22f1fe32~mv2.png"
+      alt="Pieza para calcular masa"
+      onclick="openLightboxE2P4()"
+      onerror="this.style.display='none'"
+    />
+    <span class="cswa-zoom-hint">🔍 Clic para ampliar</span>
+  </div>
+
+  <div class="cswa-question-text">
+    <strong>B00002 · Modelado de piezas</strong>
+    Construye la pieza en SOLIDWORKS.<br><br>
+
+    <b>Material:</b> Aleación 6061. Densidad = 0.0027 g/mm³.<br>
+    <b>Sistema de unidades:</b> MMGS (milímetro, gramo, segundo).<br>
+    <b>Decimales:</b> 2. &nbsp; <b>Origen de la pieza:</b> Arbitrario.<br>
+    <b>A = 100.</b> Todos los orificios son pasantes, salvo que se indique lo contrario.<br><br>
+
+    ¿Cuál es la masa total de la pieza en gramos?
+  </div>
+
+  <div class="cswa-options">
+    <div class="cswa-option" data-value="a" data-index="1" onclick="selectOptionE2P4(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      2040.57
+    </div>
+    <div class="cswa-option" data-value="b" data-index="2" onclick="selectOptionE2P4(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      2004.57
+    </div>
+    <div class="cswa-option" data-value="c" data-index="3" onclick="selectOptionE2P4(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      102.63
+    </div>
+    <div class="cswa-option" data-value="d" data-index="4" onclick="selectOptionE2P4(this)">
+      <div class="cswa-radio"><div class="cswa-radio-dot"></div></div>
+      1561.23
+    </div>
+  </div>
+
+</div>
+
+<div class="cswa-lightbox" id="cswaLightboxE2P4" onclick="closeLightboxE2P4()">
+  <span class="cswa-lightbox-close" onclick="closeLightboxE2P4()">✕</span>
+  <img
+    src="https://static.wixstatic.com/media/32c95b_89912908aa8d4a0e9f058fce22f1fe32~mv2.png"
+    alt="Vista ampliada"
+    onclick="event.stopPropagation()"
+  />
+</div>
+<div class="cswa-nav-bar">
+  <a href="exam2_p3_cswa.html" class="cswa-nav-btn prev">
+    ‹ Pregunta anterior
+  </a>
+  <a href="exam2_p5_cswa.html" class="cswa-nav-btn next">
+    Completar y continuar ›
+  </a>
+</div>
+<script>
+(function () {
+  var saved = localStorage.getItem('examen2pregunta4');
+  if (saved) {
+    var opt = document.querySelector('#cswaBlock_e2p4 [data-index="' + saved + '"]');
+    if (opt) opt.classList.add('selected');
+  }
+})();
+
+function selectOptionE2P4(el) {
+  document.querySelectorAll('#cswaBlock_e2p4 .cswa-option').forEach(function(o) {
+    o.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  localStorage.setItem('examen2pregunta4', el.dataset.index);
+  localStorage.setItem('examen2pregunta4texto', el.dataset.value);
+}
+
+function resetE2P4() {
+  document.querySelectorAll('#cswaBlock_e2p4 .cswa-option').forEach(function(o) {
+    o.classList.remove('selected');
+  });
+  localStorage.removeItem('examen2pregunta4');
+  localStorage.removeItem('examen2pregunta4texto');
+}
+
+function openLightboxE2P4() {
+  document.getElementById('cswaLightboxE2P4').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightboxE2P4() {
+  document.getElementById('cswaLightboxE2P4').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightboxE2P4();
+});
+</script>
