@@ -232,7 +232,54 @@
   .cswa-lb-nav:hover { opacity: 1; }
   .cswa-lb-prev { left: 12px; }
   .cswa-lb-next { right: 12px; }
+
+  /* ── Banner de navegación ── */
+.cswa-nav-bar {
+  background: #1a1a2e;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 860px;
+  margin: 20px auto 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.cswa-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+.cswa-nav-btn.prev {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #555;
+}
+.cswa-nav-btn.prev:hover { background: rgba(255,255,255,0.08); }
+.cswa-nav-btn.next {
+  background: #2563eb;
+  color: #fff;
+}
+.cswa-nav-btn.next:hover { background: #1d4ed8; }
 </style>
+
+<div class="cswa-nav-bar">
+  <a href="" class="cswa-nav-btn prev">
+    ‹ Pregunta anterior
+  </a>
+  <a href="URL_SIGUIENTE_PREGUNTA" class="cswa-nav-btn next">
+    Completar y continuar ›
+  </a>
+</div>
 
 <div class="cswa-quiz-wrap" id="cswaBlock_masa">
 
