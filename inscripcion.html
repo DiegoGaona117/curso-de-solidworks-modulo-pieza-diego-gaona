@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Días Gratis — Curso SolidWorks | Diego Gaona</title>
+<meta name="description" content="Acceso completo al curso SolidWorks por 7 días, sin tarjeta. +170 lecciones, simulador CSWA y soporte personal.">
+<meta property="fb:app_id" content="392241650294847">
+<meta property="fb:admins" content="100003831708496">
+<meta property="og:title" content="Prueba el Curso SolidWorks 7 días gratis — Diego Gaona">
+<meta property="og:description" content="Acceso completo a los 4 módulos. Sin tarjeta, sin presión.">
+<meta property="og:image" content="https://static.wixstatic.com/media/32c95b_6e808bd13c5b4fc786fdc4365110507f~mv2.webp">
+<meta property="og:url" content="https://cursodiegogaona.com/acceso-gratuito">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%234f46e5'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='white'>3D</text></svg>">
+<link rel="preconnect" href="https://static.wixstatic.com">
+<link rel="preconnect" href="https://connect.facebook.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '373277814132384');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
+></noscript>
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --bg:             #f9f9f8;
+  --white:          #ffffff;
+  --border:         #e4e4e0;
+  --accent:         #4f46e5;
+  --accent-hover:   #4338ca;
+  --accent-subtle:  #eef2ff;
+  --text:           #0f0f0e;
+  --text-secondary: #4b5563;
+  --text-muted:     #6b7280;
+  --green-bg:       #f0fdf4;
+  --green-border:   #bbf7d0;
+  --red:            #dc2626;
+  --red-light:      rgba(239,68,68,0.08);
+  --r:              12px;
+  --shadow:         0 2px 20px rgba(0,0,0,0.05);
+}
+
+/* ── BASE ── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  /* Evita zoom accidental en doble tap (móvil) */
+  touch-action: manipulation;
+}
+
+/* ── ACCESIBILIDAD: label oculto visualmente pero legible por lectores ── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.header-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+/* ── PAGE (mobile-first, max-width para desktop) ── */
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 28px 20px 72px;  /* más compacto arriba en móvil */
+}
+
+@media (min-width: 520px) {
+  .page { padding: 40px 24px 80px; }
+}
+
+/* ── HERO ── */
+.hero { margin-bottom: 28px; }
+
+@media (min-width: 520px) {
+  .hero { margin-bottom: 36px; }
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+h1 {
+  /* Mobile: compacto pero impactante */
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 520px) {
+  h1 { font-size: 36px; margin-bottom: 14px; }
+}
+
+.sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+@media (min-width: 520px) {
+  .sub { font-size: 16px; }
+}
+
+/* ── FORM ── */
+.form-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 520px) {
+  .form-wrap { padding: 24px; margin-bottom: 20px; }
+}
+
+/* Mobile-first: columna por defecto, fila en pantallas más anchas */
+.input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .input-row { flex-direction: row; }
+}
+
+label.email-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.email-input {
+  width: 100%;
+  min-width: 0;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  /* 16px mínimo en móvil — evita zoom automático en iOS Safari */
+  font-size: 16px;
+  /* 48px mínimo de altura táctil */
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  -webkit-appearance: none;
+  flex: 1;
+}
+
+.email-input::placeholder { color: var(--text-muted); }
+
+.email-input:focus {
+  border-color: var(--accent);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+}
+
+.email-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px var(--red-light);
+}
+
+/* Botón: ancho completo en móvil, auto en desktop */
+.btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--r);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  /* 48px táctil mínimo */
+  padding: 14px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 4px 14px rgba(79,70,229,0.28);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (min-width: 480px) {
+  .btn { width: auto; }
+}
+
+.btn:hover  { background: var(--accent-hover); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled {
+  background: #a5b4fc;
+  box-shadow: none;
+  transform: none;
+  cursor: default;
+}
+
+.field-error {
+  font-size: 13px;
+  color: var(--red);
+  font-weight: 600;
+  margin-top: 8px;
+  display: none;
+}
+
+.form-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.note-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #dc2626;
+  border: 1px solid #dc2626;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+/* ── SUCCESS ── */
+.success-wrap {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--green-border);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 520px) {
+  .success-wrap { padding: 32px 28px; margin-bottom: 20px; }
+}
+
+.success-icon {
+  width: 52px; height: 52px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 22px;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.success-msg {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+.success-email {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.success-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ── TRUST ── */
+.trust {
+  display: grid;
+  /* 2x2 en pantallas muy pequeñas, 4 columnas desde 360px */
+  grid-template-columns: 1fr 1fr;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+@media (min-width: 360px) {
+  .trust { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 520px) {
+  .trust { margin-bottom: 36px; }
+}
+
+.trust-item {
+  padding: 14px 8px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* En 4 columnas, quitamos borde derecho al último y bordes inferiores */
+@media (min-width: 360px) {
+  .trust-item:last-child { border-right: none; }
+  .trust-item { border-bottom: none; }
+}
+
+/* En 2x2: quitar borde derecho en posiciones pares, borde inferior en últimas dos */
+@media (max-width: 359px) {
+  .trust-item:nth-child(2n) { border-right: none; }
+  .trust-item:nth-child(3),
+  .trust-item:nth-child(4) { border-bottom: none; }
+}
+
+.trust-num {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.trust-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── INCLUDES ── */
+.includes-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.includes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.include-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.include-icon {
+  width: 32px; height: 32px;
+  background: var(--accent-subtle);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  /* Asegura que el ícono no se aplaste en móvil */
+  min-width: 32px;
+}
+
+.include-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+  padding-top: 2px;
+}
+
+.include-detail {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ── SPINNER ── */
+.spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  background: var(--white);
+}
+
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    Diego Gaona
+  </div>
+  <div class="header-pill">Curso SolidWorks</div>
+</header>
+
+<main class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Curso SolidWorks · 7 días gratis · Sin tarjeta</div>
+    <h1>¿Empezando de cero y quieres certificarte?</h1>
+    <p class="sub">Pon tu correo y te mandamos acceso completo al curso por 7 días. Si no te convence, no pagas nada.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-wrap" id="form-wrap">
+    <!-- Label oculto: accesible para lectores de pantalla, invisible visualmente -->
+    <label for="email" class="sr-only">Correo de Gmail</label>
+    <div class="input-row">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="email-input"
+        placeholder="tucorreo@gmail.com"
+        autocomplete="email"
+        inputmode="email"
+        aria-describedby="err-email"
+        aria-required="true"
+      >
+      <button class="btn" id="btn-enviar" type="button">
+        Quiero acceso →
+      </button>
+    </div>
+    <div class="field-error" id="err-email" role="alert">
+      Ingresa un correo @gmail.com válido.
+    </div>
+    <div class="form-note">
+      <span class="note-tag">Solo Gmail</span>
+      Sin spam. Acceso inmediato.
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-wrap" id="success-wrap" role="status">
+    <div class="success-icon">✓</div>
+    <div class="success-title">¡Listo, ya tienes acceso!</div>
+    <p class="success-msg">
+      Revisa <span class="success-email" id="email-confirmado"></span> —
+      te llegó el acceso completo al curso.<br><br>
+      Tienes <strong>7 días para explorar todo</strong> y decidir si el curso es para ti.<br>
+      Si no te llega tu acceso, escríbeme al
+      <a class="success-link" href="https://wa.me/5214621579719">WhatsApp</a>.
+    </p>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust" aria-label="Cifras del curso">
+    <div class="trust-item">
+      <span class="trust-num">+19k</span>
+      <span class="trust-label">Estudiantes</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num">+500</span>
+      <span class="trust-label">Certificados</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num">4.8★</span>
+      <span class="trust-label">Calificación</span>
+    </div>
+    <div class="trust-item">
+      <span class="trust-num">80k</span>
+      <span class="trust-label">YouTube</span>
+    </div>
+  </div>
+
+  <!-- INCLUDES -->
+  <div class="includes-label">Qué incluye el acceso</div>
+  <div class="includes-list">
+    <div class="include-item">
+      <div class="include-icon" aria-hidden="true">📐</div>
+      <div>
+        <div class="include-title">Módulo 1 — Modelado 3D desde cero</div>
+        <div class="include-detail">+170 lecciones · 17 prácticas · Planos PDF</div>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon" aria-hidden="true">📄</div>
+      <div>
+        <div class="include-title">Módulo 2 — Planos técnicos profesionales</div>
+        <div class="include-detail">26 lecciones · Normas ISO y ANSI · Exportar PDF</div>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon" aria-hidden="true">⚙️</div>
+      <div>
+        <div class="include-title">Módulo 3 — Ensambles y mecanismos</div>
+        <div class="include-detail">41 lecciones · Animaciones · Simulación de movimiento</div>
+      </div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon" aria-hidden="true">🎯</div>
+      <div>
+        <div class="include-title">Módulo 4 — Simulador examen CSWA</div>
+        <div class="include-detail">3 exámenes · 36 preguntas · Condición real</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Diego Gaona · Mentoría SolidWorks &nbsp;·&nbsp;
+  <a href="https://wa.me/5214621579719">WhatsApp</a>
+</footer>
+
+<script>
+/* ── CONSTANTES ── */
+const WEBHOOK = 'https://hook.us1.make.com/l7b8gps8gjqwtcj95xslmj9p5nmhh5fv';
+
+/* ── REFERENCIAS AL DOM (una sola vez) ── */
+const emailInput = document.getElementById('email');
+const btnEnviar  = document.getElementById('btn-enviar');
+const errEmail   = document.getElementById('err-email');
+const formWrap   = document.getElementById('form-wrap');
+const successWrap = document.getElementById('success-wrap');
+const emailConfirmado = document.getElementById('email-confirmado');
+
+/* ── VALIDACIÓN ── */
+function validarGmail(email) {
+  return /^[a-zA-Z0-9._%+\-]+@gmail\.com$/.test(email.trim());
+}
+
+function setError(show) {
+  emailInput.classList.toggle('error', show);
+  errEmail.style.display = show ? 'block' : 'none';
+}
+
+/* ── ENVÍO ── */
+async function enviar() {
+  const email = emailInput.value.trim();
+
+  if (!validarGmail(email)) {
+    setError(true);
+    emailInput.focus();
+    return;
+  }
+
+  setError(false);
+  btnEnviar.disabled = true;
+  btnEnviar.innerHTML = '<span class="spinner"></span>Enviando...';
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+
+  try {
+    const res = await fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        event2: 'inscripcion',          // ← mantenido igual que tu Make original
+        fuente: 'landing-acceso-gratuito',
+        fecha: new Date().toISOString()
+      }),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+    emailConfirmado.textContent = email;
+    formWrap.style.display   = 'none';
+    successWrap.style.display = 'block';
+
+  } catch (e) {
+    clearTimeout(timeout);
+    btnEnviar.disabled = false;
+    btnEnviar.innerHTML = 'Quiero acceso →';
+
+    const msg = e.name === 'AbortError'
+      ? 'La solicitud tardó demasiado. Intenta de nuevo.'
+      : 'Hubo un error. Intenta de nuevo o escríbeme al WhatsApp.';
+    alert(msg);
+  }
+}
+
+/* ── EVENTOS — sin onclick inline ── */
+btnEnviar.addEventListener('click', enviar);
+
+emailInput.addEventListener('input', function () {
+  if (validarGmail(this.value.trim())) setError(false);
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') enviar();
+});
+</script>
+</body>
+</html>
