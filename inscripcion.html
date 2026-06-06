@@ -611,6 +611,23 @@ footer a:hover { color: var(--text-secondary); }
 </footer>
 
 <script>
+
+  function getOrCreateOrderCode() {
+  let code = localStorage.getItem('order_code');
+  if (!code) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let random = '';
+    for (let i = 0; i < 5; i++) {
+      random += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    code = 'PL-' + random;
+    localStorage.setItem('order_code', code);
+  }
+  return code;
+}
+
+const ORDER_CODE = getOrCreateOrderCode();
+
 /* ── CONSTANTES ── */
 const WEBHOOK = 'https://hook.us1.make.com/l7b8gps8gjqwtcj95xslmj9p5nmhh5fv';
 
@@ -636,6 +653,7 @@ async function trackPageView() {
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
       tipo: 'pageview',
+      order_code: ORDER_CODE,   // ← aquí
       timestamp: new Date().toISOString(),
       ip,
       pais,
