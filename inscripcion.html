@@ -653,14 +653,15 @@ async function trackPageView() {
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
       tipo: 'pageview',
-      order_code: ORDER_CODE,   // ← aquí
+      order_code: ORDER_CODE,
       timestamp: new Date().toISOString(),
       ip,
       pais,
       fbp: getCookie('_fbp'),
       fbc: getCookie('_fbc'),
       user_agent: navigator.userAgent,
-      fuente: 'landing-acceso-gratuito'
+      fuente: 'landing-acceso-gratuito',
+      trafico: localStorage.getItem('fb_visita') === 'ok' ? 'retargeting' : 'frio'  // ← nuevo
     })
   });
 }
