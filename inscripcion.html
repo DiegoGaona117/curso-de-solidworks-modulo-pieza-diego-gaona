@@ -694,5 +694,12 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') enviar();
 });
 </script>
+  <script>
+    (function() {
+        if (localStorage.getItem('fb_visita') === 'ok') {
+            fbq('track', 'ViewContent');
+        }
+    })();
+</script>
 </body>
 </html>
