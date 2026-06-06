@@ -614,6 +614,42 @@ footer a:hover { color: var(--text-secondary); }
 /* ── CONSTANTES ── */
 const WEBHOOK = 'https://hook.us1.make.com/l7b8gps8gjqwtcj95xslmj9p5nmhh5fv';
 
+// ── APPS SCRIPT TRACKING ──
+const WEBHOOK_GS = 'https://script.google.com/macros/s/AKfycbyXoFp_WCJqRxh4WhMsSWifzbGZK0vO1DQVlV5de3srP2h36isCf28VMoaSzMLGKBsW/exec';
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : '';
+}
+
+async function trackPageView() {
+  let ip = '', pais = '';
+  try {
+    const geo = await fetch('https://ipapi.co/json/');
+    const geoData = await geo.json();
+    ip = geoData.ip;
+    pais = geoData.country_name;
+  } catch(e) {}
+
+  fetch(WEBHOOK_GS, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({
+      tipo: 'pageview',
+      timestamp: new Date().toISOString(),
+      ip,
+      pais,
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc'),
+      user_agent: navigator.userAgent,
+      fuente: 'landing-acceso-gratuito'
+    })
+  });
+}
+
+trackPageView();
+
+
 /* ── REFERENCIAS AL DOM (una sola vez) ── */
 const emailInput = document.getElementById('email');
 const btnEnviar  = document.getElementById('btn-enviar');
