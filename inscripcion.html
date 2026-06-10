@@ -752,6 +752,26 @@ document.addEventListener('keydown', function (e) {
 });
 </script>
   <script>
+
+    (function() {
+        const KEY = 'fb_visita2';
+        
+        // Solo guardar si no existe aún (primera visita)
+        if (!localStorage.getItem(KEY)) {
+            const datos = {
+                fecha: new Date().toISOString(),
+                url:   window.location.href,
+                ref:   document.referrer || 'directo'
+            };
+            localStorage.setItem(KEY, 'ok');
+        }
+
+        window.leerVisita = function() {
+            const raw = localStorage.getItem(KEY);
+            return raw ? JSON.parse(raw) : null;
+        };
+    })();
+    
     (function() {
         if (localStorage.getItem('fb_visita') === 'ok') {
             fbq('track', 'ViewContent');
