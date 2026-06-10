@@ -640,6 +640,8 @@ function getCookie(name) {
 }
 
 async function trackPageView() {
+  if (localStorage.getItem('fb_visita') !== 'ok') return; // ← sale si no es retargeting
+
   let ip = '', pais = '';
   try {
     const geo = await fetch('https://ipapi.co/json/');
@@ -661,7 +663,7 @@ async function trackPageView() {
       fbc: getCookie('_fbc'),
       user_agent: navigator.userAgent,
       fuente: 'landing-acceso-gratuito',
-      trafico: localStorage.getItem('fb_visita') === 'ok' ? 'retargeting' : 'frio'  // ← nuevo
+      trafico: 'retargeting'  // ← ya es fijo, no necesita el ternario
     })
   });
 }
