@@ -611,172 +611,152 @@ footer a:hover { color: var(--text-secondary); }
 </footer>
 
 <script>
+  /* ── SETEA KEY DE ESTE LANDING (va primero) ── */
+  localStorage.setItem('fb_visita2', 'ok');
 
+  /* ── ORDER CODE ── */
   function getOrCreateOrderCode() {
-  let code = localStorage.getItem('order_code');
-  if (!code) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let random = '';
-    for (let i = 0; i < 5; i++) {
-      random += chars.charAt(Math.floor(Math.random() * chars.length));
+    let code = localStorage.getItem('order_code');
+    if (!code) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let random = '';
+      for (let i = 0; i < 5; i++) {
+        random += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      code = 'PL-' + random;
+      localStorage.setItem('order_code', code);
     }
-    code = 'PL-' + random;
-    localStorage.setItem('order_code', code);
-  }
-  return code;
-}
-
-const ORDER_CODE = getOrCreateOrderCode();
-
-/* ── CONSTANTES ── */
-const WEBHOOK = 'https://hook.us1.make.com/l7b8gps8gjqwtcj95xslmj9p5nmhh5fv';
-
-// ── APPS SCRIPT TRACKING ──
-const WEBHOOK_GS = 'https://script.google.com/macros/s/AKfycbyXoFp_WCJqRxh4WhMsSWifzbGZK0vO1DQVlV5de3srP2h36isCf28VMoaSzMLGKBsW/exec';
-
-function getCookie(name) {
-  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? match[2] : '';
-}
-
-async function trackPageView() {
-  if (localStorage.getItem('fb_visita') !== 'ok') return; // ← sale si no es retargeting
-
-  let ip = '', pais = '';
-  try {
-    const geo = await fetch('https://ipapi.co/json/');
-    const geoData = await geo.json();
-    ip = geoData.ip;
-    pais = geoData.country_name;
-  } catch(e) {}
-
-  fetch(WEBHOOK_GS, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({
-      tipo: 'pageview',
-      order_code: ORDER_CODE,
-      timestamp: new Date().toISOString(),
-      ip,
-      pais,
-      fbp: getCookie('_fbp'),
-      fbc: getCookie('_fbc'),
-      user_agent: navigator.userAgent,
-      fuente: 'landing-acceso-gratuito',
-      trafico: 'retargeting'  // ← ya es fijo, no necesita el ternario
-    })
-  });
-}
-
-trackPageView();
-
-
-/* ── REFERENCIAS AL DOM (una sola vez) ── */
-const emailInput = document.getElementById('email');
-const btnEnviar  = document.getElementById('btn-enviar');
-const errEmail   = document.getElementById('err-email');
-const formWrap   = document.getElementById('form-wrap');
-const successWrap = document.getElementById('success-wrap');
-const emailConfirmado = document.getElementById('email-confirmado');
-
-/* ── VALIDACIÓN ── */
-function validarGmail(email) {
-  return /^[a-zA-Z0-9._%+\-]+@gmail\.com$/.test(email.trim());
-}
-
-function setError(show) {
-  emailInput.classList.toggle('error', show);
-  errEmail.style.display = show ? 'block' : 'none';
-}
-
-/* ── ENVÍO ── */
-async function enviar() {
-  const email = emailInput.value.trim();
-
-  if (!validarGmail(email)) {
-    setError(true);
-    emailInput.focus();
-    return;
+    return code;
   }
 
-  setError(false);
-  btnEnviar.disabled = true;
-  btnEnviar.innerHTML = '<span class="spinner"></span>Enviando...';
+  const ORDER_CODE = getOrCreateOrderCode();
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  /* ── CONSTANTES ── */
+  const WEBHOOK    = 'https://hook.us1.make.com/l7b8gps8gjqwtcj95xslmj9p5nmhh5fv';
+  const WEBHOOK_GS = 'https://script.google.com/macros/s/AKfycbyXoFp_WCJqRxh4WhMsSWifzbGZK0vO1DQVlV5de3srP2h36isCf28VMoaSzMLGKBsW/exec';
 
-  try {
-    const res = await fetch(WEBHOOK, {
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : '';
+  }
+
+  /* ── TRACKING GAS — solo si ya visitó planos ── */
+  async function trackPageView() {
+    if (localStorage.getItem('fb_visita') !== 'ok') return;
+
+    let ip = '', pais = '';
+    try {
+      const geo = await fetch('https://ipapi.co/json/');
+      const geoData = await geo.json();
+      ip = geoData.ip;
+      pais = geoData.country_name;
+    } catch(e) {}
+
+    fetch(WEBHOOK_GS, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({
-        email,
-        event2: 'inscripcion',          // ← mantenido igual que tu Make original
+        tipo: 'pageview',
+        order_code: ORDER_CODE,
+        timestamp: new Date().toISOString(),
+        ip,
+        pais,
+        fbp: getCookie('_fbp'),
+        fbc: getCookie('_fbc'),
+        user_agent: navigator.userAgent,
         fuente: 'landing-acceso-gratuito',
-        fecha: new Date().toISOString()
-      }),
-      signal: controller.signal
+        trafico: 'retargeting',
+        referrer: document.referrer || 'directo'  // ← agregado
+      })
     });
-
-    clearTimeout(timeout);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-
-    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-
-    emailConfirmado.textContent = email;
-    formWrap.style.display   = 'none';
-    successWrap.style.display = 'block';
-
-  } catch (e) {
-    clearTimeout(timeout);
-    btnEnviar.disabled = false;
-    btnEnviar.innerHTML = 'Quiero acceso →';
-
-    const msg = e.name === 'AbortError'
-      ? 'La solicitud tardó demasiado. Intenta de nuevo.'
-      : 'Hubo un error. Intenta de nuevo o escríbeme al WhatsApp.';
-    alert(msg);
   }
-}
 
-/* ── EVENTOS — sin onclick inline ── */
-btnEnviar.addEventListener('click', enviar);
+  trackPageView();
 
-emailInput.addEventListener('input', function () {
-  if (validarGmail(this.value.trim())) setError(false);
-});
+  /* ── META PIXEL — ViewContent si ya visitó planos ── */
+  if (localStorage.getItem('fb_visita') === 'ok') {
+    if (typeof fbq !== 'undefined') fbq('track', 'ViewContent'); // ← guardia agregada
+  }
 
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') enviar();
-});
-</script>
-  <script>
+  /* ── DOM ── */
+  const emailInput      = document.getElementById('email');
+  const btnEnviar       = document.getElementById('btn-enviar');
+  const errEmail        = document.getElementById('err-email');
+  const formWrap        = document.getElementById('form-wrap');
+  const successWrap     = document.getElementById('success-wrap');
+  const emailConfirmado = document.getElementById('email-confirmado');
 
-    (function() {
-        const KEY = 'fb_visita2';
-        
-        // Solo guardar si no existe aún (primera visita)
-        if (!localStorage.getItem(KEY)) {
-            const datos = {
-                fecha: new Date().toISOString(),
-                url:   window.location.href,
-                ref:   document.referrer || 'directo'
-            };
-            localStorage.setItem(KEY, 'ok');
-        }
+  /* ── VALIDACIÓN ── */
+  function validarGmail(email) {
+    return /^[a-zA-Z0-9._%+\-]+@gmail\.com$/.test(email.trim());
+  }
 
-        window.leerVisita = function() {
-            const raw = localStorage.getItem(KEY);
-            return raw ? JSON.parse(raw) : null;
-        };
-    })();
-    
-    (function() {
-        if (localStorage.getItem('fb_visita') === 'ok') {
-            fbq('track', 'ViewContent');
-        }
-    })();
+  function setError(show) {
+    emailInput.classList.toggle('error', show);
+    errEmail.style.display = show ? 'block' : 'none';
+  }
+
+  /* ── ENVÍO ── */
+  async function enviar() {
+    const email = emailInput.value.trim();
+
+    if (!validarGmail(email)) {
+      setError(true);
+      emailInput.focus();
+      return;
+    }
+
+    setError(false);
+    btnEnviar.disabled = true;
+    btnEnviar.innerHTML = '<span class="spinner"></span>Enviando...';
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    try {
+      const res = await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          event2: 'inscripcion',
+          fuente: 'landing-acceso-gratuito',
+          fecha: new Date().toISOString()
+        }),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+      emailConfirmado.textContent = email;
+      formWrap.style.display    = 'none';
+      successWrap.style.display = 'block';
+
+    } catch (e) {
+      clearTimeout(timeout);
+      btnEnviar.disabled = false;
+      btnEnviar.innerHTML = 'Quiero acceso →';
+
+      const msg = e.name === 'AbortError'
+        ? 'La solicitud tardó demasiado. Intenta de nuevo.'
+        : 'Hubo un error. Intenta de nuevo o escríbeme al WhatsApp.';
+      alert(msg);
+    }
+  }
+
+  /* ── EVENTOS ── */
+  btnEnviar.addEventListener('click', enviar);
+
+  emailInput.addEventListener('input', function () {
+    if (validarGmail(this.value.trim())) setError(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') enviar();
+  });
 </script>
 </body>
 </html>
