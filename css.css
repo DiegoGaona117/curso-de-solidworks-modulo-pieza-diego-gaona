@@ -441,9 +441,7 @@
     background-color: #f0f2f5;
 }
 
-/* ── RESPONSIVE ESCRITORIO ─────────────────────────────── */
-
-/* Entre 550px y 1080px: ocultar sidebar */
+/* Entre 550px y 1080px: ocultar sidebar y simplificar topbar */
 @media (max-width: 1080px) {
     .sidebar {
         display: none !important;
@@ -451,15 +449,29 @@
     .menu-toggle {
         display: none !important;
     }
-}
 
-/* Menos de 550px: mostrar aviso de escritorio */
-@media (max-width: 550px) {
-    .layout, .topbar {
+    /* Ocultar botones menos importantes en topbar */
+    #btnPrev,
+    #btnTheme,
+    .topbar-progress {
         display: none !important;
     }
-    #msgEscritorio {
-        display: flex !important;
+
+    /* Reducir padding del topbar */
+    .topbar {
+        padding: 0 12px;
+        gap: 8px;
+    }
+
+    /* Reducir texto del brand */
+    .topbar-brand {
+        font-size: 12px;
+    }
+
+    /* Botón siguiente más compacto */
+    #btnNext {
+        font-size: 12px;
+        padding: 0 10px;
     }
 }
     </style>
