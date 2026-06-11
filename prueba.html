@@ -106,8 +106,9 @@
     }
     // Sin sesión válida → redirigir al login
     window.location.href = 'https://diegogaona117.github.io/login/';
+})();
 
-    // ── BOTÓN COMPRAR (solo para usuarios de prueba) ────────────
+// ── BOTÓN COMPRAR (solo para usuarios de prueba) ────────────
 (function() {
     const sesion = localStorage.getItem('dg_sesion');
     if (!sesion) return;
@@ -115,7 +116,7 @@
         const { estado } = JSON.parse(sesion);
         if (estado === 'prueba') {
             const btn = document.createElement('a');
-            btn.href = 'https://cursodiegogaona.com'; // ← pon tu URL de compra
+            btn.href = 'https://cursodiegogaona.com';
             btn.target = '_blank';
             btn.textContent = '🔓 Comprar curso completo';
             btn.style.cssText = `
@@ -139,7 +140,6 @@
             document.body.appendChild(btn);
         }
     } catch {}
-})();
 })();
 // ── LESSON DATA ──────────────────────────────────────────────
 const lessons = [
