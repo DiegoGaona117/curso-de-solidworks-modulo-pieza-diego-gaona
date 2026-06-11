@@ -55,55 +55,6 @@
 </head>
 <body>
 
-  <div id="loginScreen" style="
-    position:fixed; inset:0; background:#0d0f14;
-    display:flex; align-items:center; justify-content:center;
-    z-index:9999; padding:24px;">
-
-    <div style="background:#13161d; border:1px solid #ffffff18; border-radius:16px;
-                padding:40px; width:100%; max-width:400px; text-align:center;">
-
-        <div style="font-size:13px; font-weight:500; color:#f97316;
-                    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px;">
-            Curso Diego Gaona
-        </div>
-
-        <h2 style="font-size:22px; font-weight:600; color:#e8eaf0;
-                   margin-bottom:8px; letter-spacing:-0.03em;">
-            Bienvenido al curso
-        </h2>
-
-        <p style="font-size:14px; color:#9ca3af; margin-bottom:32px; line-height:1.6;">
-            Ingresa la clave de acceso que recibiste al comprar
-        </p>
-
-        <input type="password" id="claveInput" placeholder="Clave de acceso"
-            style="width:100%; padding:12px 16px; background:#1a1e28;
-                   border:1px solid #ffffff18; border-radius:8px; color:#e8eaf0;
-                   font-size:14px; margin-bottom:12px; outline:none;
-                   font-family:'Sora',sans-serif;"
-            onkeydown="if(event.key==='Enter') verificarClave()">
-
-        <div id="loginError" style="font-size:13px; color:#f87171;
-                                     margin-bottom:12px; display:none;">
-            Clave incorrecta. Verifica con Diego por WhatsApp.
-        </div>
-
-        <button onclick="verificarClave()" style="width:100%; padding:14px;
-            background:#f97316; border:none; border-radius:8px; color:#fff;
-            font-family:'Sora',sans-serif; font-size:15px; font-weight:600;
-            cursor:pointer; transition:background 0.15s;">
-            Entrar al curso →
-        </button>
-
-        <p style="font-size:12px; color:#4b5563; margin-top:20px;">
-            ¿No tienes acceso? Escríbeme por 
-            <a href="https://wa.me/+5214621579719" target="_blank" 
-               style="color:#f97316; text-decoration:none;">WhatsApp</a>
-        </p>
-    </div>
-</div>
-
 <!-- TOP BAR -->
 <div class="topbar">
     <button class="menu-toggle" id="menuToggle">☰</button>
@@ -141,28 +92,55 @@
 
 <script>
 
-const _0x4f2a = 'SL269300Q';
-
-function verificarClave() {
-    const input = document.getElementById('claveInput').value.trim();
-    if (input === _0x4f2a) {
-        localStorage.setItem('acceso_curso', 'ok');
-        document.getElementById('loginScreen').style.display = 'none';
-    } else {
-        document.getElementById('loginError').style.display = 'block';
-        document.getElementById('claveInput').value = '';
-        document.getElementById('claveInput').focus();
-    }
-}
-
-// Verificar acceso al cargar la página
+// Verificar sesión al cargar
 (function() {
-    if (localStorage.getItem('acceso_curso') !== 'ok') {
-        document.getElementById('loginScreen').style.display = 'flex';
-    } else {
-        document.getElementById('loginScreen').style.display = 'none';
+    const sesion = localStorage.getItem('dg_sesion');
+    if (sesion) {
+        try {
+            const { expira } = JSON.parse(sesion);
+            if (expira && Date.now() < expira) {
+                return;
+            }
+        } catch {}
     }
+    // Sin sesión válida → redirigir al login
+    window.location.href = 'https://diegogaona117.github.io/login/';
 })();
+
+// ── BOTÓN COMPRAR (solo para usuarios de prueba) ────────────
+(function() {
+    const sesion = localStorage.getItem('dg_sesion');
+    if (!sesion) return;
+    try {
+        const { estado } = JSON.parse(sesion);
+        if (estado === 'prueba') {
+            const btn = document.createElement('a');
+            btn.href = 'https://pay.hotmart.com/U80396963E?off=ndkiy143&bid=1781198555796';
+            btn.target = '_blank';
+            btn.textContent = '🔓 Comprar curso completo';
+            btn.style.cssText = `
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                background: #f97316;
+                color: #fff;
+                font-family: 'Sora', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 12px 20px;
+                border-radius: 10px;
+                text-decoration: none;
+                box-shadow: 0 4px 16px rgba(249,115,22,0.4);
+                z-index: 9999;
+                transition: opacity 0.15s;
+            `;
+            btn.onmouseover = () => btn.style.opacity = '0.85';
+            btn.onmouseout  = () => btn.style.opacity = '1';
+            document.body.appendChild(btn);
+        }
+    } catch {}
+})();
+
 // ── LESSON DATA ──────────────────────────────────────────────
 const lessons = [
      // Módulo de Ensamble
