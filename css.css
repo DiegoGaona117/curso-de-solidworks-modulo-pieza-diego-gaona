@@ -441,37 +441,44 @@
     background-color: #f0f2f5;
 }
 
-/* Entre 550px y 1080px: ocultar sidebar y simplificar topbar */
 @media (max-width: 1080px) {
+    /* Ocultar sidebar pero mantener el botón de menú */
     .sidebar {
         display: none !important;
     }
-    .menu-toggle {
+
+    /* Ocultar texto del brand */
+    .topbar-brand {
         display: none !important;
     }
 
-    /* Ocultar botones menos importantes en topbar */
+    /* Ocultar botones secundarios */
     #btnPrev,
     #btnTheme,
     .topbar-progress {
         display: none !important;
     }
 
-    /* Reducir padding del topbar */
+    /* Topbar más compacto */
     .topbar {
         padding: 0 12px;
         gap: 8px;
-    }
-
-    /* Reducir texto del brand */
-    .topbar-brand {
-        font-size: 12px;
     }
 
     /* Botón siguiente más compacto */
     #btnNext {
         font-size: 12px;
         padding: 0 10px;
+    }
+
+    /* Mostrar el botón de las 3 líneas */
+    .menu-toggle {
+        display: flex !important;
+    }
+
+    /* El sidebar al abrirse sí debe aparecer */
+    .sidebar.open {
+        display: flex !important;
     }
 }
     </style>
