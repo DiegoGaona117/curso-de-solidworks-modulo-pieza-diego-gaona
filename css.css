@@ -481,4 +481,13 @@
         display: flex !important;
     }
 }
+
+@media (max-width: 550px) {
+    .layout, .topbar {
+        display: none !important;
+    }
+    #msgEscritorio {
+        display: flex !important;
+    }
+}
     </style>
