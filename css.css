@@ -440,4 +440,26 @@
     --text-dim:  #555;
     background-color: #f0f2f5;
 }
+
+/* ── RESPONSIVE ESCRITORIO ─────────────────────────────── */
+
+/* Entre 550px y 1080px: ocultar sidebar */
+@media (max-width: 1080px) {
+    .sidebar {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Menos de 550px: mostrar aviso de escritorio */
+@media (max-width: 550px) {
+    .layout, .topbar {
+        display: none !important;
+    }
+    #msgEscritorio {
+        display: flex !important;
+    }
+}
     </style>
