@@ -100,7 +100,6 @@
         try {
             const { expira } = JSON.parse(sesion);
             if (expira && Date.now() < expira) {
-                document.getElementById('loginScreen').style.display = 'none';
                 return;
             }
         } catch {}
