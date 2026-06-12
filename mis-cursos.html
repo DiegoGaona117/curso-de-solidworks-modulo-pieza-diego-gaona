@@ -399,7 +399,25 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
-
+        .btn-favorito {
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 99px;
+    border: 1px solid #ffffff20;
+    background: #1a1e2a;
+    color: #9ca3af;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn-favorito:hover {
+    background: #f97316;
+    color: #fff;
+    border-color: #f97316;
+}
         
     </style>
 </head>
@@ -408,7 +426,32 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
 <!-- HEADER -->
 <header>
     <div class="logo">Diego <span>Gaona</span></div>
+    <div style="display:flex; align-items:center; gap:10px;">
     <div class="header-tag">Mis cursos</div>
+    <button class="btn-favorito" onclick="mostrarTip()">⭐ Guardar</button>
+</div>
+
+<div id="tip-favorito" style="
+    display:none;
+    position:fixed;
+    top:70px;
+    right:20px;
+    background:#1a1e2a;
+    border:1px solid #ffffff20;
+    border-radius:12px;
+    padding:16px 20px;
+    font-size:13px;
+    color:#e8eaf0;
+    z-index:999;
+    box-shadow:0 8px 32px #00000060;
+    max-width:260px;
+    line-height:1.6;
+">
+    💡 Presiona <kbd style="background:#0b0d12;border:1px solid #ffffff30;padding:2px 7px;border-radius:4px;font-family:monospace;">Ctrl + D</kbd> para guardar esta página en tus favoritos y acceder rápido la próxima vez.
+    <div style="margin-top:12px;text-align:right;">
+        <button onclick="cerrarTip()" style="background:#3b82f6;border:none;color:#fff;padding:5px 14px;border-radius:6px;cursor:pointer;font-size:12px;">Entendido</button>
+    </div>
+</div>
 </div>
 </header>
 
@@ -539,7 +582,22 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
     <p>¿Necesitas ayuda? Escríbeme por <a href="https://wa.me/+5214621579719" target="_blank">WhatsApp</a> · Diego Gaona © 2025</p>
 </footer>
 
-  
+  <script>
+function mostrarTip() {
+    document.getElementById('tip-favorito').style.display = 'block';
+}
+function cerrarTip() {
+    document.getElementById('tip-favorito').style.display = 'none';
+}
+// Cerrar si hacen clic fuera
+document.addEventListener('click', function(e) {
+    const tip = document.getElementById('tip-favorito');
+    const btn = document.querySelector('.btn-favorito');
+    if (!tip.contains(e.target) && e.target !== btn) {
+        tip.style.display = 'none';
+    }
+});
+</script>
 
 </body>
 </html>
