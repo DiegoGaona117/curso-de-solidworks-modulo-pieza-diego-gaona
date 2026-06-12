@@ -399,6 +399,26 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .btn-shortcut {
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: var(--surface2);
+    color: var(--dim);
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn-shortcut:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
     </style>
 </head>
 <body>
@@ -406,7 +426,12 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
 <!-- HEADER -->
 <header>
     <div class="logo">Diego <span>Gaona</span></div>
+    <div style="display:flex; align-items:center; gap:10px;">
     <div class="header-tag">Mis cursos</div>
+    <button onclick="crearAccesoDirecto()" class="btn-shortcut" title="Crear acceso directo">
+        🔗 Acceso directo
+    </button>
+</div>
 </header>
 
 <!-- HERO -->
@@ -535,6 +560,23 @@ src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
 <footer>
     <p>¿Necesitas ayuda? Escríbeme por <a href="https://wa.me/+5214621579719" target="_blank">WhatsApp</a> · Diego Gaona © 2025</p>
 </footer>
+
+    <script>
+function crearAccesoDirecto() {
+    const url     = window.location.href;
+    const nombre  = document.title || 'Mis Cursos Diego Gaona';
+
+    // Archivo .url para Windows (doble clic = abre el navegador en esta página)
+    const contenido = `[InternetShortcut]\r\nURL=${url}\r\nIconIndex=0\r\n`;
+    const blob      = new Blob([contenido], { type: 'text/plain' });
+    const link      = document.createElement('a');
+
+    link.href     = URL.createObjectURL(blob);
+    link.download = nombre + '.url';
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+</script>
 
 </body>
 </html>
