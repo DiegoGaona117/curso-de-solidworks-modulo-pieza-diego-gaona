@@ -243,6 +243,7 @@ body {
 /* ── MAIN CONTENT ── */
 .main {
     flex: 1;
+    min-width: 0;           /* FIX: sin esto, un flex item no se encoge más allá de su contenido */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -251,6 +252,7 @@ body {
 
 .content-scroll {
     flex: 1;
+    overflow-x: hidden;     /* FIX: bloquea cualquier desbordamiento horizontal */
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--border2) transparent;
@@ -259,6 +261,7 @@ body {
 .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
 .content-inner {
+    width: 100%;            /* FIX: anclado al ancho real del padre */
     max-width: 1000px;
     margin: 0 auto;
     padding: 36px 32px 60px;
@@ -281,6 +284,7 @@ body {
 .video-wrap {
     position: relative;
     width: 100%;
+    max-width: 100%;        /* FIX: garantiza que nunca desborde su padre */
     padding-bottom: 56.25%; /* 16 / 9 = 0.5625 */
     height: 0;
     overflow: hidden;
