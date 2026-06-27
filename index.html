@@ -97,7 +97,6 @@ html, body { height: 100%; overflow: hidden; }
 body {
     font-family: 'Sora', sans-serif;
     background: var(--bg);
-    /* FIX: eliminado "background-color: white" que sobreescribía el tema oscuro */
     color: var(--text);
     display: flex;
     flex-direction: column;
@@ -237,7 +236,7 @@ body {
     border-left: 2px solid transparent;
     transition: all 0.15s;
     user-select: none;
-    touch-action: manipulation; /* elimina el delay de 300ms en Android */
+    touch-action: manipulation;
 }
 .lesson-item:hover  { background: var(--surface2); }
 .lesson-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
@@ -298,7 +297,7 @@ body {
 /* ── MAIN CONTENT ── */
 .main {
     flex: 1;
-    min-width: 0;           /* FIX: sin esto, un flex item no se encoge más allá de su contenido */
+    min-width: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -307,7 +306,7 @@ body {
 
 .content-scroll {
     flex: 1;
-    overflow-x: hidden;     /* FIX: bloquea cualquier desbordamiento horizontal */
+    overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--border2) transparent;
@@ -316,7 +315,7 @@ body {
 .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
 .content-inner {
-    width: 100%;            /* FIX: anclado al ancho real del padre */
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 36px 32px 60px;
@@ -331,16 +330,16 @@ body {
     line-height: 1.3;
 }
 
-/* ── VIDEO ── */
-/* Desktop: aspect-ratio define la altura correctamente → eventos de ratón OK.
-   Mobile:  padding-bottom trick (media query abajo) + applyVideoScale().
-   El truco height:0 + overflow:hidden causaba que height:100% del iframe
-   resolviera a 0px en desktop, desalineando los eventos de ratón (click "atrapado"). */
+/* ── VIDEO ──
+   Desktop: aspect-ratio define la altura → eventos de ratón correctos.
+   Móvil:   el iframe se expande a VIDEO_MIN_W y se encoge con CSS zoom
+            (zoom escala el coordinate space, transform:scale no lo hace,
+             lo que rompe los eventos touch en WebView/Chrome Android). */
 .video-wrap {
     position: relative;
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 16 / 9;   /* desktop: altura real, eventos de ratón correctos */
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: var(--surface);
     border-radius: 10px;
@@ -476,7 +475,6 @@ body {
 }
 
 /* ── BARRA DE NAVEGACIÓN MÓVIL (2 botones) ── */
-/* Oculta en desktop. Se activa en ≤768px. */
 .mobile-nav-bar  { display: none; }
 .btn-float-prev  { display: none; }
 .btn-float-next  { display: none; }
@@ -495,7 +493,7 @@ body {
     padding: 14px 44px 14px 18px;
     border-radius: 10px;
     z-index: 200;
-    pointer-events: none; /* FIX: invisible = no intercepta taps */
+    pointer-events: none;
     opacity: 0;
     transform: translateY(-4px);
     transition: opacity 0.35s, transform 0.35s;
@@ -514,7 +512,7 @@ body {
 .menu-hint.visible {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto; /* solo intercepta cuando está visible */
+    pointer-events: auto;
 }
 .menu-hint-close {
     position: absolute;
@@ -552,15 +550,14 @@ body.light {
    RESPONSIVE
    ══════════════════════════════════════════════════ */
 
-/* ── TABLET (≤ 1080px) ──────────────────────────────
-   Sidebar se convierte en drawer. Topbar compacto.   */
+/* ── TABLET (≤ 1080px) ── */
 @media (max-width: 1080px) {
     .sidebar {
         position: fixed;
         left: 0; top: 0; bottom: 0;
         z-index: 95;
         transform: translateX(-100%);
-        padding-top: var(--topbar-h); /* FIX: evita que el contenido quede detrás del topbar */
+        padding-top: var(--topbar-h);
     }
     .sidebar.open   { transform: translateX(0); }
     .overlay.active { display: block; }
@@ -577,30 +574,23 @@ body.light {
     #btnNext { font-size: 12px; padding: 0 10px; }
 }
 
-/* ── MÓVIL (≤ 768px) ────────────────────────────────
-   FIX PRINCIPAL: antes se ocultaba TODA la página.
-   Ahora se adapta con botón flotante de navegación.  */
+/* ── MÓVIL (≤ 768px) ── */
 @media (max-width: 768px) {
     :root { --sidebar-w: min(88vw, 320px); }
 
-    /* Topbar compacto */
     .topbar       { padding: 0 10px; gap: 6px; }
     .progress-bar { width: 60px; height: 8px; }
     #progressText { font-size: 11px; }
 
-    /* "Mis cursos" visible en móvil con texto completo */
     #btnMisCursos { display: flex; }
     #btnMisCursos .btn-label { display: inline; }
 
-    /* Ocultar botón Next del topbar (reemplazado por el flotante) */
     #btnNext { display: none; }
 
-    /* Padding inferior extra para no quedar debajo del botón flotante */
     .content-inner { padding: 18px 14px 100px; }
 
     .lesson-title-main { font-size: 18px; }
 
-    /* PDF card en columna */
     .pdf-card {
         flex-direction: column;
         padding: 20px;
@@ -614,20 +604,19 @@ body.light {
         font-size: 14px;
     }
 
-    /* Congrats responsive */
     .congrats-emoji { font-size: 52px; }
     .congrats-title { font-size: 22px; }
     .congrats-sub   { font-size: 14px; }
 
-    /* Items del sidebar más fáciles de tocar con el dedo */
     .lesson-item  { padding: 12px 16px; }
     .lesson-check { width: 22px; height: 22px; }
     .lesson-name  { font-size: 13px; }
 
-    /* Video: en móvil switch a padding-bottom + iframe absoluto.
-       FIX: padding-bottom = 72% en vez de 56.25% para dar espacio
-       a las dos filas de controles de Google Drive (barra de progreso
-       + fila de play/tiempo/volumen) sin que queden recortadas. */
+    /* ── VIDEO EN MÓVIL ──
+       El iframe se renderiza en su ancho real (VIDEO_MIN_W) y JS aplica
+       CSS zoom para encajarlo en el contenedor. zoom sí escala el
+       coordinate space del iframe → los eventos touch llegan correctos
+       (a diferencia de transform:scale que los desalinea). */
     .video-wrap {
         aspect-ratio: unset;
         padding-bottom: 72%;
@@ -637,9 +626,10 @@ body.light {
         position: absolute;
         top: 0;
         left: 0;
+        transform-origin: top left; /* residual, ya no se usa transform */
     }
 
-    /* ── BARRA DE NAVEGACIÓN INFERIOR (2 botones) ── */
+    /* ── BARRA DE NAVEGACIÓN INFERIOR ── */
     .mobile-nav-bar {
         display: flex;
         position: fixed;
@@ -650,7 +640,6 @@ body.light {
         z-index: 50;
     }
 
-    /* Botón "← Atrás" */
     .btn-float-prev {
         display: flex;
         flex: 0 0 68px;
@@ -669,7 +658,6 @@ body.light {
     .btn-float-prev:disabled { opacity: 0.25; cursor: not-allowed; }
     .btn-float-prev:not(:disabled):active { background: var(--surface); transform: scale(0.97); }
 
-    /* Botón "✓ Completar y continuar" */
     .btn-float-next {
         display: flex;
         flex: 1;
@@ -704,7 +692,7 @@ body.light {
 </head>
 <body>
 
-<!-- MENSAJE MÓVIL — se muestra solo en pantallas pequeñas vía JS -->
+<!-- MENSAJE MÓVIL — mantenido pero no activado -->
 <div id="msgEscritorio" style="
     display: none;
     position: fixed;
@@ -767,26 +755,13 @@ body.light {
     <button class="btn-float-next" id="btnFloatNext">✓ &nbsp;Completar y continuar</button>
 </div>
 
-<!-- TOOLTIP DE DESCUBRIMIENTO — aparece una sola vez señalando el ☰ -->
+<!-- TOOLTIP DE DESCUBRIMIENTO -->
 <div class="menu-hint" id="menuHint">
     👆 Toca ☰ para ver todas las clases del curso
     <button class="menu-hint-close" id="menuHintClose">✕</button>
 </div>
 
 <script>
-
-// ── VERIFICAR SESIÓN ─────────────────────────────────────────
-// DESACTIVADO TEMPORALMENTE — acceso libre hasta nuevo aviso
-// (function() {
-//     const sesion = localStorage.getItem('dg_sesion');
-//     if (sesion) {
-//         try {
-//             const { expira } = JSON.parse(sesion);
-//             if (expira && Date.now() < expira) return;
-//         } catch {}
-//     }
-//     window.location.href = 'https://diegogaona117.github.io/login/';
-// })();
 
 // ── BOTÓN COMPRAR (solo usuarios de prueba) ──────────────────
 (function() {
@@ -822,21 +797,13 @@ body.light {
     } catch {}
 })();
 
-// ── MENSAJE MÓVIL ────────────────────────────────────────────
-// FIX: Eliminado el bloqueo de móvil — la plataforma ahora
-// funciona en todos los tamaños de pantalla. El div
-// #msgEscritorio se mantiene en el HTML por si se necesita
-// en el futuro, pero no se activa.
-
 // ── SESIÓN ───────────────────────────────────────────────────
-// Estados válidos para ver el contenido: solo 'activo'
-// Estados bloqueados: sin sesión, 'prueba', 'removido', expirada
 function getSessionEstado() {
     try {
         const raw = localStorage.getItem('dg_sesion');
         if (!raw) return null;
         const { estado, expira } = JSON.parse(raw);
-        if (expira && Date.now() > expira) return null; // sesión expirada
+        if (expira && Date.now() > expira) return null;
         return estado || null;
     } catch {
         return null;
@@ -876,12 +843,12 @@ function renderPaywall(el) {
 }
 
 // ── LECCIONES GRATUITAS ──────────────────────────────────────
-// Secciones accesibles sin sesión activa
 const FREE_SECTIONS = ['Introducción al curso', 'Práctica 1'];
 
 function isLessonFree(lesson) {
     return FREE_SECTIONS.includes(lesson.section);
 }
+
 const lessons = [
     // Introducción al curso
     { id:0,   title:"Crear mi primer documento",                              dur:"0:46",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1ebXikG2g7HHJErZ2XeiKnZRzaIK6UyaM/preview", pdfUrl:null },
@@ -932,7 +899,6 @@ const lessons = [
     { id:41,  title:"Solución ejercicio 4",                                   dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1q9-RMZsB_Nv8AVOjNUQFID8_ESxfcti1/preview?usp=drive_link", pdfUrl:null },
     { id:42,  title:"Ejercicio 4.1",                                          dur:"PDF",   section:"Práctica 4",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1QmPx80SuugnwXSL4RYBV1jKb3YuIz_CV/view?usp=drive_link" },
     { id:43,  title:"Solución ejercicio 4.1",                                 dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1YYwM7Puqr2AlNaZI2fsDQ1tSgza8EciK/preview?usp=drive_link", pdfUrl:null },
-    // FIX: id:44 duplicado → renombrado a id:44 (Ejercicio 4.2) y id:127 (Descarga y corrige)
     { id:44,  title:"Ejercicio 4.2",                                          dur:"PDF",   section:"Práctica 4",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1FiSZLhBC4BNMPvVuiZEmsWJvl_USqNZc/view?usp=drive_link" },
     { id:45,  title:"Solución ejercicio 4.2",                                 dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1cvsGpA6_lqJZZZ1DADGGq3yG_pzs2T8X/preview?usp=drive_link", pdfUrl:null },
     // Proyecto servomotor sg90
@@ -943,7 +909,6 @@ const lessons = [
     { id:50,  title:"Edición de operaciones",                                 dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1M8AMGremJ-Z1VpDIgiDaqt0y5UCjzv93/preview?usp=drive_link", pdfUrl:null },
     { id:51,  title:"Edición dinámica | Instant 3D",                          dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1oFQeKe846QyM79PL3uyr0wRYSwvCaHkD/preview?usp=drive_link", pdfUrl:null },
     { id:52,  title:"Corrección de una pieza",                                dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1JiSUUrBmYHBEXSJ3NwEJiFWP4fcoq-Xc/preview?usp=drive_link", pdfUrl:null },
-    // FIX: id:44 duplicado → ahora es id:127. También tenía pdfUrl declarado dos veces, dejamos solo uno
     { id:127, title:"Descarga y corrige las siguientes piezas",               dur:"PDF",   section:"Edición de croquis y operaciones",  type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/drive/u/0/folders/1OdmWP6uwhp6H1vtJ5hJXPIMr3v5H7NAS" },
     { id:53,  title:"Operación de Escala",                                    dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1HCeTQLH60v8ly3g2N2f2rtdsrtj8bzA3/preview?usp=drive_link", pdfUrl:null },
     // Práctica 5
@@ -987,7 +952,7 @@ const lessons = [
     // Chaflán
     { id:87,  title:"Operación de chaflán",                                   dur:"3:36",  section:"Chaflán",                           type:"video", videoUrl:"https://drive.google.com/file/d/1_QUQ7BMmzU4zFIuXOgGzIKe8JL-LDIZb/preview?usp=drive_link", pdfUrl:null },
     { id:88,  title:"Ejercicio chaflán 1",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1J6Iq0IgfeZO_CkM9Qt5f9kRR5TZHcY93/view?usp=drive_link" },
-    { id:89,  title:"Ejercicio chaflán 2",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1bBz0FXkATUcIUWuO-SOGOEYgyOuO5NXc/view?usp=drive_link" },
+    { id:89,  title:"Ejercicio chaflán 2",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1bBz0FXkATUcIUWEgyOuO5NXc/view?usp=drive_link" },
     { id:90,  title:"Ejercicio chaflán 3",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1e-JeXZ-QAsXfDPipbgNL5JeYh-2T54nu/view?usp=drive_link" },
     // Práctica 9 — Revolución saliente base
     { id:91,  title:"Práctica 9 — Revolución saliente base",                  dur:"6:43",  section:"Práctica 9 — Revolución saliente base", type:"video", videoUrl:"https://drive.google.com/file/d/1xoC1Im78x74gsLMAs-bfhHqiAd6_V-PX/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/176qjbyDXtqU79w13FA2tBqaYvq-TmlxU/view?usp=drive_link" },
@@ -1002,7 +967,6 @@ const lessons = [
     { id:99,  title:"Ejercicio 10",                                           dur:"PDF",   section:"Práctica 10 — Nervio",              type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1C6M8Nqo-_8J8z-2iW0QBFG4Jz-f2JPZm/view?usp=drive_link" },
     { id:100, title:"Solución ejercicio 10",                                  dur:"6:41",  section:"Práctica 10 — Nervio",              type:"video", videoUrl:"https://drive.google.com/file/d/1NKcHXnUzrWlIZlTLRdO8cAWzvDJyAquc/preview?usp=drive_link", pdfUrl:null },
     // Proyecto servomotor mg995
-    // FIX: type era "video" pero videoUrl estaba vacío → cambiado a "pdf"
     { id:101, title:"Proyecto servomotor mg995",                              dur:"—",     section:"Proyecto servomotor mg995",         type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1E668O8eMfoUImPCw-QnST5xB3NVks63Y/view?usp=drive_link" },
     { id:102, title:"Solución proyecto servomotor mg995",                     dur:"25:18", section:"Proyecto servomotor mg995",         type:"video", videoUrl:"https://drive.google.com/file/d/1C9yJfIoN-_ufWNf_tZqEBpZJrtWWuqDN/preview?usp=drive_link", pdfUrl:null },
     // Práctica 11
@@ -1170,8 +1134,6 @@ function renderContent() {
 
     document.getElementById('btnPrev').disabled = currentIdx === 0;
 
-    // ── VERIFICAR SESIÓN ──
-    // Sin sesión activa → mostrar paywall, excepto en lecciones gratuitas
     if (!sesionValida() && !isLessonFree(l)) {
         renderPaywall(el);
         return;
@@ -1243,8 +1205,7 @@ function renderContent() {
         return;
     }
 
-    // ── EXAMEN ──
-    // FIX: movido aquí antes del bloque de video para evitar doble escritura en el.innerHTML
+    // ── EXAM ──
     if (l.type === 'exam') {
         el.innerHTML = `
             <h1 class="lesson-title-main">${l.title}</h1>
@@ -1293,14 +1254,22 @@ function renderContent() {
 
     el.innerHTML = html;
 
-    // Escalar el video si el contenedor es más angosto que el mínimo del iframe
     requestAnimationFrame(applyVideoScale);
 }
 
 // ── ESCALA DE VIDEO PARA MÓVIL ───────────────────────────────
-// Google Drive embeds no se renderizan a menos de ~560px internamente.
-// Solución: dejar que el iframe renderice a 560px y escalarlo hacia abajo
-// con transform:scale() para que quepa en pantallas más angostas.
+// FIX PRINCIPAL: se reemplazó transform:scale() por CSS zoom.
+//
+// El problema con transform:scale() en iframes es que escala visualmente
+// el elemento pero NO escala su sistema de coordenadas interno. Los eventos
+// touch llegan al iframe en coordenadas del host (sin desescalar), así que
+// un tap en el centro visual del video llegaba al tercio izquierdo del
+// iframe → el botón de play no respondía en muchos Android / Chrome WebView.
+//
+// zoom sí reescala el coordinate space: el navegador lo considera en
+// hit-testing, por lo que los eventos touch llegan exactamente donde el
+// usuario toca. Nota: zoom no está en el estándar W3C pero tiene soporte
+// amplio en Chromium/Safari/WebView desde hace años.
 const VIDEO_MIN_W = 560;
 
 function applyVideoScale() {
@@ -1312,31 +1281,32 @@ function applyVideoScale() {
     const containerW = wrap.offsetWidth;
 
     if (containerW < VIDEO_MIN_W) {
-        // Móvil: escalar el iframe
-        // FIX: altura = VIDEO_MIN_W * 0.72 (mismo % que el padding-bottom del contenedor)
-        // para que el iframe escalado llene el contenedor, incluidos los controles de GDrive
+        // Móvil: renderizar en el ancho mínimo del iframe y reducir con zoom
         const scale = containerW / VIDEO_MIN_W;
         iframe.style.width           = VIDEO_MIN_W + 'px';
         iframe.style.height          = Math.round(VIDEO_MIN_W * 0.72) + 'px';
-        iframe.style.transform       = `scale(${scale})`;
-        iframe.style.transformOrigin = 'top left';
-    } else if (iframe.style.transform) {
-        // Solo limpiar si previamente aplicamos un transform (ej: rotación móvil→desktop)
-        // FIX: no tocar el iframe en desktop si no hay transform previo —
-        // modificar estilos dispara un mousemove sintético que deja los controles
-        // de Google Drive atascados como si el cursor estuviera siempre sobre el video
-        iframe.style.width           = '';
-        iframe.style.height          = '';
-        iframe.style.transform       = '';
+        iframe.style.zoom            = scale;      // ← escala coordenadas correctamente
+        iframe.style.transform       = '';         // asegurarse de limpiar cualquier transform previo
         iframe.style.transformOrigin = '';
+    } else {
+        // Desktop: CSS lo maneja solo (aspect-ratio 16/9).
+        // Solo limpiar si previamente se aplicó zoom (ej: rotación móvil→desktop)
+        if (iframe.style.zoom) {
+            iframe.style.width           = '';
+            iframe.style.height          = '';
+            iframe.style.zoom            = '';
+            iframe.style.transform       = '';
+            iframe.style.transformOrigin = '';
+        }
     }
-    // Desktop sin transform previo: no hacer nada — CSS lo maneja solo
 }
+
+// Re-aplicar escala de video al cambiar tamaño de ventana
+window.addEventListener('resize', applyVideoScale);
 
 // ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
 let _lastEstado = getSessionEstado();
 
-// Caso 1: el login ocurrió en otra pestaña
 window.addEventListener('storage', e => {
     if (e.key === 'dg_sesion') {
         _lastEstado = getSessionEstado();
@@ -1346,8 +1316,6 @@ window.addEventListener('storage', e => {
     }
 });
 
-// Caso 2: el usuario regresa a esta pestaña después de hacer login
-// Solo re-renderiza si el estado de sesión cambió, para no interrumpir taps
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
         const estadoActual = getSessionEstado();
@@ -1360,12 +1328,7 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Re-aplicar escala de video al cambiar tamaño de ventana
-window.addEventListener('resize', applyVideoScale);
-
 // ── AUTO-COMPLETE ─────────────────────────────────────────────
-// FIX: solo aplica auto-complete a PDFs (3 seg). Los videos no se auto-completan
-// porque el usuario puede pausar y sería marcado como visto sin verlo
 let autoCompleteTimer = null;
 
 function startAutoComplete(idx) {
@@ -1425,8 +1388,6 @@ document.getElementById('btnPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
 
-// FIX: eliminadas las llamadas redundantes a saveState/updateProgress/renderSidebar
-// ya que navigate() las ejecuta internamente
 document.getElementById('btnNext').addEventListener('click', () => {
     completed.add(currentIdx);
     saveState();
@@ -1473,20 +1434,16 @@ updateProgress();
 startAutoComplete(currentIdx);
 
 // ── BARRA DE NAVEGACIÓN MÓVIL ────────────────────────────────
-
-// Sincroniza el estado del botón "← Atrás" flotante
 function updateMobileNav() {
     const prev = document.getElementById('btnFloatPrev');
     if (prev) prev.disabled = currentIdx === 0;
 }
 updateMobileNav();
 
-// Botón "← Atrás"
 document.getElementById('btnFloatPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
 
-// Botón "✓ Completar y continuar"
 document.getElementById('btnFloatNext').addEventListener('click', () => {
     completed.add(currentIdx);
     saveState();
@@ -1499,7 +1456,6 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
 });
 
 // ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ──────────────────────
-// Aparece una sola vez. El usuario lo cierra con la ✕.
 (function() {
     if (localStorage.getItem('sw_hint_seen')) return;
     if (window.innerWidth > 1080) return;
@@ -1512,22 +1468,15 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
         localStorage.setItem('sw_hint_seen', '1');
     }
 
-    // Aparece después de 1.2s
     setTimeout(() => hint.classList.add('visible'), 1200);
-
-    // Cerrar con la X
     document.getElementById('menuHintClose').addEventListener('click', closeHint);
-
-    // También cerrar si toca el ☰
     document.getElementById('menuToggle').addEventListener('click', closeHint);
 })();
 
 // ── FIX: CONTROLES ATASCADOS EN GOOGLE DRIVE ─────────────────
-// window.blur no dispara de forma confiable en móvil al tocar un iframe.
-// Solución: intervalo que cada 3.5s resetea brevemente pointer-events
-// del iframe → el reproductor recibe el evento de salida y su timer
-// de auto-ocultación de controles (~3s) empieza a correr.
-// Resultado: controles se ocultan solos ≤ 6.5s después de reproducir.
+// Aumentado a 8s para reducir el riesgo de race condition con taps del usuario.
+// El reproductor de Drive oculta sus controles tras ~3s de inactividad,
+// así que con 8s de intervalo el overlap es mínimo.
 (function() {
     setInterval(() => {
         const iframe = document.querySelector('.video-wrap iframe');
@@ -1536,9 +1485,8 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
         requestAnimationFrame(() => requestAnimationFrame(() => {
             iframe.style.pointerEvents = '';
         }));
-    }, 3500);
+    }, 8000);
 })();
-
 
 </script>
 
