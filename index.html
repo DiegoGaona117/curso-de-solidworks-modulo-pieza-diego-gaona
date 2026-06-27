@@ -1522,6 +1522,32 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
     document.getElementById('menuToggle').addEventListener('click', closeHint);
 })();
 
+// ── FIX: CONTROLES ATASCADOS EN GOOGLE DRIVE ─────────────────
+// Al tocar play en móvil, GDrive no recibe el touchend correctamente
+// y los controles quedan visibles indefinidamente. Detectamos cuando
+// el iframe toma el foco (window.blur), esperamos a que la reproducción
+// inicie y luego simulamos el "segundo toque" que el usuario tendría
+// que dar manualmente: brevemente quitamos y restauramos pointer-events
+// para forzar que el iframe reciba el evento de salida del cursor/dedo.
+(function() {
+    window.addEventListener('blur', () => {
+        const iframe = document.querySelector('.video-wrap iframe');
+        if (!iframe) return;
+
+        setTimeout(() => {
+            // Quitar pointer-events por 2 frames → fuerza pointerleave en el iframe
+            iframe.style.pointerEvents = 'none';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                iframe.style.pointerEvents = '';
+            }));
+            // Devolver foco a la ventana para limpiar el estado
+            iframe.blur();
+            window.focus();
+        }, 800); // tiempo suficiente para que GDrive inicie la reproducción
+    });
+})();
+
+
 </script>
 
 </body>
