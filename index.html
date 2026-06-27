@@ -1112,16 +1112,18 @@ function renderSidebar() {
             item.appendChild(badge);
         }
 
-        if (isLessonFree(l)) {
-            const badge = document.createElement('span');
-            badge.className = 'lesson-type-badge badge-free';
-            badge.textContent = 'GRATIS';
-            item.appendChild(badge);
-        } else if (!sesionValida()) {
-            const lock = document.createElement('span');
-            lock.className = 'lesson-lock';
-            lock.textContent = '🔒';
-            item.appendChild(lock);
+        if (!sesionValida()) {
+            if (isLessonFree(l)) {
+                const badge = document.createElement('span');
+                badge.className = 'lesson-type-badge badge-free';
+                badge.textContent = 'GRATIS';
+                item.appendChild(badge);
+            } else {
+                const lock = document.createElement('span');
+                lock.className = 'lesson-lock';
+                lock.textContent = '🔒';
+                item.appendChild(lock);
+            }
         }
 
         item.addEventListener('click', () => { navigate(idx); closeSidebar(); });
