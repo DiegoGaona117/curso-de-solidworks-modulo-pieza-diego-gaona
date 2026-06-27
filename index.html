@@ -237,6 +237,7 @@ body {
     border-left: 2px solid transparent;
     transition: all 0.15s;
     user-select: none;
+    touch-action: manipulation; /* elimina el delay de 300ms en Android */
 }
 .lesson-item:hover  { background: var(--surface2); }
 .lesson-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
@@ -1314,10 +1315,12 @@ function applyVideoScale() {
 }
 
 // ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
+let _lastEstado = getSessionEstado();
 
 // Caso 1: el login ocurrió en otra pestaña
 window.addEventListener('storage', e => {
     if (e.key === 'dg_sesion') {
+        _lastEstado = getSessionEstado();
         renderContent();
         renderSidebar();
         updateProgress();
@@ -1325,10 +1328,16 @@ window.addEventListener('storage', e => {
 });
 
 // Caso 2: el usuario regresa a esta pestaña después de hacer login
+// Solo re-renderiza si el estado de sesión cambió, para no interrumpir taps
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
-        renderContent();
-        renderSidebar();
+        const estadoActual = getSessionEstado();
+        if (estadoActual !== _lastEstado) {
+            _lastEstado = estadoActual;
+            renderContent();
+            renderSidebar();
+            updateProgress();
+        }
     }
 });
 
