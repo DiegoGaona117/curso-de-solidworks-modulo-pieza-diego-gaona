@@ -159,12 +159,10 @@
 })();
 
 // ── MENSAJE MÓVIL ────────────────────────────────────────────
-// FIX: El div existía pero nunca se activaba — ahora sí lo hace
-(function() {
-    if (window.innerWidth < 768) {
-        document.getElementById('msgEscritorio').style.display = 'flex';
-    }
-})();
+// FIX: Eliminado el bloqueo de móvil — la plataforma ahora
+// funciona en todos los tamaños de pantalla. El div
+// #msgEscritorio se mantiene en el HTML por si se necesita
+// en el futuro, pero no se activa.
 
 // ── LESSON DATA ──────────────────────────────────────────────
 const lessons = [
@@ -666,6 +664,24 @@ renderContent();
 updateProgress(); // FIX: llamada única (antes aparecía dos veces)
 startAutoComplete(currentIdx);
 
+// ── BOTÓN FLOTANTE MÓVIL ─────────────────────────────────────
+// Mismo comportamiento que #btnNext del topbar.
+// En desktop no hace nada porque CSS lo oculta (display:none).
+document.getElementById('btnFloatNext').addEventListener('click', () => {
+    completed.add(currentIdx);
+    saveState();
+    if (currentIdx < lessons.length - 1) {
+        navigate(currentIdx + 1);
+    } else {
+        updateProgress();
+        renderSidebar();
+    }
+});
+
 </script>
+
+<!-- BOTÓN FLOTANTE "Completar y continuar" — visible solo en móvil vía CSS -->
+<button class="btn-float-next" id="btnFloatNext">✓ &nbsp;Completar y continuar</button>
+
 </body>
 </html>
