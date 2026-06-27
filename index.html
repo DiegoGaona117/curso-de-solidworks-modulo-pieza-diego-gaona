@@ -564,6 +564,7 @@ body.light {
         left: 0; top: 0; bottom: 0;
         z-index: 95;
         transform: translateX(-100%);
+        padding-top: var(--topbar-h); /* FIX: evita que el contenido quede detrás del topbar */
     }
     .sidebar.open   { transform: translateX(0); }
     .overlay.active { display: block; }
