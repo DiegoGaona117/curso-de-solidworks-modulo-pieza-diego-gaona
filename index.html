@@ -554,7 +554,43 @@ function renderContent() {
     }
 
     el.innerHTML = html;
+
+    // Escalar el video si el contenedor es más angosto que el mínimo del iframe
+    requestAnimationFrame(applyVideoScale);
 }
+
+// ── ESCALA DE VIDEO PARA MÓVIL ───────────────────────────────
+// Google Drive embeds no se renderizan a menos de ~560px internamente.
+// Solución: dejar que el iframe renderice a 560px y escalarlo hacia abajo
+// con transform:scale() para que quepa en pantallas más angostas.
+const VIDEO_MIN_W = 560;
+
+function applyVideoScale() {
+    const wrap = document.querySelector('.video-wrap');
+    if (!wrap) return;
+    const iframe = wrap.querySelector('iframe');
+    if (!iframe) return;
+
+    const containerW = wrap.offsetWidth;
+
+    if (containerW < VIDEO_MIN_W) {
+        const scale = containerW / VIDEO_MIN_W;
+        // El iframe se renderiza a su mínimo real y se encoge visualmente
+        iframe.style.width          = VIDEO_MIN_W + 'px';
+        iframe.style.height         = (VIDEO_MIN_W * 9 / 16) + 'px';
+        iframe.style.transform      = `scale(${scale})`;
+        iframe.style.transformOrigin = 'top left';
+    } else {
+        // Desktop/tablet: comportamiento normal
+        iframe.style.width          = '100%';
+        iframe.style.height         = '100%';
+        iframe.style.transform      = '';
+        iframe.style.transformOrigin = '';
+    }
+}
+
+// Re-aplicar al cambiar el tamaño de ventana (rotación, resize)
+window.addEventListener('resize', applyVideoScale);
 
 // ── AUTO-COMPLETE ─────────────────────────────────────────────
 // FIX: solo aplica auto-complete a PDFs (3 seg). Los videos no se auto-completan
