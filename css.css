@@ -1,6 +1,10 @@
-<style>
+/* ═══════════════════════════════════════════════════════
+   CURSO DIEGO GAONA — css.css
+   Stylesheet compartido entre páginas del curso
+   ═══════════════════════════════════════════════════════ */
 
-        .hd-tip {
+/* ── UTILIDAD COMPARTIDA: TIP HD ── */
+.hd-tip {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -13,481 +17,467 @@
     color: var(--text-dim);
     line-height: 1.5;
 }
-
 .hd-tip span { font-size: 18px; flex-shrink: 0; }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --bg:        #0d0f14;
-            --surface:   #13161d;
-            --surface2:  #1a1e28;
-            --border:    #ffffff0f;
-            --border2:   #ffffff2e;
-            --accent:    #3b82f6;
-            --accent-dim:#3b82f620;
-            --orange:    #f97316;
-            --text:      #e8eaf0;
-            --text-muted: white;
-            --text-dim:  #9ca3af;
-            --green:     #10b981;
-            --sidebar-w: 310px;
-            --topbar-h:  58px;
-        }
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body { height: 100%; overflow: hidden; }
+/* ── VARIABLES (tema oscuro por defecto) ── */
+:root {
+    --bg:         #0d0f14;
+    --surface:    #13161d;
+    --surface2:   #1a1e28;
+    --border:     #ffffff0f;
+    --border2:    #ffffff2e;
+    --accent:     #3b82f6;
+    --accent-dim: #3b82f620;
+    --orange:     #f97316;
+    --text:       #e8eaf0;
+    --text-muted: #ffffff;
+    --text-dim:   #9ca3af;
+    --green:      #10b981;
+    --sidebar-w:  310px;
+    --topbar-h:   58px;
+}
 
-        body {
-            font-family: 'Sora', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-        }
+html, body { height: 100%; overflow: hidden; }
 
-        /* ── TOP BAR ── */
-        .topbar {
-            height: var(--topbar-h);
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            gap: 12px;
-            flex-shrink: 0;
-            z-index: 100;
-        }
+body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    /* FIX: eliminado "background-color: white" que sobreescribía el tema oscuro */
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
 
-        .topbar-brand {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
+/* ── TOP BAR ── */
+.topbar {
+    height: var(--topbar-h);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+    flex-shrink: 0;
+    z-index: 100;
+}
 
-        .topbar-brand span {
-            color: var(--accent);
-        }
+.topbar-brand {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+.topbar-brand span { color: var(--accent); }
 
-        .topbar-sep { flex: 1; }
+.topbar-sep { flex: 1; }
 
-        .topbar-progress {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
+.topbar-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
 
-        .progress-bar {
-            width: 120px;
-            height: 15px;
-            background: var(--border2);
-            border-radius: 99px;
-            overflow: hidden;
-        }
+.progress-bar {
+    width: 120px;
+    height: 15px;
+    background: var(--border2);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--orange);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
 
-        .progress-fill {
-            height: 100%;
-            background: var(--orange);
-            border-radius: 99px;
-            transition: width 0.4s ease;
-        }
+.btn-nav {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 7px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.btn-nav:hover    { background: var(--surface2); border-color: var(--border2); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        .btn-nav { 
-            height: 34px;
-            padding: 0 14px;
-            border-radius: 7px;
-            border: 1px solid var(--border2);
-            background: transparent;
-            color: var(--text);
-            font-family: 'Sora', sans-serif;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.15s;
-            white-space: nowrap;
-        }
+.btn-nav.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 500;
+}
+.btn-nav.primary:hover { background: #2563eb; border-color: #2563eb; }
 
-        .btn-nav:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
-        .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+/* Hamburger — oculto en desktop, aparece en media queries */
+.menu-toggle {
+    display: none;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 7px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
 
-        .btn-nav.primary {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-            font-weight: 500;
-        }
+/* ── LAYOUT ── */
+.layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
 
-        .btn-nav.primary:hover { background: #2563eb; border-color: #2563eb; }
+/* ── SIDEBAR ── */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
 
-        .menu-toggle {
-            display: none;
-            height: 34px;
-            padding: 0 12px;
-            border-radius: 7px;
-            border: 1px solid var(--border2);
-            background: transparent;
-            color: var(--text-muted);
-            font-size: 18px;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-        }
+.sidebar-scroll {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+}
+.sidebar-scroll::-webkit-scrollbar       { width: 4px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
-        /* ── LAYOUT ── */
-        .layout {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-        }
+.section-label {
+    padding: 18px 16px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
 
-        /* ── SIDEBAR ── */
-        .sidebar {
-            width: var(--sidebar-w);
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            flex-shrink: 0;
-            transition: transform 0.25s ease;
-        }
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    user-select: none;
+}
+.lesson-item:hover  { background: var(--surface2); }
+.lesson-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
 
-        .sidebar-scroll {
-            flex: 1;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border2) transparent;
-        }
+.lesson-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.lesson-check.done { background: var(--green); border-color: var(--green); }
+.lesson-check.done::after {
+    content: '';
+    width: 5px;
+    height: 8px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg) translate(-1px, -1px);
+    display: block;
+}
 
-        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
-        .sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+.lesson-meta { flex: 1; min-width: 0; }
 
-        .section-label {
-            padding: 18px 16px 8px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
+.lesson-name {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lesson-item.active .lesson-name { font-weight: 500; }
 
-        .lesson-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 16px;
-            cursor: pointer;
-            border-left: 2px solid transparent;
-            transition: all 0.15s;
-            user-select: none;
-        }
+.lesson-dur {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+}
 
-        .lesson-item:hover { background: var(--surface2); }
+.lesson-type-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.badge-pdf { background: #7c3aed20; color: #a78bfa; }
 
-        .lesson-item.active {
-            background: var(--accent-dim);
-            border-left-color: var(--accent);
-        }
+/* ── MAIN CONTENT ── */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+}
 
-        .lesson-check {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid var(--border2);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
+.content-scroll {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+}
+.content-scroll::-webkit-scrollbar       { width: 4px; }
+.content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
-        .lesson-check.done {
-            background: var(--green);
-            border-color: var(--green);
-        }
-
-        .lesson-check.done::after {
-            content: '';
-            width: 5px;
-            height: 8px;
-            border-right: 2px solid #fff;
-            border-bottom: 2px solid #fff;
-            transform: rotate(45deg) translate(-1px, -1px);
-            display: block;
-        }
-
-        .lesson-meta { flex: 1; min-width: 0; }
-
-        .lesson-name {
-            font-size: 14px;
-            color: var(--text);
-            line-height: 1.4;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .lesson-item.active .lesson-name { color: var(--text); font-weight: 500; }
-
-        .lesson-dur {
-            font-size: 11px;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-            margin-top: 2px;
-        }
-
-        .lesson-type-badge {
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
-            flex-shrink: 0;
-        }
-
-        .badge-pdf { background: #7c3aed20; color: #a78bfa; }
-
-        /* ── MAIN CONTENT ── */
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background: var(--bg);
-        }
-
-        .content-scroll {
-            flex: 1;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border2) transparent;
-        }
-
-        .content-scroll::-webkit-scrollbar { width: 4px; }
-        .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
-
-        .content-inner {
-    max-width: 1000px; /* era 860px */
+.content-inner {
+    max-width: 1000px;
     margin: 0 auto;
     padding: 36px 32px 60px;
 }
 
-        .lesson-title-main {
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            color: var(--text);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
+.lesson-title-main {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
 
-        /* ── VIDEO ── */
-        .video-wrap {
+/* ── VIDEO ── */
+.video-wrap {
     width: 100%;
     aspect-ratio: 16/9;
     background: var(--surface);
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 16px; /* era 24px */
+    margin-bottom: 16px;
     border: 1px solid var(--border);
-    max-width: 100%; /* ya lo tiene implícito, está bien */
+}
+.video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
-        .video-wrap iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
+/* ── PDF CARD ── */
+.pdf-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.pdf-icon-box {
+    width: 48px;
+    height: 48px;
+    background: #7c3aed20;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.pdf-card-info  { flex: 1; }
+.pdf-card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pdf-card-sub   { font-size: 13px; color: var(--text-muted); }
 
-        /* ── PDF CARD ── */
-        .pdf-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 28px 32px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+.btn-download {
+    height: 36px;
+    padding: 0 18px;
+    background: #7c3aed;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+.btn-download:hover { background: #6d28d9; }
 
-        .pdf-icon-box {
-            width: 48px;
-            height: 48px;
-            background: #7c3aed20;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
+/* ── SECTION DIVIDER ── */
+.section-divider { height: 1px; background: var(--border); margin: 24px 0; }
 
-        .pdf-card-info { flex: 1; }
+/* ── CONGRATS ── */
+.congrats-wrap  { text-align: center; padding: 40px 20px; }
+.congrats-emoji { font-size: 72px; margin-bottom: 24px; display: block; }
+.congrats-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 12px; }
+.congrats-sub   { font-size: 16px; color: var(--text-dim); line-height: 1.7; max-width: 500px; margin: 0 auto; }
 
-        .pdf-card-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-
-        .pdf-card-sub {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .btn-download {
-            height: 36px;
-            padding: 0 18px;
-            background: #7c3aed;
-            border: none;
-            border-radius: 7px;
-            color: #fff;
-            font-family: 'Sora', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-            transition: background 0.15s;
-            flex-shrink: 0;
-        }
-
-        .btn-download:hover { background: #6d28d9; }
-
-        /* ── SECTION DIVIDER ── */
-        .section-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 24px 0;
-        }
-
-        /* ── CONGRATS ── */
-        .congrats-wrap {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .congrats-emoji { font-size: 72px; margin-bottom: 24px; display: block; }
-
-        .congrats-title {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin-bottom: 12px;
-        }
-
-        .congrats-sub {
-            font-size: 16px;
-            color: var(--text-dim);
-            line-height: 1.7;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* ── OVERLAY (mobile) ── */
-        .overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #00000080;
-            z-index: 90;
-        }
-
-        /* ── MOBILE ── */
-        @media (max-width: 768px) {
-            :root { --sidebar-w: 280px; }
-
-            .sidebar {
-                position: fixed;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                z-index: 95;
-                transform: translateX(-100%);
-            }
-
-            .sidebar.open { transform: translateX(0); }
-            .overlay.active { display: block; }
-            .menu-toggle { display: flex; }
-
-            .topbar-progress { display: none; }
-
-            .content-inner { padding: 20px 16px 48px; }
-
-            .pdf-card { flex-wrap: wrap; }
-            .btn-download { width: 100%; justify-content: center; }
-
-            .lesson-title-main { font-size: 18px; }
-        }
-        body.light {
-    --bg:        #f0f2f5;
-    --surface:   #ffffff;
-    --surface2:  #e8eaef;
-    --border:    #0000000f;
-    --border2:   #00000018;
-    --text:      #1a1a2e;
-    --text-muted: #333;
-    --text-dim:  #555;
-    background-color: #f0f2f5;
+/* ── OVERLAY (fondo oscuro del drawer móvil) ── */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+    z-index: 90;
 }
 
+/* ── BOTÓN FLOTANTE MÓVIL ──
+   Oculto por defecto; se activa en ≤ 768px via media query.
+   Requiere <button class="btn-float-next" id="btnFloatNext"> en el HTML. */
+.btn-float-next { display: none; }
+
+/* ── TEMA CLARO ── */
+body.light {
+    --bg:         #f0f2f5;
+    --surface:    #ffffff;
+    --surface2:   #e8eaef;
+    --border:     #0000000f;
+    --border2:    #00000018;
+    --text:       #1a1a2e;
+    --text-muted: #333333;
+    --text-dim:   #555555;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
+
+/* ── TABLET (≤ 1080px) ──────────────────────────────
+   Sidebar se convierte en drawer. Topbar compacto.   */
 @media (max-width: 1080px) {
-    /* Ocultar sidebar pero mantener el botón de menú */
     .sidebar {
-        display: none !important;
+        position: fixed;
+        left: 0; top: 0; bottom: 0;
+        z-index: 95;
+        transform: translateX(-100%);
+    }
+    .sidebar.open   { transform: translateX(0); }
+    .overlay.active { display: block; }
+
+    .menu-toggle     { display: flex; }
+    .topbar-brand    { display: none; }
+    .topbar          { padding: 0 12px; gap: 8px; }
+    #btnPrev         { display: none; }
+    #btnTheme        { display: none; }
+
+    .topbar-progress { display: flex; }
+    .progress-bar    { width: 80px; }
+
+    #btnNext { font-size: 12px; padding: 0 10px; }
+}
+
+/* ── MÓVIL (≤ 768px) ────────────────────────────────
+   FIX PRINCIPAL: antes se ocultaba TODA la página.
+   Ahora se adapta con botón flotante de navegación.  */
+@media (max-width: 768px) {
+    :root { --sidebar-w: min(88vw, 320px); }
+
+    /* Topbar compacto */
+    .topbar       { padding: 0 10px; gap: 6px; }
+    .progress-bar { width: 60px; height: 8px; }
+    #progressText { font-size: 11px; }
+
+    /* Ocultar "Mis cursos" — accesible desde el sidebar */
+    .topbar a.btn-nav { display: none; }
+
+    /* Ocultar botón Next del topbar (reemplazado por el flotante) */
+    #btnNext { display: none; }
+
+    /* Padding inferior extra para no quedar debajo del botón flotante */
+    .content-inner { padding: 18px 14px 100px; }
+
+    .lesson-title-main { font-size: 18px; }
+
+    /* PDF card en columna */
+    .pdf-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    .btn-download {
+        width: 100%;
+        height: 44px;
+        justify-content: center;
+        font-size: 14px;
     }
 
-    /* Ocultar texto del brand */
-    .topbar-brand {
-        display: none !important;
-    }
+    /* Congrats responsive */
+    .congrats-emoji { font-size: 52px; }
+    .congrats-title { font-size: 22px; }
+    .congrats-sub   { font-size: 14px; }
 
-    /* Ocultar botones secundarios */
-    #btnPrev,
-    #btnTheme,
-    .topbar-progress {
-        display: none !important;
-    }
+    /* Items del sidebar más fáciles de tocar con el dedo */
+    .lesson-item  { padding: 12px 16px; }
+    .lesson-check { width: 22px; height: 22px; }
+    .lesson-name  { font-size: 13px; }
 
-    /* Topbar más compacto */
-    .topbar {
-        padding: 0 12px;
+    /* ── BOTÓN FLOTANTE "Completar y continuar" ─────── */
+    .btn-float-next {
+        display: flex;
+        position: fixed;
+        bottom: 16px;
+        left: 14px;
+        right: 14px;
+        height: 52px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 14px;
+        font-family: 'Sora', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
         gap: 8px;
+        z-index: 50;
+        box-shadow: 0 4px 24px rgba(59, 130, 246, 0.40);
+        transition: background 0.15s, transform 0.1s;
+        -webkit-tap-highlight-color: transparent; /* quita el flash azul en iOS/Android */
     }
-
-    /* Botón siguiente más compacto */
-    #btnNext {
-        font-size: 12px;
-        padding: 0 10px;
-    }
-
-    /* Mostrar el botón de las 3 líneas */
-    .menu-toggle {
-        display: flex !important;
-    }
-
-    /* El sidebar al abrirse sí debe aparecer */
-    .sidebar.open {
-        display: flex !important;
+    .btn-float-next:active {
+        background: #2563eb;
+        transform: scale(0.98);
     }
 }
 
-@media (max-width: 550px) {
-    .layout, .topbar {
-        display: none !important;
-    }
-    #msgEscritorio {
-        display: flex !important;
-    }
+/* ── TELÉFONOS MUY PEQUEÑOS (≤ 380px) ── */
+@media (max-width: 380px) {
+    .topbar-progress { display: none; }   /* sin espacio suficiente */
+    .content-inner   { padding: 14px 10px 100px; }
+    .btn-float-next  { font-size: 14px; height: 48px; }
 }
-    </style>
