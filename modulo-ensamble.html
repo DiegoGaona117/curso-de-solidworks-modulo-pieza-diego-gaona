@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>Curso de Solidworks desde cero hasta Certificación CSWA — Curso Diego Gaona</title>
-    <meta name="description" content="Aprende SolidWorks desde cero con el Módulo de Pieza. Videos paso a paso, ejercicios prácticos y planos técnicos para dominar el diseño 3D.">
+    <title>Módulo de Ensamblajes SolidWorks — Curso Diego Gaona</title>
+    <meta name="description" content="Aprende ensamblajes, mecanismos y relaciones de posición en SolidWorks. Prepárate para la certificación CSWA con proyectos reales.">
 
     <!-- Facebook App -->
     <meta property="fb:app_id" content="392241650294847" />
     <meta property="fb:admins" content="100003831708496" />
 
-    <!-- Open Graph (imagen para redes sociales) -->
-    <meta property="og:title" content="Curso de SolidWorks desde cero a certificación CSWA — Curso Diego Gaona">
-    <meta property="og:description" content="Aprende SolidWorks con práctica real. Videos explicativos y ejercicios paso a paso para dominar el diseño 3D.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Módulo de Ensamblajes SolidWorks — Curso Diego Gaona">
+    <meta property="og:description" content="Domina los ensamblajes y mecanismos en SolidWorks con proyectos reales y ejercicios paso a paso.">
     <meta property="og:image" content="https://static.wixstatic.com/media/32c95b_7f99b4c9cba240f6a8a0843909a702cc~mv2.webp">
     <meta property="og:url" content="https://cursodiegogaona.com">
     <meta property="og:type" content="website">
@@ -48,17 +48,679 @@
     src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel -->
-   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Estilos -->
-<link rel="stylesheet" href="css.css">
+    <style>
+/* ═══════════════════════════════════════════════════════
+   CURSO DIEGO GAONA — css.css
+   Stylesheet compartido entre páginas del curso
+   ═══════════════════════════════════════════════════════ */
+
+/* ── UTILIDAD COMPARTIDA: TIP HD ── */
+.hd-tip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9731610;
+    border: 1px solid #f9731630;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+.hd-tip span { font-size: 18px; flex-shrink: 0; }
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── VARIABLES (tema oscuro por defecto) ── */
+:root {
+    --bg:         #0d0f14;
+    --surface:    #13161d;
+    --surface2:   #1a1e28;
+    --border:     #ffffff0f;
+    --border2:    #ffffff2e;
+    --accent:     #3b82f6;
+    --accent-dim: #3b82f620;
+    --orange:     #f97316;
+    --text:       #e8eaf0;
+    --text-muted: #ffffff;
+    --text-dim:   #9ca3af;
+    --green:      #10b981;
+    --sidebar-w:  310px;
+    --topbar-h:   58px;
+}
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    /* FIX: eliminado "background-color: white" que sobreescribía el tema oscuro */
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+    height: var(--topbar-h);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+    flex-shrink: 0;
+    z-index: 100;
+}
+
+.topbar-brand {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+.topbar-brand span { color: var(--accent); }
+
+.topbar-sep { flex: 1; }
+
+.topbar-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.progress-bar {
+    width: 120px;
+    height: 15px;
+    background: var(--border2);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--orange);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+.btn-nav {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 7px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.btn-nav:hover    { background: var(--surface2); border-color: var(--border2); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-nav.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 500;
+}
+.btn-nav.primary:hover { background: #2563eb; border-color: #2563eb; }
+
+/* Hamburger — oculto en desktop, aparece en media queries */
+.menu-toggle {
+    display: none;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 7px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── LAYOUT ── */
+.layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.sidebar-scroll {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+}
+.sidebar-scroll::-webkit-scrollbar       { width: 4px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+.section-label {
+    padding: 18px 16px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    user-select: none;
+    touch-action: manipulation; /* elimina el delay de 300ms en Android */
+}
+.lesson-item:hover  { background: var(--surface2); }
+.lesson-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
+
+.lesson-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.lesson-check.done { background: var(--green); border-color: var(--green); }
+.lesson-check.done::after {
+    content: '';
+    width: 5px;
+    height: 8px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg) translate(-1px, -1px);
+    display: block;
+}
+
+.lesson-meta { flex: 1; min-width: 0; }
+
+.lesson-name {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lesson-item.active .lesson-name { font-weight: 500; }
+
+.lesson-dur {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+}
+
+.lesson-type-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.badge-pdf  { background: #7c3aed20; color: #a78bfa; }
+.badge-free { background: #10b98120; color: #10b981; }
+.lesson-lock { font-size: 11px; flex-shrink: 0; opacity: 0.5; }
+
+/* ── MAIN CONTENT ── */
+.main {
+    flex: 1;
+    min-width: 0;           /* FIX: sin esto, un flex item no se encoge más allá de su contenido */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.content-scroll {
+    flex: 1;
+    overflow-x: hidden;     /* FIX: bloquea cualquier desbordamiento horizontal */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+}
+.content-scroll::-webkit-scrollbar       { width: 4px; }
+.content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+.content-inner {
+    width: 100%;            /* FIX: anclado al ancho real del padre */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 32px 60px;
+}
+
+.lesson-title-main {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+/* ── VIDEO ── */
+/* FIX: "aspect-ratio" no funciona bien con iframes de Google Drive
+   porque tienen dimensiones mínimas internas que ignoran el contenedor.
+   El truco padding-bottom fuerza la proporción 16:9 desde afuera,
+   haciendo que el iframe quede dentro sin importar su tamaño mínimo. */
+.video-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 100%;        /* FIX: garantiza que nunca desborde su padre */
+    padding-bottom: 56.25%; /* 16 / 9 = 0.5625 */
+    height: 0;
+    overflow: hidden;
+    background: var(--surface);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+.video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* ── PDF CARD ── */
+.pdf-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.pdf-icon-box {
+    width: 48px;
+    height: 48px;
+    background: #7c3aed20;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.pdf-card-info  { flex: 1; }
+.pdf-card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pdf-card-sub   { font-size: 13px; color: var(--text-muted); }
+
+.btn-download {
+    height: 36px;
+    padding: 0 18px;
+    background: #7c3aed;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+.btn-download:hover { background: #6d28d9; }
+
+/* ── SECTION DIVIDER ── */
+.section-divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+/* ── PAYWALL ── */
+.paywall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px 40px;
+    max-width: 460px;
+    margin: 0 auto;
+}
+.paywall-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+.paywall-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+.paywall-sub {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 36px;
+}
+.paywall-btn-buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 54px;
+    background: var(--orange);
+    color: #fff;
+    border-radius: 12px;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 24px rgba(249,115,22,0.40);
+    transition: background 0.15s, transform 0.1s;
+}
+.paywall-btn-buy:hover  { background: #ea6c10; transform: translateY(-1px); }
+.paywall-btn-buy:active { transform: scale(0.98); }
+.paywall-btn-login {
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.paywall-btn-login:hover { color: var(--text); }
+
+/* ── CONGRATS ── */
+.congrats-wrap  { text-align: center; padding: 40px 20px; }
+.congrats-emoji { font-size: 72px; margin-bottom: 24px; display: block; }
+.congrats-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 12px; }
+.congrats-sub   { font-size: 16px; color: var(--text-dim); line-height: 1.7; max-width: 500px; margin: 0 auto; }
+
+/* ── OVERLAY (fondo oscuro del drawer móvil) ── */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+    z-index: 90;
+}
+
+/* ── BARRA DE NAVEGACIÓN MÓVIL (2 botones) ── */
+/* Oculta en desktop. Se activa en ≤768px. */
+.mobile-nav-bar  { display: none; }
+.btn-float-prev  { display: none; }
+.btn-float-next  { display: none; }
+
+/* ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ── */
+.menu-hint {
+    position: fixed;
+    top: calc(var(--topbar-h) + 10px);
+    left: 10px;
+    right: 10px;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 44px 14px 18px;
+    border-radius: 10px;
+    z-index: 200;
+    pointer-events: none; /* FIX: invisible = no intercepta taps */
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.35s, transform 0.35s;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.45);
+    line-height: 1.4;
+}
+.menu-hint::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--orange);
+}
+.menu-hint.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* solo intercepta cuando está visible */
+}
+.menu-hint-close {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+    line-height: 1;
+    opacity: 0.8;
+    -webkit-tap-highlight-color: transparent;
+}
+.menu-hint-close:hover { opacity: 1; }
+@media (min-width: 1081px) {
+    .menu-hint { display: none !important; }
+}
+
+/* ── TEMA CLARO ── */
+body.light {
+    --bg:         #f0f2f5;
+    --surface:    #ffffff;
+    --surface2:   #e8eaef;
+    --border:     #0000000f;
+    --border2:    #00000018;
+    --text:       #1a1a2e;
+    --text-muted: #333333;
+    --text-dim:   #555555;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
+
+/* ── TABLET (≤ 1080px) ──────────────────────────────
+   Sidebar se convierte en drawer. Topbar compacto.   */
+@media (max-width: 1080px) {
+    .sidebar {
+        position: fixed;
+        left: 0; top: 0; bottom: 0;
+        z-index: 95;
+        transform: translateX(-100%);
+        padding-top: var(--topbar-h); /* FIX: evita que el contenido quede detrás del topbar */
+    }
+    .sidebar.open   { transform: translateX(0); }
+    .overlay.active { display: block; }
+
+    .menu-toggle     { display: flex; }
+    .topbar-brand    { display: none; }
+    .topbar          { padding: 0 12px; gap: 8px; }
+    #btnPrev         { display: none; }
+    #btnTheme        { display: none; }
+
+    .topbar-progress { display: flex; }
+    .progress-bar    { width: 80px; }
+
+    #btnNext { font-size: 12px; padding: 0 10px; }
+}
+
+/* ── MÓVIL (≤ 768px) ────────────────────────────────
+   FIX PRINCIPAL: antes se ocultaba TODA la página.
+   Ahora se adapta con botón flotante de navegación.  */
+@media (max-width: 768px) {
+    :root { --sidebar-w: min(88vw, 320px); }
+
+    /* Topbar compacto */
+    .topbar       { padding: 0 10px; gap: 6px; }
+    .progress-bar { width: 60px; height: 8px; }
+    #progressText { font-size: 11px; }
+
+    /* "Mis cursos" visible en móvil con texto completo */
+    #btnMisCursos { display: flex; }
+    #btnMisCursos .btn-label { display: inline; }
+
+    /* Ocultar botón Next del topbar (reemplazado por el flotante) */
+    #btnNext { display: none; }
+
+    /* Padding inferior extra para no quedar debajo del botón flotante */
+    .content-inner { padding: 18px 14px 100px; }
+
+    .lesson-title-main { font-size: 18px; }
+
+    /* PDF card en columna */
+    .pdf-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    .btn-download {
+        width: 100%;
+        height: 44px;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    /* Congrats responsive */
+    .congrats-emoji { font-size: 52px; }
+    .congrats-title { font-size: 22px; }
+    .congrats-sub   { font-size: 14px; }
+
+    /* Items del sidebar más fáciles de tocar con el dedo */
+    .lesson-item  { padding: 12px 16px; }
+    .lesson-check { width: 22px; height: 22px; }
+    .lesson-name  { font-size: 13px; }
+
+    /* ── BARRA DE NAVEGACIÓN INFERIOR (2 botones) ── */
+    .mobile-nav-bar {
+        display: flex;
+        position: fixed;
+        bottom: 16px;
+        left: 14px;
+        right: 14px;
+        gap: 10px;
+        z-index: 50;
+    }
+
+    /* Botón "← Atrás" */
+    .btn-float-prev {
+        display: flex;
+        flex: 0 0 68px;
+        height: 52px;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        color: var(--text);
+        border-radius: 14px;
+        font-size: 20px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s, transform 0.1s;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .btn-float-prev:disabled { opacity: 0.25; cursor: not-allowed; }
+    .btn-float-prev:not(:disabled):active { background: var(--surface); transform: scale(0.97); }
+
+    /* Botón "✓ Completar y continuar" */
+    .btn-float-next {
+        display: flex;
+        flex: 1;
+        height: 52px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 14px;
+        font-family: 'Sora', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        box-shadow: 0 4px 24px rgba(59, 130, 246, 0.40);
+        transition: background 0.15s, transform 0.1s;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .btn-float-next:active { background: #2563eb; transform: scale(0.98); }
+}
+
+/* ── TELÉFONOS MUY PEQUEÑOS (≤ 380px) ── */
+@media (max-width: 380px) {
+    .topbar-progress  { display: none; }
+    .content-inner    { padding: 14px 10px 100px; }
+    .btn-float-next   { font-size: 13px; }
+    .btn-float-prev   { flex: 0 0 56px; font-size: 18px; }
+}
+
+</style>
 </head>
 <body>
+
+<!-- MENSAJE MÓVIL — se muestra solo en pantallas pequeñas vía JS -->
+<div id="msgEscritorio" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0d0f14;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 32px;
+    text-align: center;
+    flex-direction: column;
+    gap: 16px;
+">
+    <span style="font-size: 48px;">🖥️</span>
+    <h2 style="color: #e8eaf0; font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 600; margin: 0;">
+        Ingresa desde tu computadora
+    </h2>
+    <p style="color: #9ca3af; font-family: 'Sora', sans-serif; font-size: 14px; line-height: 1.6; margin: 0; max-width: 280px;">
+        Este curso está optimizado para pantallas grandes. Te recomendamos acceder desde una PC o laptop para la mejor experiencia.
+    </p>
+</div>
 
 <!-- TOP BAR -->
 <div class="topbar">
     <button class="menu-toggle" id="menuToggle">☰</button>
-<div class="topbar-brand">Experto en Ensamblajes y Mecanismos<span id="brandAccent"> — CSWA</span></div>    <div class="topbar-sep"></div>
+    <div class="topbar-brand">Experto en Ensamblajes y Mecanismos<span id="brandAccent"> — CSWA</span></div>
+    <div class="topbar-sep"></div>
     <div class="topbar-progress">
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         <span id="progressText">0%</span>
@@ -66,9 +728,7 @@
     <button class="btn-nav" id="btnPrev">← Anterior</button>
     <button class="btn-nav primary" id="btnNext">Completar y continuar →</button>
     <button class="btn-nav" id="btnTheme" onclick="toggleTheme()">☀️ Modo claro</button>
-    <a href="mis-cursos.html" target="" class="btn-nav" style="text-decoration:none;">
-    📚 Mis cursos
-</a>
+    <a href="mis-cursos.html" id="btnMisCursos" class="btn-nav" style="text-decoration:none;">📚 <span class="btn-label">Mis cursos</span></a>
 </div>
 
 <!-- LAYOUT -->
@@ -90,24 +750,34 @@
 
 </div>
 
+<!-- BARRA DE NAVEGACIÓN INFERIOR — visible solo en móvil (≤768px) vía CSS -->
+<div class="mobile-nav-bar">
+    <button class="btn-float-prev" id="btnFloatPrev">←</button>
+    <button class="btn-float-next" id="btnFloatNext">✓ &nbsp;Completar y continuar</button>
+</div>
+
+<!-- TOOLTIP DE DESCUBRIMIENTO — aparece una sola vez señalando el ☰ -->
+<div class="menu-hint" id="menuHint">
+    👆 Toca ☰ para ver todas las clases del curso
+    <button class="menu-hint-close" id="menuHintClose">✕</button>
+</div>
+
 <script>
 
-// Verificar sesión al cargar
-(function() {
-    const sesion = localStorage.getItem('dg_sesion');
-    if (sesion) {
-        try {
-            const { expira } = JSON.parse(sesion);
-            if (expira && Date.now() < expira) {
-                return;
-            }
-        } catch {}
-    }
-    // Sin sesión válida → redirigir al login
-    window.location.href = 'https://diegogaona117.github.io/login/';
-})();
+// ── VERIFICAR SESIÓN ─────────────────────────────────────────
+// DESACTIVADO TEMPORALMENTE — acceso libre hasta nuevo aviso
+// (function() {
+//     const sesion = localStorage.getItem('dg_sesion');
+//     if (sesion) {
+//         try {
+//             const { expira } = JSON.parse(sesion);
+//             if (expira && Date.now() < expira) return;
+//         } catch {}
+//     }
+//     window.location.href = 'https://diegogaona117.github.io/login/';
+// })();
 
-// ── BOTÓN COMPRAR (solo para usuarios de prueba) ────────────
+// ── BOTÓN COMPRAR (solo usuarios de prueba) ──────────────────
 (function() {
     const sesion = localStorage.getItem('dg_sesion');
     if (!sesion) return;
@@ -141,67 +811,122 @@
     } catch {}
 })();
 
-// ── LESSON DATA ──────────────────────────────────────────────
+// ── MENSAJE MÓVIL ────────────────────────────────────────────
+// FIX: Eliminado el bloqueo de móvil — la plataforma ahora
+// funciona en todos los tamaños de pantalla. El div
+// #msgEscritorio se mantiene en el HTML por si se necesita
+// en el futuro, pero no se activa.
+
+// ── SESIÓN ───────────────────────────────────────────────────
+// Estados válidos para ver el contenido: solo 'activo'
+// Estados bloqueados: sin sesión, 'prueba', 'removido', expirada
+function getSessionEstado() {
+    try {
+        const raw = localStorage.getItem('dg_sesion');
+        if (!raw) return null;
+        const { estado, expira } = JSON.parse(raw);
+        if (expira && Date.now() > expira) return null; // sesión expirada
+        return estado || null;
+    } catch {
+        return null;
+    }
+}
+
+function sesionValida() {
+    const estado = getSessionEstado();
+    return estado === 'activo' || estado === 'completo';
+}
+
+// ── PAYWALL ──────────────────────────────────────────────────
+function renderPaywall(el) {
+    const estado = getSessionEstado();
+
+    const mensajes = {
+        prueba:   { titulo: 'Tu acceso de prueba ha terminado',       sub: 'Adquiere el curso completo para seguir aprendiendo.' },
+        removido: { titulo: 'Tu acceso fue revocado',                  sub: 'Si crees que esto es un error, contáctanos.' },
+        null:     { titulo: 'Este contenido es para estudiantes',      sub: 'Accede al curso completo con más de 120 lecciones, ejercicios prácticos y preparación para la certificación CSWA.' },
+    };
+
+    const { titulo, sub } = mensajes[estado] ?? mensajes[null];
+
+    el.innerHTML = `
+        <div class="paywall">
+            <div class="paywall-icon">🔒</div>
+            <h2 class="paywall-title">${titulo}</h2>
+            <p class="paywall-sub">${sub}</p>
+            <a href="https://pay.hotmart.com/U80396963E?off=ndkiy143&bid=1781198555796"
+               target="_blank" class="paywall-btn-buy">
+                🚀 Comprar curso completo
+            </a>
+            ${!estado ? `<a href="https://diegogaona117.github.io/login/" class="paywall-btn-login">
+                Ya tengo cuenta → Iniciar sesión
+            </a>` : ''}
+        </div>`;
+}
+
+// ── LECCIONES GRATUITAS ──────────────────────────────────────
+// Secciones accesibles sin sesión activa
+const FREE_SECTIONS = []; // Este módulo es completamente de pago
+
+function isLessonFree(lesson) {
+    return FREE_SECTIONS.includes(lesson.section);
+}
 const lessons = [
-     // Módulo de Ensamble
-//{ id:156, title:"Introducción al Módulo de Ensamble",                      dur:"2:03",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl:null },
-{ id:157, title:"Puntos importantes antes de crear un ensamblaje",         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/113COOVia4pJJ-eP9nm6h8nBot0YpNnye/preview?usp=drive_link", pdfUrl:null },
-{ id:158, title:"Crear archivo de ensamblaje",                             dur:"0:30",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1d4x95UBsXBxyBs2VaSJybJJ78tk73Zq8/preview?usp=drive_link", pdfUrl:null },
-{ id:159, title:"Insertar componentes",                                    dur:"1:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1zLxjNH_mzHHKlraWbWQfkccuNPpgRji4/preview?usp=drive_link", pdfUrl:null },
-{ id:160, title:"Planos base y origen del ensamblaje",                     dur:"2:00",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1bjNn9VIAmmMkTFMzmNNAcwfZyLt3InAS/preview?usp=drive_link", pdfUrl:null },
-{ id:161, title:"Pieza fija",                                              dur:"1:02",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1lCn7c8TwQt-rn8dairhUBMO76XklfJGD/preview?usp=drive_link", pdfUrl:null },
-{ id:162, title:"Fijar | Flotar",                                          dur:"0:40",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/11hJfKS3T8llwtCwmDxiJ75gIR3rNwvmV/preview?usp=drive_link", pdfUrl:null },
-{ id:163, title:"Centrar la pieza principal",                              dur:"1:37",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
-{ id:164, title:"Mover con sistema de referencia",                         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
-{ id:165, title:"Archivos para la siguiente clase",                        dur:"0:18",  section:"Módulo de Ensamble", type:"video", videoUrl:"", pdfUrl: "https://drive.google.com/drive/u/0/folders/1BhpsnAF8HEVY1CBX15Zv0wvJT_a3ERWC" },
-{ id:166, title:"Ensamble bote de basura forma 1",                         dur:"4:08",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/159YrnvIz3nV0xdBrk2ZR7Io_U__Wi-eM/preview?usp=drive_link", pdfUrl:null },
-{ id:167, title:"Ensamble bote de basura forma 2",                         dur:"2:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1MDkAbZB2QmRi3Y-quT8yQ-aQadnMSjbp/preview?usp=drive_link", pdfUrl:null },
-{ id:168, title:"Eliminar | Suprimir | Editar relaciones de posición",     dur:"4:10",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1kv8nCrDttR52I8-NpEDVkSLPNlMOWgcW/preview?usp=drive_link", pdfUrl:null },
-{ id:169, title:"Property Manager",                                        dur:"2:50",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1HEL-jLwjm7KLhKKsp2gHrgBo09uMwKvO/preview?usp=drive_link", pdfUrl:null },
-{ id:170, title:"Guardar ensamblaje",                                      dur:"0:46",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1k7ca6IIfyC5QWvyR_6a1o_PrA4oCz1R4/preview?usp=drive_link", pdfUrl:null },
-{ id:171, title:"Abrir ensamblaje",                                        dur:"0:38",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1mn5kw30KGnXlUFs06nGgbo5wcbplH8lp/preview?usp=drive_link", pdfUrl:null },
-// Ensamble Tijeras 1
-{ id:172, title:"Ensamble tijeras 1",                                      dur:"6:36",  section:"Ensamble Tijeras 1", type:"video", videoUrl:"https://drive.google.com/file/d/1Qq07EyTUijTXpr-gQ1wIehUesaILd6FU/preview?usp=drive_link", pdfUrl:null },
-//{ id:173, title:"Ensamblaje tijeras 2",                                    dur:"—",     section:"Ensamble Tijeras 1", type:"video", videoUrl:"", pdfUrl:null },
-// Relación ángulo de limite
-{ id:174, title:"Ángulo de limite bote de basura",                         dur:"6:56",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/1KxrGTObFuFQJuaTNJOBKIPHPloxZzKBj/preview?usp=drive_link", pdfUrl:null },
-{ id:175, title:"Ángulo de limite tijeras 1",                              dur:"4:12",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/161fxV46HxrEQXvp2lc7cmsHosggxkYfh/preview?usp=drive_link", pdfUrl:null },
-// Sistema de coordenadas
-{ id:176, title:"Sistema de coordenadas",                                  dur:"—",     section:"Sistema de coordenadas",   type:"video", videoUrl:"https://drive.google.com/file/d/11N9Vy0MlPvhcL9QJ1JuEQX9trO5K3TN4/preview?usp=drive_link", pdfUrl:null },
-// Ensamble brazo para micrófono
-{ id:177, title:"Ensamblaje brazo para micrófono",                         dur:"17:00", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1xGZVO1UaQeVzKc56_TmYvHThycjgISua/preview?usp=drive_link", pdfUrl:null },
-{ id:178, title:"Relación distancia de límite",                            dur:"5:48",  section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1vHBEZiYCPyBKQwam86NXaOM3PRKo3jSM/preview?usp=drive_link", pdfUrl:null },
-{ id:179, title:"Relaciones ángulo de limite",                             dur:"16:22", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/17xjsB9vWuEYNlE-Q8FkiN1Z2v70vNTv3/preview?usp=drive_link", pdfUrl:null },
-// Ensamblaje botella 1
-{ id:180, title:"Ensamblaje botella | relación de tornillo",               dur:"12:41", section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1icE5dFKEvvHQHeVu6hufo1T9atDSk0Js/preview?usp=drive_link", pdfUrl:null },
-{ id:181, title:"Ejercicio relación de tornillo",                          dur:"3:25",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1wNiMM-fM4ty7hOO1B22tytBQyJRAbEZV/preview?usp=drive_link", pdfUrl:null },
-{ id:182, title:"Animación motor rotatorio",                               dur:"5:20",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1lscRIb5kQJDuR3acodz2WCy5cjD-252O/preview?usp=drive_link", pdfUrl:null },
-// Explosionado
-{ id:183, title:"Explosionado y contracción de un ensamblaje",             dur:"3:20",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1ozy1EXw7kQKjFypSzFeWRRhnh7X-TNsA/preview?usp=drive_link", pdfUrl:null },
-{ id:184, title:"Brazo para micrófono explosionado",                       dur:"7:19",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1g35gfyMVjZYBcf_fkV4LPYLuXM7mgnZH/preview?usp=drive_link", pdfUrl:null },
-{ id:185, title:"Lineas de explosión inteligentes",                        dur:"1:01",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1h2SbcaHJ2tI2SJRFMOY_KWR8K4TC-y84/preview?usp=drive_link", pdfUrl:null },
-// Engrane planetario
-{ id:186, title:"Ensamblaje engrane planetario",                           dur:"4:43",  section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/15JQUQiuu6FQ0wYEt-NkBdyw6V7-fKEhm/preview?usp=drive_link", pdfUrl:null },
-{ id:187, title:"Engrane planetario | Relación de engrane",                dur:"10:31", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/1D5RvRFGZKdrteVfXqNZ-8wMonU073ndH/preview?usp=drive_link", pdfUrl:null },
-{ id:188, title:"Ejercicio | Engrane planetario Udemy",                    dur:"10:16", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/10w6yMiRjbDe_XL51GNQP-b_aIOW2MF5T/preview?usp=drive_link", pdfUrl:null },
-// Ensamble pistón
-{ id:189, title:"Ensamble pistón",                                         dur:"7:06",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1NGGsVkfEXz6mdq3T_xGq6BZNxUYfG0-K/preview?usp=drive_link", pdfUrl:null },
-{ id:190, title:"Insertar componentes de toolbox",                         dur:"9:12",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1DVDLHLgg6Yog_Yw13UEKh1eEgvIFmYBG/preview?usp=drive_link", pdfUrl:null },
-{ id:191, title:"Ensamble pistón animación",                               dur:"6:03",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1OHaYXSw3n0hzii9w61qXb3iWtM4dlaUz/preview?usp=drive_link", pdfUrl:null },
-// Ensamblaje Cardán
-{ id:192, title:"Ensamblaje cardán",                                       dur:"18:27", section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1JG6pumdNVxyYBO8iP2aP59zCAc_SyegX/preview?usp=drive_link", pdfUrl:null },
-{ id:193, title:"Matriz de componente circular",                           dur:"2:39",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1dOZo44my5n7Tj8bX94_1zNBDeNXgfIfL/preview?usp=drive_link", pdfUrl:null },
-{ id:194, title:"Smart Fastener",                                          dur:"3:24",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/15JdRtnwd2eRYcpmAyqDVArarhNlud1wQ/preview?usp=drive_link", pdfUrl:null },
-{ id:195, title:"Cambiar tipo de tornillo",                                dur:"2:19",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1t-R_ngLOg93AJd9c9YifHxtRioGDcrcA/preview?usp=drive_link", pdfUrl:null },
-// Ensamblaje Motor estrella
-{ id:196, title:"Ensamble motor estrella",                                 dur:"1:47",  section:"Ensamblaje Motor estrella", type:"video", videoUrl:"https://drive.google.com/file/d/1Y_jlYkN1pWrxDbAetAmciyMmTixMcg1b/preview?usp=drive_link", pdfUrl:null },
-
-
-    // ── FINAL ────────────────────────────────────────────────
+    // Módulo de Ensamble
+    { id:157, title:"Puntos importantes antes de crear un ensamblaje",         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/113COOVia4pJJ-eP9nm6h8nBot0YpNnye/preview?usp=drive_link", pdfUrl:null },
+    { id:158, title:"Crear archivo de ensamblaje",                             dur:"0:30",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1d4x95UBsXBxyBs2VaSJybJJ78tk73Zq8/preview?usp=drive_link", pdfUrl:null },
+    { id:159, title:"Insertar componentes",                                    dur:"1:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1zLxjNH_mzHHKlraWbWQfkccuNPpgRji4/preview?usp=drive_link", pdfUrl:null },
+    { id:160, title:"Planos base y origen del ensamblaje",                     dur:"2:00",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1bjNn9VIAmmMkTFMzmNNAcwfZyLt3InAS/preview?usp=drive_link", pdfUrl:null },
+    { id:161, title:"Pieza fija",                                              dur:"1:02",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1lCn7c8TwQt-rn8dairhUBMO76XklfJGD/preview?usp=drive_link", pdfUrl:null },
+    { id:162, title:"Fijar | Flotar",                                          dur:"0:40",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/11hJfKS3T8llwtCwmDxiJ75gIR3rNwvmV/preview?usp=drive_link", pdfUrl:null },
+    { id:163, title:"Centrar la pieza principal",                              dur:"1:37",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+    { id:164, title:"Mover con sistema de referencia",                         dur:"3:43",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1TrSNsDe_SW5_MgyZSaVQF8tuzTM00uaK/preview?usp=drive_link", pdfUrl:null },
+    { id:165, title:"Archivos para la siguiente clase",                        dur:"—",     section:"Módulo de Ensamble", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/drive/u/0/folders/1BhpsnAF8HEVY1CBX15Zv0wvJT_a3ERWC" },
+    { id:166, title:"Ensamble bote de basura forma 1",                         dur:"4:08",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/159YrnvIz3nV0xdBrk2ZR7Io_U__Wi-eM/preview?usp=drive_link", pdfUrl:null },
+    { id:167, title:"Ensamble bote de basura forma 2",                         dur:"2:57",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1MDkAbZB2QmRi3Y-quT8yQ-aQadnMSjbp/preview?usp=drive_link", pdfUrl:null },
+    { id:168, title:"Eliminar | Suprimir | Editar relaciones de posición",     dur:"4:10",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1kv8nCrDttR52I8-NpEDVkSLPNlMOWgcW/preview?usp=drive_link", pdfUrl:null },
+    { id:169, title:"Property Manager",                                        dur:"2:50",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1HEL-jLwjm7KLhKKsp2gHrgBo09uMwKvO/preview?usp=drive_link", pdfUrl:null },
+    { id:170, title:"Guardar ensamblaje",                                      dur:"0:46",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1k7ca6IIfyC5QWvyR_6a1o_PrA4oCz1R4/preview?usp=drive_link", pdfUrl:null },
+    { id:171, title:"Abrir ensamblaje",                                        dur:"0:38",  section:"Módulo de Ensamble", type:"video", videoUrl:"https://drive.google.com/file/d/1mn5kw30KGnXlUFs06nGgbo5wcbplH8lp/preview?usp=drive_link", pdfUrl:null },
+    // Ensamble Tijeras 1
+    { id:172, title:"Ensamble tijeras 1",                                      dur:"6:36",  section:"Ensamble Tijeras 1", type:"video", videoUrl:"https://drive.google.com/file/d/1Qq07EyTUijTXpr-gQ1wIehUesaILd6FU/preview?usp=drive_link", pdfUrl:null },
+    // Relación ángulo de limite
+    { id:174, title:"Ángulo de limite bote de basura",                         dur:"6:56",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/1KxrGTObFuFQJuaTNJOBKIPHPloxZzKBj/preview?usp=drive_link", pdfUrl:null },
+    { id:175, title:"Ángulo de limite tijeras 1",                              dur:"4:12",  section:"Relación ángulo de limite", type:"video", videoUrl:"https://drive.google.com/file/d/161fxV46HxrEQXvp2lc7cmsHosggxkYfh/preview?usp=drive_link", pdfUrl:null },
+    // Sistema de coordenadas
+    { id:176, title:"Sistema de coordenadas",                                  dur:"—",     section:"Sistema de coordenadas",   type:"video", videoUrl:"https://drive.google.com/file/d/11N9Vy0MlPvhcL9QJ1JuEQX9trO5K3TN4/preview?usp=drive_link", pdfUrl:null },
+    // Ensamble brazo para micrófono
+    { id:177, title:"Ensamblaje brazo para micrófono",                         dur:"17:00", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1xGZVO1UaQeVzKc56_TmYvHThycjgISua/preview?usp=drive_link", pdfUrl:null },
+    { id:178, title:"Relación distancia de límite",                            dur:"5:48",  section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/1vHBEZiYCPyBKQwam86NXaOM3PRKo3jSM/preview?usp=drive_link", pdfUrl:null },
+    { id:179, title:"Relaciones ángulo de limite",                             dur:"16:22", section:"Ensamble brazo para micrófono", type:"video", videoUrl:"https://drive.google.com/file/d/17xjsB9vWuEYNlE-Q8FkiN1Z2v70vNTv3/preview?usp=drive_link", pdfUrl:null },
+    // Ensamblaje botella 1
+    { id:180, title:"Ensamblaje botella | relación de tornillo",               dur:"12:41", section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1icE5dFKEvvHQHeVu6hufo1T9atDSk0Js/preview?usp=drive_link", pdfUrl:null },
+    { id:181, title:"Ejercicio relación de tornillo",                          dur:"3:25",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1wNiMM-fM4ty7hOO1B22tytBQyJRAbEZV/preview?usp=drive_link", pdfUrl:null },
+    { id:182, title:"Animación motor rotatorio",                               dur:"5:20",  section:"Ensamblaje botella 1", type:"video", videoUrl:"https://drive.google.com/file/d/1lscRIb5kQJDuR3acodz2WCy5cjD-252O/preview?usp=drive_link", pdfUrl:null },
+    // Explosionado
+    { id:183, title:"Explosionado y contracción de un ensamblaje",             dur:"3:20",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1ozy1EXw7kQKjFypSzFeWRRhnh7X-TNsA/preview?usp=drive_link", pdfUrl:null },
+    { id:184, title:"Brazo para micrófono explosionado",                       dur:"7:19",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1g35gfyMVjZYBcf_fkV4LPYLuXM7mgnZH/preview?usp=drive_link", pdfUrl:null },
+    { id:185, title:"Lineas de explosión inteligentes",                        dur:"1:01",  section:"Explosionado", type:"video", videoUrl:"https://drive.google.com/file/d/1h2SbcaHJ2tI2SJRFMOY_KWR8K4TC-y84/preview?usp=drive_link", pdfUrl:null },
+    // Engrane planetario
+    { id:186, title:"Ensamblaje engrane planetario",                           dur:"4:43",  section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/15JQUQiuu6FQ0wYEt-NkBdyw6V7-fKEhm/preview?usp=drive_link", pdfUrl:null },
+    { id:187, title:"Engrane planetario | Relación de engrane",                dur:"10:31", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/1D5RvRFGZKdrteVfXqNZ-8wMonU073ndH/preview?usp=drive_link", pdfUrl:null },
+    { id:188, title:"Ejercicio | Engrane planetario Udemy",                    dur:"10:16", section:"Engrane planetario", type:"video", videoUrl:"https://drive.google.com/file/d/10w6yMiRjbDe_XL51GNQP-b_aIOW2MF5T/preview?usp=drive_link", pdfUrl:null },
+    // Ensamble pistón
+    { id:189, title:"Ensamble pistón",                                         dur:"7:06",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1NGGsVkfEXz6mdq3T_xGq6BZNxUYfG0-K/preview?usp=drive_link", pdfUrl:null },
+    { id:190, title:"Insertar componentes de toolbox",                         dur:"9:12",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1DVDLHLgg6Yog_Yw13UEKh1eEgvIFmYBG/preview?usp=drive_link", pdfUrl:null },
+    { id:191, title:"Ensamble pistón animación",                               dur:"6:03",  section:"Ensamble pistón", type:"video", videoUrl:"https://drive.google.com/file/d/1OHaYXSw3n0hzii9w61qXb3iWtM4dlaUz/preview?usp=drive_link", pdfUrl:null },
+    // Ensamblaje Cardán
+    { id:192, title:"Ensamblaje cardán",                                       dur:"18:27", section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1JG6pumdNVxyYBO8iP2aP59zCAc_SyegX/preview?usp=drive_link", pdfUrl:null },
+    { id:193, title:"Matriz de componente circular",                           dur:"2:39",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1dOZo44my5n7Tj8bX94_1zNBDeNXgfIfL/preview?usp=drive_link", pdfUrl:null },
+    { id:194, title:"Smart Fastener",                                          dur:"3:24",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/15JdRtnwd2eRYcpmAyqDVArarhNlud1wQ/preview?usp=drive_link", pdfUrl:null },
+    { id:195, title:"Cambiar tipo de tornillo",                                dur:"2:19",  section:"Ensamblaje Cardán", type:"video", videoUrl:"https://drive.google.com/file/d/1t-R_ngLOg93AJd9c9YifHxtRioGDcrcA/preview?usp=drive_link", pdfUrl:null },
+    // Ensamblaje Motor estrella
+    { id:196, title:"Ensamble motor estrella",                                 dur:"1:47",  section:"Ensamblaje Motor estrella", type:"video", videoUrl:"https://drive.google.com/file/d/1Y_jlYkN1pWrxDbAetAmciyMmTixMcg1b/preview?usp=drive_link", pdfUrl:null },
+    // Conclusión
     { id:128, title:"¡Curso completado!", dur:"—", section:"Conclusión", type:"congrats" }
 ];
 
-// ── STATE ───────────────────────────────────────────────────
+// ── STATE ────────────────────────────────────────────────────
 let currentIdx = 0;
 let completed = new Set();
 
@@ -234,7 +959,7 @@ function pushURL(idx) {
     history.pushState({ idx }, '', `?l=${lessons[idx].id}`);
 }
 
-// ── YOUTUBE ─────────────────────────────────────────────────
+// ── YOUTUBE ──────────────────────────────────────────────────
 function ytEmbed(url) {
     if (!url) return null;
     let id = null;
@@ -243,14 +968,14 @@ function ytEmbed(url) {
     return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1` : null;
 }
 
-// ── PROGRESS ────────────────────────────────────────────────
+// ── PROGRESS ─────────────────────────────────────────────────
 function updateProgress() {
     const pct = Math.round((completed.size / lessons.length) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressText').textContent = pct + '%';
 }
 
-// ── SIDEBAR ─────────────────────────────────────────────────
+// ── SIDEBAR ──────────────────────────────────────────────────
 function renderSidebar() {
     const el = document.getElementById('sidebarScroll');
     el.innerHTML = '';
@@ -286,151 +1011,29 @@ function renderSidebar() {
             item.appendChild(badge);
         }
 
+        if (!sesionValida()) {
+            if (isLessonFree(l)) {
+                const badge = document.createElement('span');
+                badge.className = 'lesson-type-badge badge-free';
+                badge.textContent = 'GRATIS';
+                item.appendChild(badge);
+            } else {
+                const lock = document.createElement('span');
+                lock.className = 'lesson-lock';
+                lock.textContent = '🔒';
+                item.appendChild(lock);
+            }
+        }
+
         item.addEventListener('click', () => { navigate(idx); closeSidebar(); });
         el.appendChild(item);
     });
 
-    // scroll active into view
     const active = el.querySelector('.lesson-item.active');
     if (active) active.scrollIntoView({ block: 'nearest' });
 }
 
-// ── CONTENT ─────────────────────────────────────────────────
-function renderContent() {
-    const el = document.getElementById('contentInner');
-    const l = lessons[currentIdx];
-
-    document.getElementById('btnPrev').disabled = currentIdx === 0;
-
-    if (l.type === 'congrats') {
-    const total = lessons.length - 1; // sin contar la lección congrats
-    const done = completed.size;
-    const pct = Math.round((done / total) * 100);
-    const remaining = total - done;
-    const isComplete = pct >= 100;
-
-    if (isComplete) {
-        el.innerHTML = `
-            <div class="congrats-wrap">
-                <span class="congrats-emoji">🎓</span>
-                <h1 class="congrats-title">¡Curso completado!</h1>
-                <p class="congrats-sub">Has terminado todo el contenido. Ahora tienes las bases sólidas para diseñar en SolidWorks de forma profesional. ¡Excelente trabajo!</p>
-                <div class="section-divider" style="max-width:200px;margin:32px auto;"></div>
-                <p style="font-size:14px;color:var(--text-muted);">— Diego Gaona</p>
-            </div>`;
-    } else {
-        el.innerHTML = `
-            <div style="max-width:560px; margin:0 auto; padding:20px 0;">
-
-                <h1 class="lesson-title-main" style="margin-bottom:6px;">Tu progreso</h1>
-                <p style="font-size:14px; color:var(--text-dim); margin-bottom:32px;">
-                    Completa todas las lecciones para desbloquear esta pantalla.
-                </p>
-
-                <!-- Porcentaje grande -->
-                <div style="text-align:center; margin-bottom:28px;">
-                    <span style="font-size:72px; font-weight:600; letter-spacing:-0.04em; color:var(--text);">${pct}<span style="font-size:36px; color:var(--text-dim);">%</span></span>
-                    <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">completado</p>
-                </div>
-
-                <!-- Barra de progreso -->
-                <div style="height:8px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-bottom:32px;">
-                    <div style="height:100%; width:${pct}%; background:var(--orange); border-radius:99px; transition:width 0.6s ease;"></div>
-                </div>
-
-                <!-- Stats -->
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:36px;">
-                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
-                        <div style="font-size:22px; font-weight:600; color:var(--green); margin-bottom:4px;">${done}</div>
-                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Completadas</div>
-                    </div>
-                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
-                        <div style="font-size:22px; font-weight:600; color:var(--orange); margin-bottom:4px;">${remaining}</div>
-                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Pendientes</div>
-                    </div>
-                    <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
-                        <div style="font-size:22px; font-weight:600; color:var(--text); margin-bottom:4px;">${total}</div>
-                        <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Total</div>
-                    </div>
-                </div>
-
-                <!-- Mensaje motivacional -->
-                <div style="background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:8px; padding:16px 20px;">
-                    <p style="font-size:13px; color:var(--text-dim); line-height:1.7; margin:0;">
-                        ${pct < 25  ? '¡Buen comienzo! Sigue avanzando lección por lección.' :
-                          pct < 50  ? '¡Ya vas por la primera mitad! Mantén el ritmo.' :
-                          pct < 75  ? '¡Más de la mitad completado! Ya casi llegas.' :
-                                      '¡Estás muy cerca de terminar! Solo un último esfuerzo.'}
-                    </p>
-                </div>
-
-            </div>`;
-    }
-    return;
-}
-
-    if (l.type === 'pdf') {
-        el.innerHTML = `
-            <h1 class="lesson-title-main">${l.title}</h1>
-            ${pdfCard(l.pdfUrl, 'Material de ejercicios', 'Descarga el plano y crea la pieza en SolidWorks')}`;
-        return;
-    }
-
-    // video
-let embed = null;
-
-if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
-    embed = l.videoUrl;
-} else {
-    embed = ytEmbed(l.videoUrl);
-}
-
-let html = `<h1 class="lesson-title-main">${l.title}</h1>`;
-// ← Agrega esto:
-if (l.desc) {
-    html += `<p style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px;">${l.desc}</p>`;
-}
-if (embed) {
-    html += `
-        <div class="video-wrap">
-            <iframe src="${embed}" allowfullscreen></iframe>
-        </div>
-        <div class="hd-tip">
-            <span>💡</span>
-            <div>Para mejor calidad, reproduce el video en <strong>Full HD (1080p)</strong>. Haz clic en el ícono de configuración del video ⚙️ → Calidad → 1080p.</div>
-        </div>
-    `;
-}
-
-if (l.pdfUrl) {
-    html += pdfCard(
-        l.pdfUrl,
-        'Plano de la pieza',
-        'Descarga el PDF para seguir la práctica'
-    );
-}
-
-// ── EXAMEN ──
-if (l.type === 'exam') {
-    el.innerHTML = `
-        <h1 class="lesson-title-main">${l.title}</h1>
-        <div class="pdf-card">
-            <div class="pdf-icon-box">📝</div>
-            <div class="pdf-card-info">
-                <div class="pdf-card-title">Simulador de examen CSWA</div>
-                <div class="pdf-card-sub">${l.dur} · Condiciones reales de examen</div>
-            </div>
-            <button class="btn-download" style="background:#f97316; border-color:#f97316;"
-                onclick="window.open('${l.examUrl}','_blank')">
-                Iniciar examen →
-            </button>
-        </div>`;
-    return;
-}
-
-el.innerHTML = html;
-}
-
+// ── PDF CARD ─────────────────────────────────────────────────
 function pdfCard(url, title, sub) {
     return `
         <div class="pdf-card">
@@ -445,23 +1048,221 @@ function pdfCard(url, title, sub) {
         </div>`;
 }
 
-// ── AUTO-COMPLETE (15 segundos) ─────────────────────────────
+// ── CONTENT ──────────────────────────────────────────────────
+function renderContent() {
+    const el = document.getElementById('contentInner');
+    const l = lessons[currentIdx];
+
+    document.getElementById('btnPrev').disabled = currentIdx === 0;
+
+    // ── VERIFICAR SESIÓN ──
+    // Sin sesión activa → mostrar paywall, excepto en lecciones gratuitas
+    if (!sesionValida() && !isLessonFree(l)) {
+        renderPaywall(el);
+        return;
+    }
+
+    // ── CONGRATS ──
+    if (l.type === 'congrats') {
+        const total = lessons.length - 1;
+        const done = completed.size;
+        const pct = Math.round((done / total) * 100);
+        const remaining = total - done;
+        const isComplete = pct >= 100;
+
+        if (isComplete) {
+            el.innerHTML = `
+                <div class="congrats-wrap">
+                    <span class="congrats-emoji">🎓</span>
+                    <h1 class="congrats-title">¡Curso completado!</h1>
+                    <p class="congrats-sub">Has terminado todo el contenido. Ahora tienes las bases sólidas para diseñar en SolidWorks de forma profesional. ¡Excelente trabajo!</p>
+                    <div class="section-divider" style="max-width:200px;margin:32px auto;"></div>
+                    <p style="font-size:14px;color:var(--text-muted);">— Diego Gaona</p>
+                </div>`;
+        } else {
+            el.innerHTML = `
+                <div style="max-width:560px; margin:0 auto; padding:20px 0;">
+                    <h1 class="lesson-title-main" style="margin-bottom:6px;">Tu progreso</h1>
+                    <p style="font-size:14px; color:var(--text-dim); margin-bottom:32px;">
+                        Completa todas las lecciones para desbloquear esta pantalla.
+                    </p>
+                    <div style="text-align:center; margin-bottom:28px;">
+                        <span style="font-size:72px; font-weight:600; letter-spacing:-0.04em; color:var(--text);">${pct}<span style="font-size:36px; color:var(--text-dim);">%</span></span>
+                        <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">completado</p>
+                    </div>
+                    <div style="height:8px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-bottom:32px;">
+                        <div style="height:100%; width:${pct}%; background:var(--orange); border-radius:99px; transition:width 0.6s ease;"></div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:36px;">
+                        <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                            <div style="font-size:22px; font-weight:600; color:var(--green); margin-bottom:4px;">${done}</div>
+                            <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Completadas</div>
+                        </div>
+                        <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                            <div style="font-size:22px; font-weight:600; color:var(--orange); margin-bottom:4px;">${remaining}</div>
+                            <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Pendientes</div>
+                        </div>
+                        <div style="background:var(--surface); border:1px solid var(--border2); border-radius:10px; padding:16px; text-align:center;">
+                            <div style="font-size:22px; font-weight:600; color:var(--text); margin-bottom:4px;">${total}</div>
+                            <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Total</div>
+                        </div>
+                    </div>
+                    <div style="background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:8px; padding:16px 20px;">
+                        <p style="font-size:13px; color:var(--text-dim); line-height:1.7; margin:0;">
+                            ${pct < 25  ? '¡Buen comienzo! Sigue avanzando lección por lección.' :
+                              pct < 50  ? '¡Ya vas por la primera mitad! Mantén el ritmo.' :
+                              pct < 75  ? '¡Más de la mitad completado! Ya casi llegas.' :
+                                          '¡Estás muy cerca de terminar! Solo un último esfuerzo.'}
+                        </p>
+                    </div>
+                </div>`;
+        }
+        return;
+    }
+
+    // ── PDF ──
+    if (l.type === 'pdf') {
+        el.innerHTML = `
+            <h1 class="lesson-title-main">${l.title}</h1>
+            ${pdfCard(l.pdfUrl, 'Material de ejercicios', 'Descarga el plano y crea la pieza en SolidWorks')}`;
+        return;
+    }
+
+    // ── EXAMEN ──
+    // FIX: movido aquí antes del bloque de video para evitar doble escritura en el.innerHTML
+    if (l.type === 'exam') {
+        el.innerHTML = `
+            <h1 class="lesson-title-main">${l.title}</h1>
+            <div class="pdf-card">
+                <div class="pdf-icon-box">📝</div>
+                <div class="pdf-card-info">
+                    <div class="pdf-card-title">Simulador de examen CSWA</div>
+                    <div class="pdf-card-sub">${l.dur} · Condiciones reales de examen</div>
+                </div>
+                <button class="btn-download" style="background:#f97316; border-color:#f97316;"
+                    onclick="window.open('${l.examUrl}','_blank')">
+                    Iniciar examen →
+                </button>
+            </div>`;
+        return;
+    }
+
+    // ── VIDEO ──
+    let embed = null;
+    if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
+        embed = l.videoUrl;
+    } else {
+        embed = ytEmbed(l.videoUrl);
+    }
+
+    let html = `<h1 class="lesson-title-main">${l.title}</h1>`;
+
+    if (l.desc) {
+        html += `<p style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px;">${l.desc}</p>`;
+    }
+
+    if (embed) {
+        html += `
+            <div class="video-wrap">
+                <iframe src="${embed}" allowfullscreen></iframe>
+            </div>
+            <div class="hd-tip">
+                <span>💡</span>
+                <div>Para mejor calidad, reproduce el video en <strong>Full HD (1080p)</strong>. Haz clic en el ícono de configuración del video ⚙️ → Calidad → 1080p.</div>
+            </div>`;
+    }
+
+    if (l.pdfUrl) {
+        html += pdfCard(l.pdfUrl, 'Plano de la pieza', 'Descarga el PDF para seguir la práctica');
+    }
+
+    el.innerHTML = html;
+
+    // Escalar el video si el contenedor es más angosto que el mínimo del iframe
+    requestAnimationFrame(applyVideoScale);
+}
+
+// ── ESCALA DE VIDEO PARA MÓVIL ───────────────────────────────
+// Google Drive embeds no se renderizan a menos de ~560px internamente.
+// Solución: dejar que el iframe renderice a 560px y escalarlo hacia abajo
+// con transform:scale() para que quepa en pantallas más angostas.
+const VIDEO_MIN_W = 560;
+
+function applyVideoScale() {
+    const wrap = document.querySelector('.video-wrap');
+    if (!wrap) return;
+    const iframe = wrap.querySelector('iframe');
+    if (!iframe) return;
+
+    const containerW = wrap.offsetWidth;
+
+    if (containerW < VIDEO_MIN_W) {
+        const scale = containerW / VIDEO_MIN_W;
+        // El iframe se renderiza a su mínimo real y se encoge visualmente
+        iframe.style.width          = VIDEO_MIN_W + 'px';
+        iframe.style.height         = (VIDEO_MIN_W * 9 / 16) + 'px';
+        iframe.style.transform      = `scale(${scale})`;
+        iframe.style.transformOrigin = 'top left';
+    } else {
+        // Desktop/tablet: comportamiento normal
+        iframe.style.width          = '100%';
+        iframe.style.height         = '100%';
+        iframe.style.transform      = '';
+        iframe.style.transformOrigin = '';
+    }
+}
+
+// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
+let _lastEstado = getSessionEstado();
+
+// Caso 1: el login ocurrió en otra pestaña
+window.addEventListener('storage', e => {
+    if (e.key === 'dg_sesion') {
+        _lastEstado = getSessionEstado();
+        renderContent();
+        renderSidebar();
+        updateProgress();
+    }
+});
+
+// Caso 2: el usuario regresa a esta pestaña después de hacer login
+// Solo re-renderiza si el estado de sesión cambió, para no interrumpir taps
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        const estadoActual = getSessionEstado();
+        if (estadoActual !== _lastEstado) {
+            _lastEstado = estadoActual;
+            renderContent();
+            renderSidebar();
+            updateProgress();
+        }
+    }
+});
+
+// Re-aplicar escala de video al cambiar tamaño de ventana
+window.addEventListener('resize', applyVideoScale);
+
+// ── AUTO-COMPLETE ─────────────────────────────────────────────
+// FIX: solo aplica auto-complete a PDFs (3 seg). Los videos no se auto-completan
+// porque el usuario puede pausar y sería marcado como visto sin verlo
 let autoCompleteTimer = null;
 
 function startAutoComplete(idx) {
     clearTimeout(autoCompleteTimer);
-    if (completed.has(idx)) return; // ya completada, no hacer nada
-    autoCompleteTimer = setTimeout(() => {
-        if (currentIdx === idx && !completed.has(idx)) {
-            completed.add(idx);
-            saveState();
-            renderSidebar();
-            updateProgress();
-        }
-    }, 15000);
+    if (completed.has(idx)) return;
+    if (lessons[idx].type === 'pdf') {
+        autoCompleteTimer = setTimeout(() => {
+            if (currentIdx === idx && !completed.has(idx)) {
+                completed.add(idx);
+                saveState();
+                renderSidebar();
+                updateProgress();
+            }
+        }, 3000);
+    }
 }
 
-// ── NAVIGATION ──────────────────────────────────────────────
+// ── NAVIGATION ───────────────────────────────────────────────
 function navigate(idx) {
     clearTimeout(autoCompleteTimer);
     currentIdx = idx;
@@ -469,6 +1270,7 @@ function navigate(idx) {
     saveState();
     renderSidebar();
     renderContent();
+    updateMobileNav();
     document.querySelector('.content-scroll').scrollTo(0, 0);
     startAutoComplete(idx);
 }
@@ -480,10 +1282,10 @@ function toggleDone(idx) {
     updateProgress();
 }
 
-// ── MOBILE SIDEBAR ──────────────────────────────────────────
-const sidebar  = document.getElementById('sidebar');
-const overlay  = document.getElementById('overlay');
-const menuBtn  = document.getElementById('menuToggle');
+// ── MOBILE SIDEBAR ───────────────────────────────────────────
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuBtn = document.getElementById('menuToggle');
 
 function closeSidebar() {
     sidebar.classList.remove('open');
@@ -497,17 +1299,22 @@ menuBtn.addEventListener('click', () => {
 
 overlay.addEventListener('click', closeSidebar);
 
-// ── BUTTONS ─────────────────────────────────────────────────
+// ── BOTONES ──────────────────────────────────────────────────
 document.getElementById('btnPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
 
+// FIX: eliminadas las llamadas redundantes a saveState/updateProgress/renderSidebar
+// ya que navigate() las ejecuta internamente
 document.getElementById('btnNext').addEventListener('click', () => {
     completed.add(currentIdx);
-    if (currentIdx < lessons.length - 1) navigate(currentIdx + 1);
     saveState();
-    updateProgress();
-    renderSidebar();
+    if (currentIdx < lessons.length - 1) {
+        navigate(currentIdx + 1);
+    } else {
+        updateProgress();
+        renderSidebar();
+    }
 });
 
 window.addEventListener('popstate', e => {
@@ -518,6 +1325,7 @@ window.addEventListener('popstate', e => {
     }
 });
 
+// ── TEMA ─────────────────────────────────────────────────────
 function toggleTheme() {
     const isLight = document.body.classList.toggle('light');
     localStorage.setItem('sw_theme', isLight ? 'light' : 'dark');
@@ -525,7 +1333,6 @@ function toggleTheme() {
     document.getElementById('brandAccent').style.color = isLight ? '#1a4d8c' : 'orange';
 }
 
-// Restaurar tema al cargar
 (function() {
     if (localStorage.getItem('sw_theme') === 'light') {
         document.body.classList.add('light');
@@ -534,7 +1341,7 @@ function toggleTheme() {
     }
 })();
 
-// ── INIT ────────────────────────────────────────────────────
+// ── INIT ─────────────────────────────────────────────────────
 loadState();
 const urlIdx = getLessonFromURL();
 if (urlIdx !== null) currentIdx = urlIdx;
@@ -543,7 +1350,58 @@ renderSidebar();
 renderContent();
 updateProgress();
 startAutoComplete(currentIdx);
-updateProgress();
+
+// ── BARRA DE NAVEGACIÓN MÓVIL ────────────────────────────────
+
+// Sincroniza el estado del botón "← Atrás" flotante
+function updateMobileNav() {
+    const prev = document.getElementById('btnFloatPrev');
+    if (prev) prev.disabled = currentIdx === 0;
+}
+updateMobileNav();
+
+// Botón "← Atrás"
+document.getElementById('btnFloatPrev').addEventListener('click', () => {
+    if (currentIdx > 0) navigate(currentIdx - 1);
+});
+
+// Botón "✓ Completar y continuar"
+document.getElementById('btnFloatNext').addEventListener('click', () => {
+    completed.add(currentIdx);
+    saveState();
+    if (currentIdx < lessons.length - 1) {
+        navigate(currentIdx + 1);
+    } else {
+        updateProgress();
+        renderSidebar();
+    }
+});
+
+// ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ──────────────────────
+// Aparece una sola vez. El usuario lo cierra con la ✕.
+(function() {
+    if (localStorage.getItem('sw_hint_seen')) return;
+    if (window.innerWidth > 1080) return;
+
+    const hint = document.getElementById('menuHint');
+    if (!hint) return;
+
+    function closeHint() {
+        hint.classList.remove('visible');
+        localStorage.setItem('sw_hint_seen', '1');
+    }
+
+    // Aparece después de 1.2s
+    setTimeout(() => hint.classList.add('visible'), 1200);
+
+    // Cerrar con la X
+    document.getElementById('menuHintClose').addEventListener('click', closeHint);
+
+    // También cerrar si toca el ☰
+    document.getElementById('menuToggle').addEventListener('click', closeHint);
+})();
+
 </script>
+
 </body>
 </html>
