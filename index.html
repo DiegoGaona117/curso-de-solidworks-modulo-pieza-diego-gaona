@@ -830,7 +830,8 @@ function getSessionEstado() {
 }
 
 function sesionValida() {
-    return getSessionEstado() === 'completo';
+    const estado = getSessionEstado();
+    return estado === 'activo' || estado === 'completo';
 }
 
 // ── PAYWALL ──────────────────────────────────────────────────
@@ -1310,7 +1311,26 @@ function applyVideoScale() {
     }
 }
 
-// Re-aplicar al cambiar el tamaño de ventana (rotación, resize)
+// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
+
+// Caso 1: el login ocurrió en otra pestaña
+window.addEventListener('storage', e => {
+    if (e.key === 'dg_sesion') {
+        renderContent();
+        renderSidebar();
+        updateProgress();
+    }
+});
+
+// Caso 2: el usuario regresa a esta pestaña después de hacer login
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        renderContent();
+        renderSidebar();
+    }
+});
+
+// Re-aplicar escala de video al cambiar tamaño de ventana
 window.addEventListener('resize', applyVideoScale);
 
 // ── AUTO-COMPLETE ─────────────────────────────────────────────
