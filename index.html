@@ -624,11 +624,13 @@ body.light {
     .lesson-check { width: 22px; height: 22px; }
     .lesson-name  { font-size: 13px; }
 
-    /* Video: en móvil switch a padding-bottom + iframe absoluto
-       para que applyVideoScale() pueda escalar correctamente */
+    /* Video: en móvil switch a padding-bottom + iframe absoluto.
+       FIX: padding-bottom = 72% en vez de 56.25% para dar espacio
+       a las dos filas de controles de Google Drive (barra de progreso
+       + fila de play/tiempo/volumen) sin que queden recortadas. */
     .video-wrap {
         aspect-ratio: unset;
-        padding-bottom: 56.25%;
+        padding-bottom: 72%;
         height: 0;
     }
     .video-wrap iframe {
@@ -1311,9 +1313,11 @@ function applyVideoScale() {
 
     if (containerW < VIDEO_MIN_W) {
         // Móvil: escalar el iframe
+        // FIX: altura = VIDEO_MIN_W * 0.72 (mismo % que el padding-bottom del contenedor)
+        // para que el iframe escalado llene el contenedor, incluidos los controles de GDrive
         const scale = containerW / VIDEO_MIN_W;
         iframe.style.width           = VIDEO_MIN_W + 'px';
-        iframe.style.height          = (VIDEO_MIN_W * 9 / 16) + 'px';
+        iframe.style.height          = Math.round(VIDEO_MIN_W * 0.72) + 'px';
         iframe.style.transform       = `scale(${scale})`;
         iframe.style.transformOrigin = 'top left';
     } else if (iframe.style.transform) {
