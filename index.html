@@ -290,7 +290,9 @@ body {
     font-weight: 500;
     flex-shrink: 0;
 }
-.badge-pdf { background: #7c3aed20; color: #a78bfa; }
+.badge-pdf  { background: #7c3aed20; color: #a78bfa; }
+.badge-free { background: #10b98120; color: #10b981; }
+.lesson-lock { font-size: 11px; flex-shrink: 0; opacity: 0.5; }
 
 /* ── MAIN CONTENT ── */
 .main {
@@ -858,7 +860,13 @@ function renderPaywall(el) {
         </div>`;
 }
 
-// ── LESSON DATA ──────────────────────────────────────────────
+// ── LECCIONES GRATUITAS ──────────────────────────────────────
+// Secciones accesibles sin sesión activa
+const FREE_SECTIONS = ['Introducción al curso', 'Práctica 1'];
+
+function isLessonFree(lesson) {
+    return FREE_SECTIONS.includes(lesson.section);
+}
 const lessons = [
     // Introducción al curso
     { id:0,   title:"Crear mi primer documento",                              dur:"0:46",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1ebXikG2g7HHJErZ2XeiKnZRzaIK6UyaM/preview", pdfUrl:null },
@@ -1103,6 +1111,18 @@ function renderSidebar() {
             item.appendChild(badge);
         }
 
+        if (isLessonFree(l)) {
+            const badge = document.createElement('span');
+            badge.className = 'lesson-type-badge badge-free';
+            badge.textContent = 'GRATIS';
+            item.appendChild(badge);
+        } else if (!sesionValida()) {
+            const lock = document.createElement('span');
+            lock.className = 'lesson-lock';
+            lock.textContent = '🔒';
+            item.appendChild(lock);
+        }
+
         item.addEventListener('click', () => { navigate(idx); closeSidebar(); });
         el.appendChild(item);
     });
@@ -1134,8 +1154,8 @@ function renderContent() {
     document.getElementById('btnPrev').disabled = currentIdx === 0;
 
     // ── VERIFICAR SESIÓN ──
-    // Sin sesión activa → mostrar paywall en lugar del contenido
-    if (!sesionValida()) {
+    // Sin sesión activa → mostrar paywall, excepto en lecciones gratuitas
+    if (!sesionValida() && !isLessonFree(l)) {
         renderPaywall(el);
         return;
     }
