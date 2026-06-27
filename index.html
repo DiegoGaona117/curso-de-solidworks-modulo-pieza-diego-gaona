@@ -499,7 +499,7 @@ body {
     padding: 14px 44px 14px 18px;
     border-radius: 10px;
     z-index: 200;
-    pointer-events: auto;
+    pointer-events: none; /* FIX: invisible = no intercepta taps */
     opacity: 0;
     transform: translateY(-4px);
     transition: opacity 0.35s, transform 0.35s;
@@ -518,6 +518,7 @@ body {
 .menu-hint.visible {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto; /* solo intercepta cuando está visible */
 }
 .menu-hint-close {
     position: absolute;
