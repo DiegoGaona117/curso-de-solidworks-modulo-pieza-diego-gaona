@@ -869,11 +869,11 @@ function renderPaywall(el) {
 const FREE_SECTIONS = []; // Este módulo es completamente de pago
 
 function isLessonFree(lesson) {
-    return FREE_SECTIONS.includes(lesson.section);
+    return FREE_SECTIONS.includes(lesson.section) || lesson.free === true;
 }
 const lessons = [
     // Fabricación Manual de planos 2D
-    { id:129, title:"Documentos Asociados",               dur:"2:37",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/14oqNdw0Q7P_C3R4ELQMQVvhmT24AnZ_S/preview?usp=drive_link", pdfUrl:null },
+    { id:129, title:"Documentos Asociados",               dur:"2:37",  section:"Fabricación Manual de planos 2D", type:"video", free:true, videoUrl:"https://drive.google.com/file/d/14oqNdw0Q7P_C3R4ELQMQVvhmT24AnZ_S/preview?usp=drive_link", pdfUrl:null },
     { id:130, title:"Crear nuevo documento 2D",           dur:"2:55",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1X9IAHd2544nw0x4__qx8o8rGymq_jbcV/preview?usp=drive_link", pdfUrl:null },
     { id:131, title:"Añadir margen",                      dur:"1:57",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1Mx9_ctbscx182xbaf-JuDTigsxDMGaMe/preview?usp=drive_link", pdfUrl:null },
     { id:132, title:"Editar formato de hoja",             dur:"7:06",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1bCUXNsjQTOjPVs-ptC1xesErbYI5Yjzo/preview?usp=drive_link", pdfUrl:null },
