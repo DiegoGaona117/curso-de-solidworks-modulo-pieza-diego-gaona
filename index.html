@@ -852,9 +852,9 @@ function renderPaywall(el) {
                target="_blank" class="paywall-btn-buy">
                 🚀 Comprar curso completo
             </a>
-            <a href="https://diegogaona117.github.io/login/" class="paywall-btn-login">
+            ${!estado ? `<a href="https://diegogaona117.github.io/login/" class="paywall-btn-login">
                 Ya tengo cuenta → Iniciar sesión
-            </a>
+            </a>` : ''}
         </div>`;
 }
 
