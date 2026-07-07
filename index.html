@@ -534,6 +534,33 @@ body {
     .menu-hint { display: none !important; }
 }
 
+/* ── TOAST DE CAMBIO DE ESTADO ── */
+.status-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--green);
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 22px;
+    border-radius: 10px;
+    z-index: 300;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.status-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
 /* ── TEMA CLARO ── */
 body.light {
     --bg:         #f0f2f5;
@@ -761,16 +788,29 @@ body.light {
     <button class="menu-hint-close" id="menuHintClose">✕</button>
 </div>
 
+<!-- TOAST DE CAMBIO DE ESTADO DE SESIÓN -->
+<div class="status-toast" id="statusToast">
+    <span id="statusToastIcon">🎉</span>
+    <span id="statusToastText">¡Tu acceso fue actualizado!</span>
+</div>
+
 <script>
 
 // ── BOTÓN COMPRAR (solo usuarios de prueba) ──────────────────
-(function() {
+function renderBotonComprar() {
+    const existing = document.getElementById('btnComprarFloat');
     const sesion = localStorage.getItem('dg_sesion');
-    if (!sesion) return;
+
+    if (!sesion) {
+        if (existing) existing.remove();
+        return;
+    }
     try {
         const { estado } = JSON.parse(sesion);
         if (estado === 'prueba') {
+            if (existing) return; // ya está visible, no duplicar
             const btn = document.createElement('a');
+            btn.id = 'btnComprarFloat';
             btn.href = 'https://pay.hotmart.com/U80396963E?off=ndkiy143&bid=1781198555796';
             btn.target = '_blank';
             btn.textContent = '🔓 Comprar curso completo';
@@ -793,9 +833,13 @@ body.light {
             btn.onmouseover = () => btn.style.opacity = '0.85';
             btn.onmouseout  = () => btn.style.opacity = '1';
             document.body.appendChild(btn);
+        } else {
+            // Ya no está en "prueba" (p.ej. pasó a "completo") → quitar el botón si existía
+            if (existing) existing.remove();
         }
     } catch {}
-})();
+}
+renderBotonComprar();
 
 // ── SESIÓN ───────────────────────────────────────────────────
 function getSessionEstado() {
@@ -1304,7 +1348,7 @@ function applyVideoScale() {
 // Re-aplicar escala de video al cambiar tamaño de ventana
 window.addEventListener('resize', applyVideoScale);
 
-// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
+// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR (multi-pestaña) ───
 let _lastEstado = getSessionEstado();
 
 window.addEventListener('storage', e => {
@@ -1313,6 +1357,7 @@ window.addEventListener('storage', e => {
         renderContent();
         renderSidebar();
         updateProgress();
+        renderBotonComprar();
     }
 });
 
@@ -1324,9 +1369,99 @@ document.addEventListener('visibilitychange', () => {
             renderContent();
             renderSidebar();
             updateProgress();
+            renderBotonComprar();
         }
+        // Además de comparar localStorage, revalidamos contra el Sheet
+        // por si el estado cambió mientras la pestaña estaba en segundo plano.
+        revalidarSesion();
     }
 });
+
+// ── REVALIDACIÓN PERIÓDICA CONTRA GOOGLE SHEETS ──────────────
+// Soluciona el caso: el alumno entra como "prueba", nunca vuelve a
+// hacer login, pero compra el curso. En Sheets su estado pasa a
+// "completo", pero su localStorage local se queda estancado en
+// "prueba" hasta que este chequeo lo actualiza.
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbygQ48ZOiIA6abGu0L9fwGLhLkPxapSQd0e2wXis07ZWjL263v42qEoCGEx7CXczirC/exec';
+const SESSION_DAYS = 30;
+
+function mostrarToastEstado(mensaje, icono = '🎉') {
+    const toast = document.getElementById('statusToast');
+    if (!toast) return;
+    document.getElementById('statusToastIcon').textContent = icono;
+    document.getElementById('statusToastText').textContent = mensaje;
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 5000);
+}
+
+let _revalidando = false;
+
+async function revalidarSesion() {
+    if (_revalidando) return; // evita llamadas solapadas
+    _revalidando = true;
+    try {
+        const raw = localStorage.getItem('dg_sesion');
+        if (!raw) return;
+
+        const sesion = JSON.parse(raw);
+        if (!sesion.email || !sesion.password) return; // sesión antigua sin credenciales
+
+        const url = WEBHOOK_URL
+            + '?action=login'
+            + '&email='    + encodeURIComponent(sesion.email)
+            + '&password=' + encodeURIComponent(sesion.password);
+
+        const res  = await fetch(url);
+        const data = await res.json();
+
+        if (!data.ok) {
+            // La contraseña ya no coincide o el usuario ya no existe en el Sheet
+            if (sesion.estado !== 'removido') {
+                localStorage.setItem('dg_sesion', JSON.stringify({ ...sesion, estado: 'removido' }));
+                _lastEstado = 'removido';
+                renderContent();
+                renderSidebar();
+                updateProgress();
+                renderBotonComprar();
+            }
+            return;
+        }
+
+        const estadoAnterior = sesion.estado;
+        const estadoNuevo    = (data.estado || '').toString().trim().toLowerCase();
+
+        if (estadoNuevo && estadoNuevo !== estadoAnterior) {
+            const nuevaSesion = {
+                ...sesion,
+                estado: estadoNuevo,
+                expira: Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000 // renueva ventana de sesión
+            };
+            localStorage.setItem('dg_sesion', JSON.stringify(nuevaSesion));
+            _lastEstado = estadoNuevo;
+
+            renderContent();
+            renderSidebar();
+            updateProgress();
+            renderBotonComprar();
+
+            if (estadoNuevo === 'completo') {
+                mostrarToastEstado('¡Tu compra fue confirmada! Ya tienes acceso completo 🎓', '🎉');
+            } else if (estadoNuevo === 'removido') {
+                mostrarToastEstado('Tu acceso fue actualizado.', '⚠️');
+            }
+        }
+    } catch (err) {
+        console.error('No se pudo revalidar sesión:', err);
+    } finally {
+        _revalidando = false;
+    }
+}
+
+// Revalidar al cargar la página
+revalidarSesion();
+
+// Revalidar cada 5 minutos mientras el curso está abierto
+setInterval(revalidarSesion, 5 * 60 * 1000);
 
 // ── AUTO-COMPLETE ─────────────────────────────────────────────
 let autoCompleteTimer = null;
