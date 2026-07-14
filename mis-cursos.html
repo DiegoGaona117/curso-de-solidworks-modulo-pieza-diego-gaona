@@ -108,7 +108,7 @@
             padding: 0 16px;
             border-radius: 99px;
             border: none;
-            background: linear-gradient(135deg, yellow, yellow);
+            background: #facc15;
             color: black;
             font-family: 'Sora', sans-serif;
             font-size: 14px;
@@ -167,7 +167,7 @@
             margin-top: 12px;
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, yellow, yellow);
+            background: #facc15;
             border: none;
             color: black;
             padding: 8px 0;
@@ -352,11 +352,13 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .badge-blue   { background: #3b82f620; color: #93c5fd; border: 1px solid #3b82f640; backdrop-filter: blur(8px); }
-        .badge-orange { background: #f9731620; color: #fdba74; border: 1px solid #f9731640; backdrop-filter: blur(8px); }
-        .badge-green  { background: #10b98120; color: #6ee7b7; border: 1px solid #10b98140; backdrop-filter: blur(8px); }
-        .badge-purple { background: #8b5cf620; color: #c4b5fd; border: 1px solid #8b5cf640; backdrop-filter: blur(8px); }
-        .badge-gold   { background: #eab30825; color: #fde047; border: 1px solid #eab30850; backdrop-filter: blur(8px); }
+        .card-badge { box-shadow: 0 2px 8px #00000060; }
+
+        .badge-blue   { background: #3b82f6; color: #ffffff; border: 1px solid #ffffff30; }
+        .badge-orange { background: #f97316; color: #ffffff; border: 1px solid #ffffff30; }
+        .badge-green  { background: #10b981; color: #ffffff; border: 1px solid #ffffff30; }
+        .badge-purple { background: #8b5cf6; color: #ffffff; border: 1px solid #ffffff30; }
+        .badge-gold   { background: #eab308; color: #1a1400; border: 1px solid #ffffff30; }
 
         .card-body {
             padding: 20px;
@@ -437,7 +439,7 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--orange));
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -475,7 +477,7 @@
             display: grid;
             grid-template-columns: minmax(220px, 380px) 1fr;
             border: 1px solid #eab30835;
-            background: linear-gradient(135deg, #1a1a12 0%, var(--surface) 55%);
+            background: #14140f;
         }
 
         .card-bonus:hover {
