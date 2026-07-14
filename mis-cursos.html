@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
     <!-- SEO -->
     <title>Mis Cursos — Diego Gaona | SolidWorks</title>
@@ -58,6 +58,7 @@
             --border2:  #ffffff20;
             --accent:   #3b82f6;
             --orange:   #f97316;
+            --gold:     #eab308;
             --text:     #e8eaf0;
             --dim:      #9ca3af;
             --green:    #10b981;
@@ -70,17 +71,22 @@
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
         }
+
+        img { max-width: 100%; display: block; }
 
         /* ── HEADER ── */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
             padding: 0 24px;
-            height: 60px;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -91,22 +97,10 @@
             font-weight: 700;
             letter-spacing: -0.03em;
             color: var(--text);
+            white-space: nowrap;
         }
 
         .logo span { color: var(--orange); }
-
-        .header-tag {
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--dim);
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: var(--surface2);
-            border: 1px solid var(--border2);
-            padding: 4px 10px;
-            border-radius: 99px;
-        }
 
         /* ── BOTÓN ACCESO DIRECTO ── */
         .btn-acceso {
@@ -117,13 +111,14 @@
             background: linear-gradient(135deg, yellow, yellow);
             color: black;
             font-family: 'Sora', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             white-space: nowrap;
             box-shadow: 0 0 0 0 #f9731660;
             animation: pulso 2s infinite;
             transition: transform 0.2s;
+            flex-shrink: 0;
         }
 
         .btn-acceso:hover {
@@ -211,10 +206,11 @@
             height: 2px;
             background: var(--orange);
             border-radius: 2px;
+            flex-shrink: 0;
         }
 
         .hero h1 {
-            font-size: clamp(28px, 5vw, 44px);
+            font-size: clamp(26px, 6vw, 44px);
             font-weight: 700;
             letter-spacing: -0.04em;
             line-height: 1.15;
@@ -243,12 +239,17 @@
             font-family: 'JetBrains Mono', monospace;
             overflow-x: auto;
             white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
+
+        .ruta::-webkit-scrollbar { display: none; }
 
         .ruta-step {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         .ruta-num {
@@ -265,16 +266,42 @@
             flex-shrink: 0;
         }
 
-        .ruta-arrow { color: var(--border2); font-size: 14px; }
+        .ruta-arrow { color: var(--border2); font-size: 14px; flex-shrink: 0; }
+
+        /* ── SECTION LABEL (para Bonus) ── */
+        .section-label {
+            max-width: 1200px;
+            margin: 8px auto 20px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #eab30840, transparent);
+        }
 
         /* ── GRID ── */
         .grid {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px 80px;
+            padding: 0 24px 40px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
+        }
+
+        .grid-bonus {
+            padding-bottom: 80px;
         }
 
         /* ── CARD ── */
@@ -288,6 +315,7 @@
             text-decoration: none;
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
 
         .card:hover {
@@ -328,6 +356,7 @@
         .badge-orange { background: #f9731620; color: #fdba74; border: 1px solid #f9731640; backdrop-filter: blur(8px); }
         .badge-green  { background: #10b98120; color: #6ee7b7; border: 1px solid #10b98140; backdrop-filter: blur(8px); }
         .badge-purple { background: #8b5cf620; color: #c4b5fd; border: 1px solid #8b5cf640; backdrop-filter: blur(8px); }
+        .badge-gold   { background: #eab30825; color: #fde047; border: 1px solid #eab30850; backdrop-filter: blur(8px); }
 
         .card-body {
             padding: 20px;
@@ -335,6 +364,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            min-width: 0;
         }
 
         .card-num {
@@ -392,6 +422,8 @@
         .btn-green:hover { background: #059669; }
         .btn-purple  { background: #7c3aed; color: #fff; }
         .btn-purple:hover { background: #6d28d9; }
+        .btn-gold    { background: var(--gold); color: #1a1400; }
+        .btn-gold:hover { background: #ca8a04; }
 
         /* ── AUTHOR ── */
         .author {
@@ -437,6 +469,44 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* ── BONUS CARD (destacada, ocupa todo el ancho) ── */
+        .card-bonus {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(220px, 380px) 1fr;
+            border: 1px solid #eab30835;
+            background: linear-gradient(135deg, #1a1a12 0%, var(--surface) 55%);
+        }
+
+        .card-bonus:hover {
+            border-color: #eab30860;
+            box-shadow: 0 20px 45px #00000060;
+        }
+
+        .card-bonus .card-img-wrap {
+            aspect-ratio: auto;
+            height: 100%;
+        }
+
+        .card-bonus .card-img {
+            height: 100%;
+            aspect-ratio: auto;
+            object-fit: cover;
+        }
+
+        .card-bonus .card-body {
+            padding: 24px 28px;
+            justify-content: center;
+        }
+
+        .card-bonus .card-title {
+            font-size: 20px;
+        }
+
+        .card-bonus .card-footer {
+            padding: 18px 28px;
+        }
+
         /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--border);
@@ -447,16 +517,6 @@
         }
 
         footer a { color: var(--orange); text-decoration: none; }
-
-        /* ── MOBILE ── */
-        @media (max-width: 600px) {
-            .hero { padding: 36px 16px 28px; }
-            .grid { padding: 0 16px 60px; gap: 16px; }
-            .ruta { padding: 0 16px; }
-            header { padding: 0 16px; }
-            .btn-acceso { font-size: 11px; padding: 0 12px; }
-            .tip-descarga { right: 10px; left: 10px; max-width: 100%; }
-        }
 
         /* ── ANIMACIÓN ENTRADA ── */
         .card {
@@ -473,6 +533,62 @@
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ══════════════════ MOBILE — 100% ADAPTADO ══════════════════ */
+        @media (max-width: 720px) {
+            .grid { grid-template-columns: 1fr; }
+            .card-bonus {
+                grid-template-columns: 1fr;
+            }
+            .card-bonus .card-img-wrap { aspect-ratio: 16/9; height: auto; }
+            .card-bonus .card-img { aspect-ratio: 16/9; height: auto; }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 0 16px; min-height: 56px; }
+            .logo { font-size: 14px; }
+            .btn-acceso { font-size: 12px; padding: 0 12px; height: 32px; }
+
+            .hero { padding: 32px 16px 24px; }
+            .hero p { font-size: 14px; }
+
+            .ruta { padding: 0 16px; font-size: 11px; }
+
+            .section-label { padding: 0 16px; }
+
+            .grid { padding: 0 16px 32px; gap: 16px; }
+            .grid-bonus { padding-bottom: 56px; }
+
+            .card-body { padding: 16px; }
+            .card-title { font-size: 16px; }
+            .card-desc { font-size: 12.5px; }
+            .card-footer { padding: 12px 16px; }
+
+            .card-bonus .card-body { padding: 18px 16px; }
+            .card-bonus .card-title { font-size: 18px; }
+            .card-bonus .card-footer { padding: 14px 16px; }
+
+            .tip-descarga { right: 10px; left: 10px; max-width: none; top: 64px; }
+        }
+
+        @media (max-width: 380px) {
+            .btn-acceso span.btn-text-full { display: none; }
+            .card-title { font-size: 15px; }
+        }
+
+        /* Evita zoom raro y respeta áreas seguras en iOS */
+        @supports (padding: max(0px)) {
+            header {
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+            }
+            @media (max-width: 600px) {
+                header {
+                    padding-left: max(16px, env(safe-area-inset-left));
+                    padding-right: max(16px, env(safe-area-inset-right));
+                }
+            }
+        }
     </style>
 </head>
 <body>
@@ -481,7 +597,7 @@
 <header>
     <div class="logo">Diego <span>Gaona</span></div>
     <div style="display:flex; align-items:center; gap:10px;">
-        <button class="btn-acceso" onclick="descargarAcceso()">⬇️ Descarga tu acceso directo</button>
+        <button class="btn-acceso" onclick="descargarAcceso()">⬇️ <span class="btn-text-full">Descarga tu acceso directo</span></button>
     </div>
 </header>
 
@@ -520,7 +636,7 @@
     <!-- CARD 1 -->
     <a class="card" href="https://diegogaona117.github.io/curso-de-solidworks-modulo-pieza-diego-gaona/">
         <div class="card-img-wrap">
-            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_0929da83eb394ae7ac7019a495d3b3ae~mv2.webp" alt="Módulo de Pieza">
+            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_0929da83eb394ae7ac7019a495d3b3ae~mv2.webp" alt="Módulo de Pieza" loading="lazy">
             <span class="card-badge badge-blue">Paso 1</span>
         </div>
         <div class="card-body">
@@ -545,7 +661,7 @@
     <!-- CARD 2 -->
     <a class="card" href="https://diegogaona117.github.io/curso-de-solidworks-modulo-pieza-diego-gaona/planos-2d.html">
         <div class="card-img-wrap">
-            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_92c7dfcd06e24252a36ebedadd500c59~mv2.webp" alt="Planos 2D">
+            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_92c7dfcd06e24252a36ebedadd500c59~mv2.webp" alt="Planos 2D" loading="lazy">
             <span class="card-badge badge-orange">Paso 2</span>
         </div>
         <div class="card-body">
@@ -570,7 +686,7 @@
     <!-- CARD 3 -->
     <a class="card" href="https://diegogaona117.github.io/curso-de-solidworks-modulo-pieza-diego-gaona/modulo-ensamble.html">
         <div class="card-img-wrap">
-            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_4e6ff876f8584bee9580e94f17aafb01~mv2.webp" alt="Ensamble">
+            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_4e6ff876f8584bee9580e94f17aafb01~mv2.webp" alt="Ensamble" loading="lazy">
             <span class="card-badge badge-green">Paso 3</span>
         </div>
         <div class="card-body">
@@ -595,7 +711,7 @@
     <!-- CARD 4 -->
     <a class="card" href="https://diegogaona117.github.io/curso-de-solidworks-modulo-pieza-diego-gaona/simuladores-cswa.html">
         <div class="card-img-wrap">
-            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_8912d1c812b54b9798b69fe6ac7bf1ae~mv2.webp" alt="Simulador CSWA">
+            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_8912d1c812b54b9798b69fe6ac7bf1ae~mv2.webp" alt="Simulador CSWA" loading="lazy">
             <span class="card-badge badge-purple">Paso 4</span>
         </div>
         <div class="card-body">
@@ -614,6 +730,37 @@
         </div>
         <div class="card-footer">
             <button class="btn-card btn-purple">Entrar →</button>
+        </div>
+    </a>
+
+</div>
+
+<!-- SECCIÓN BONUS -->
+<div class="section-label">🎁 Bonus exclusivo</div>
+<div class="grid grid-bonus">
+
+    <!-- CARD BONUS -->
+    <a class="card card-bonus" href="https://drive.google.com/drive/u/0/folders/1LvlZVqsaqf-SNq8X1Drep8vGL9gv0kZO" target="_blank" rel="noopener">
+        <div class="card-img-wrap">
+            <img class="card-img" src="https://static.wixstatic.com/media/32c95b_331ce35ed17b40189995fd96455f06da~mv2.png" alt="Paquete de planos PDF para practicar" loading="lazy">
+            <span class="card-badge badge-gold">Regalo</span>
+        </div>
+        <div class="card-body">
+            <div class="card-num">BONUS</div>
+            <div class="card-title">Paquete de +200 Planos PDF para Practicar</div>
+            <div class="card-desc">Lleva la teoría a la práctica real. Un paquete con aproximadamente 200 planos en PDF, organizados desde piezas de nivel cero hasta ejercicios de nivel intermedio-avanzado y ensambles completos, para que ejercites cada módulo con casos reales.</div>
+            <div class="card-features">
+                <span class="feat">+200 planos PDF</span>
+                <span class="feat">Nivel cero → avanzado</span>
+                <span class="feat">Incluye ensambles</span>
+            </div>
+            <div class="author">
+                <div class="author-avatar">DG</div>
+                <span class="author-name">Diego Armando Gaona Ramírez</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn-card btn-gold">Descargar →</button>
         </div>
     </a>
 
