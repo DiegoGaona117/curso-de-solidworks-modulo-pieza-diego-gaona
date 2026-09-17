@@ -1067,6 +1067,9 @@ function saveState() {
         localStorage.setItem('pieza_idx', currentIdx);
         localStorage.setItem('pieza_done', JSON.stringify([...completed]));
     } catch {}
+    // Sincroniza también con el Sheet (con debounce), para no perder
+    // el progreso si el alumno cambia de dispositivo o borra caché.
+    enviarProgresoRemoto();
 }
 
 function getLessonFromURL() {
@@ -1488,6 +1491,87 @@ revalidarSesion();
 // Revalidar cada 5 minutos mientras el curso está abierto
 setInterval(revalidarSesion, 5 * 60 * 1000);
 
+// ── SINCRONIZACIÓN DE PROGRESO CON GOOGLE SHEETS ─────────────
+// Guarda el progreso (lección actual + completadas) también en la
+// columna P de "Lista de alumnos", para que no dependa solo del
+// localStorage del navegador/dispositivo del alumno.
+let _guardarProgresoTimer = null;
+
+function enviarProgresoRemoto() {
+    clearTimeout(_guardarProgresoTimer);
+    // Debounce: agrupa clics/avances seguidos en una sola llamada,
+    // en vez de mandar un request por cada lección marcada.
+    _guardarProgresoTimer = setTimeout(async () => {
+        try {
+            const raw = localStorage.getItem('dg_sesion');
+            if (!raw) return;
+            const sesion = JSON.parse(raw);
+            // Solo se sincroniza si hay sesión con código activo
+            // (mismo requisito que exige el Apps Script para escribir).
+            if (!sesion.email || !sesion.codigo) return;
+
+            const progreso = JSON.stringify({ idx: currentIdx, done: [...completed] });
+            const url = WEBHOOK_URL
+                + '?action=guardarProgreso'
+                + '&email='    + encodeURIComponent(sesion.email)
+                + '&codigo='   + encodeURIComponent(sesion.codigo)
+                + '&progreso=' + encodeURIComponent(progreso);
+
+            await fetch(url);
+        } catch (err) {
+            console.error('No se pudo guardar el progreso remoto:', err);
+        }
+    }, 1500);
+}
+
+// Trae el progreso guardado en el Sheet y lo fusiona con el local:
+// une las lecciones completadas (nunca se pierde avance hecho en otro
+// dispositivo) y solo adelanta el índice actual si el remoto va más
+// avanzado que el local.
+async function cargarProgresoRemoto() {
+    try {
+        const raw = localStorage.getItem('dg_sesion');
+        if (!raw) return;
+        const sesion = JSON.parse(raw);
+        if (!sesion.email || !sesion.codigo) return;
+
+        const url = WEBHOOK_URL
+            + '?action=obtenerProgreso'
+            + '&email='  + encodeURIComponent(sesion.email)
+            + '&codigo=' + encodeURIComponent(sesion.codigo);
+
+        const res  = await fetch(url);
+        const data = await res.json();
+        if (!data.ok || !data.progreso) return;
+
+        const remoto = JSON.parse(data.progreso);
+        if (!remoto || !Array.isArray(remoto.done)) return;
+
+        let cambio = false;
+        remoto.done.forEach(idx => {
+            if (!completed.has(idx)) { completed.add(idx); cambio = true; }
+        });
+        if (typeof remoto.idx === 'number' && remoto.idx > currentIdx) {
+            currentIdx = remoto.idx;
+            cambio = true;
+        }
+
+        if (cambio) {
+            try {
+                localStorage.setItem('pieza_idx', currentIdx);
+                localStorage.setItem('pieza_done', JSON.stringify([...completed]));
+            } catch {}
+            pushURL(currentIdx);
+            renderSidebar();
+            renderContent();
+            updateProgress();
+            updateMobileNav();
+        }
+    } catch (err) {
+        console.error('No se pudo cargar el progreso remoto:', err);
+    }
+}
+
 // ── AUTO-COMPLETE ─────────────────────────────────────────────
 let autoCompleteTimer = null;
 
@@ -1592,6 +1676,10 @@ renderSidebar();
 renderContent();
 updateProgress();
 startAutoComplete(currentIdx);
+
+// Trae el progreso guardado en el Sheet (si hay sesión activa) y lo
+// fusiona con lo que ya había en localStorage.
+cargarProgresoRemoto();
 
 // ── BARRA DE NAVEGACIÓN MÓVIL ────────────────────────────────
 function updateMobileNav() {
