@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- ============================================================
-         BLOQUE 1 — META / SEO / OPEN GRAPH / FAVICON / PRECONNECT / FONTS
-         ============================================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,7 +15,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Curso de SolidWorks desde cero a certificación CSWA — Curso Diego Gaona">
     <meta property="og:description" content="Aprende SolidWorks con práctica real. Videos explicativos y ejercicios paso a paso para dominar el diseño 3D.">
-    <meta property="og:image" content="https://static.wixstatic.com/media/32c95b_6e808bd13c5b4fc786fdc4365110507f~mv2.webp">
+    <meta property="og:image" content="https://static.wixstatic.com/media/32c95b_b3183dd44b384957a103bc6d70991c48~mv2.webp">
     <meta property="og:url" content="https://cursodiegogaona.com">
     <meta property="og:type" content="website">
 
@@ -34,9 +31,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- ============================================================
-         BLOQUE 2 — FACEBOOK PIXEL
-         ============================================================ -->
+    <!-- Facebook Pixel -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -59,10 +54,6 @@
    CURSO DIEGO GAONA — css.css
    Stylesheet compartido entre páginas del curso
    ═══════════════════════════════════════════════════════ */
-
-/* ============================================================
-   BLOQUE 3 — CSS: RESET + VARIABLES (:root) + TEMA CLARO
-   ============================================================ */
 
 /* ── UTILIDAD COMPARTIDA: TIP HD ── */
 .hd-tip {
@@ -111,9 +102,7 @@ body {
     flex-direction: column;
 }
 
-/* ============================================================
-   BLOQUE 4 — CSS: TOPBAR
-   ============================================================ */
+/* ── TOP BAR ── */
 .topbar {
     height: var(--topbar-h);
     background: var(--surface);
@@ -201,15 +190,14 @@ body {
     justify-content: center;
 }
 
-/* ============================================================
-   BLOQUE 5 — CSS: LAYOUT + SIDEBAR
-   ============================================================ */
+/* ── LAYOUT ── */
 .layout {
     flex: 1;
     display: flex;
     overflow: hidden;
 }
 
+/* ── SIDEBAR ── */
 .sidebar {
     width: var(--sidebar-w);
     background: var(--surface);
@@ -306,9 +294,7 @@ body {
 .badge-free { background: #10b98120; color: #10b981; }
 .lesson-lock { font-size: 11px; flex-shrink: 0; opacity: 0.5; }
 
-/* ============================================================
-   BLOQUE 6 — CSS: MAIN / VIDEO / PDF CARD
-   ============================================================ */
+/* ── MAIN CONTENT ── */
 .main {
     flex: 1;
     min-width: 0;
@@ -355,7 +341,7 @@ body {
     max-width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #000;
+    background: var(--surface);
     border-radius: 10px;
     margin-bottom: 16px;
     border: 1px solid var(--border);
@@ -364,12 +350,6 @@ body {
     width: 100%;
     height: 100%;
     border: none;
-    display: block;
-}
-
-.video-wrap video {
-    width: 100%;
-    height: 100%;
     display: block;
 }
 
@@ -422,9 +402,7 @@ body {
 /* ── SECTION DIVIDER ── */
 .section-divider { height: 1px; background: var(--border); margin: 24px 0; }
 
-/* ============================================================
-   BLOQUE 7 — CSS: PAYWALL + CONGRATS
-   ============================================================ */
+/* ── PAYWALL ── */
 .paywall {
     display: flex;
     flex-direction: column;
@@ -487,9 +465,7 @@ body {
 .congrats-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 12px; }
 .congrats-sub   { font-size: 16px; color: var(--text-dim); line-height: 1.7; max-width: 500px; margin: 0 auto; }
 
-/* ============================================================
-   BLOQUE 8 — CSS: OVERLAY + NAV MÓVIL FLOTANTE + MENU HINT + TOAST
-   ============================================================ */
+/* ── OVERLAY (fondo oscuro del drawer móvil) ── */
 .overlay {
     display: none;
     position: fixed;
@@ -498,10 +474,12 @@ body {
     z-index: 90;
 }
 
+/* ── BARRA DE NAVEGACIÓN MÓVIL (2 botones) ── */
 .mobile-nav-bar  { display: none; }
 .btn-float-prev  { display: none; }
 .btn-float-next  { display: none; }
 
+/* ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ── */
 .menu-hint {
     position: fixed;
     top: calc(var(--topbar-h) + 10px);
@@ -556,6 +534,7 @@ body {
     .menu-hint { display: none !important; }
 }
 
+/* ── TOAST DE CAMBIO DE ESTADO ── */
 .status-toast {
     position: fixed;
     bottom: 24px;
@@ -594,9 +573,9 @@ body.light {
     --text-dim:   #555555;
 }
 
-/* ============================================================
-   BLOQUE 9 — CSS: RESPONSIVE (tablet / móvil / pantallas pequeñas)
-   ============================================================ */
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
 
 /* ── TABLET (≤ 1080px) ── */
 @media (max-width: 1080px) {
@@ -740,9 +719,7 @@ body.light {
 </head>
 <body>
 
-<!-- ============================================================
-     BLOQUE 10 — MENSAJE "INGRESA DESDE TU COMPUTADORA" (oculto, no usado)
-     ============================================================ -->
+<!-- MENSAJE MÓVIL — mantenido pero no activado -->
 <div id="msgEscritorio" style="
     display: none;
     position: fixed;
@@ -765,9 +742,7 @@ body.light {
     </p>
 </div>
 
-<!-- ============================================================
-     BLOQUE 11 — TOPBAR HTML
-     ============================================================ -->
+<!-- TOP BAR -->
 <div class="topbar">
     <button class="menu-toggle" id="menuToggle">☰</button>
     <div class="topbar-brand">Domina el modelado 3D desde cero<span id="brandAccent"> — CSWA</span></div>
@@ -782,9 +757,7 @@ body.light {
     <a href="mis-cursos.html" id="btnMisCursos" class="btn-nav" style="text-decoration:none;">📚 <span class="btn-label">Mis cursos</span></a>
 </div>
 
-<!-- ============================================================
-     BLOQUE 12 — LAYOUT HTML (sidebar + overlay + main)
-     ============================================================ -->
+<!-- LAYOUT -->
 <div class="layout">
 
     <!-- SIDEBAR -->
@@ -803,19 +776,19 @@ body.light {
 
 </div>
 
-<!-- ============================================================
-     BLOQUE 13 — NAV MÓVIL FLOTANTE + MENU HINT + STATUS TOAST HTML
-     ============================================================ -->
+<!-- BARRA DE NAVEGACIÓN INFERIOR — visible solo en móvil (≤768px) vía CSS -->
 <div class="mobile-nav-bar">
     <button class="btn-float-prev" id="btnFloatPrev">←</button>
     <button class="btn-float-next" id="btnFloatNext">✓ &nbsp;Completar y continuar</button>
 </div>
 
+<!-- TOOLTIP DE DESCUBRIMIENTO -->
 <div class="menu-hint" id="menuHint">
     👆 Toca ☰ para ver todas las clases del curso
     <button class="menu-hint-close" id="menuHintClose">✕</button>
 </div>
 
+<!-- TOAST DE CAMBIO DE ESTADO DE SESIÓN -->
 <div class="status-toast" id="statusToast">
     <span id="statusToastIcon">🎉</span>
     <span id="statusToastText">¡Tu acceso fue actualizado!</span>
@@ -823,9 +796,7 @@ body.light {
 
 <script>
 
-// ============================================================
-// BLOQUE 14 — BOTÓN "COMPRAR CURSO COMPLETO" FLOTANTE
-// ============================================================
+// ── BOTÓN COMPRAR (solo usuarios de prueba) ──────────────────
 function renderBotonComprar() {
     const existing = document.getElementById('btnComprarFloat');
     const sesion = localStorage.getItem('dg_sesion');
@@ -870,9 +841,7 @@ function renderBotonComprar() {
 }
 renderBotonComprar();
 
-// ============================================================
-// BLOQUE 15 — SESIÓN
-// ============================================================
+// ── SESIÓN ───────────────────────────────────────────────────
 function getSessionEstado() {
     try {
         const raw = localStorage.getItem('dg_sesion');
@@ -890,9 +859,7 @@ function sesionValida() {
     return estado === 'activo' || estado === 'completo';
 }
 
-// ============================================================
-// BLOQUE 16 — PAYWALL RENDER
-// ============================================================
+// ── PAYWALL ──────────────────────────────────────────────────
 function renderPaywall(el) {
     const estado = getSessionEstado();
 
@@ -919,50 +886,177 @@ function renderPaywall(el) {
         </div>`;
 }
 
-// ============================================================
-// BLOQUE 17 — LECCIONES GRATUITAS
-// ============================================================
-const FREE_SECTIONS = ['Vista previa gratuita'];
+// ── LECCIONES GRATUITAS ──────────────────────────────────────
+const FREE_SECTIONS = ['Introducción al curso', 'Práctica 1'];
 
 function isLessonFree(lesson) {
     return FREE_SECTIONS.includes(lesson.section);
 }
 
-// ============================================================
-// BLOQUE 18 — ARRAY "lessons" (las ~128 lecciones)
-// ============================================================
-// ============================================================
-// BLOQUE 18 — ARRAY "lessons" (12 lecciones, FreeCad)
-// ============================================================
 const lessons = [
-    { id:500, title:"Pieza simple 1",  dur:"3:33",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/FreeCad%20para%20PRINCIPIANTES%20_%20haz%20Pieza%20SIMPLE%201.mp4", pdfUrl:null },
-    { id:501, title:"Pieza simple 2",  dur:"3:49",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-aprende-freecad-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:502, title:"Pieza simple 3",  dur:"3:39",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-3-aprende-freecad-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:503, title:"Pieza simple 4",  dur:"4:03",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-4-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:504, title:"Pieza simple 5",  dur:"5:03",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-5-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:505, title:"Pieza simple 6",  dur:"3:53",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-6-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:506, title:"Pieza simple 7",  dur:"5:23",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-7-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:507, title:"Pieza simple 8",  dur:"7:53",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-8-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:508, title:"Pieza simple 9",  dur:"3:22",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-9-aprende-freecad-rapido-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:509, title:"Pieza simple 10", dur:"10:18", section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-10-freecad-para-principiantes-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:510, title:"Pieza simple 11", dur:"5:36",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-11-freecad-para-principiantes-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:511, title:"Pieza simple 12", dur:"5:05",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-12-freecad-para-principiantes-720-ytshorts.savetube.me.mp4", pdfUrl:null },
-    { id:512, title:"Pieza simple 13", dur:"4:19",  section:"Introducción a FreeCad", type:"video", videoUrl:"https://pub-28ab12728b934c278db2d17fd2d4d54f.r2.dev/FreeCad/aprende-a-hacer-pieza-simple-13-freecad-para-principiantes-720-ytshorts.savetube.me.mp4", pdfUrl:null }
+    // Introducción al curso
+    { id:0,   title:"Crear mi primer documento",                              dur:"0:46",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1ebXikG2g7HHJErZ2XeiKnZRzaIK6UyaM/preview", pdfUrl:null },
+    { id:1,   title:"Sistema de unidades",                                    dur:"1:03",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1Nw7c5hjgjpZIIctVCBUmMN_9itGSTiSL/preview", pdfUrl:null },
+    { id:2,   title:"Herramienta vistas estándar",                            dur:"0:45",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1cyJk5mJq-BmoB_Jpa3-sWJpK1C6EtWEV/preview", pdfUrl:null },
+    { id:3,   title:"Planos base",                                            dur:"0:44",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1Eo_yIdpVVcjfi3GG2WEkTzCs2pwhUIez/preview", pdfUrl:null },
+    { id:4,   title:"Mover / Girar / Acercar / Alejar pieza",                 dur:"1:13",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1WRquwxcAZPAJNES8vTs3kMkHpw_UJZso/preview", pdfUrl:null },
+    { id:5,   title:"Centrar la pieza",                                       dur:"1:30",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1LM89OZFFI8qSjrPAb2Ss619yB5Sh30jY/preview", pdfUrl:null },
+    { id:6,   title:"Forma de trabajo con SolidWorks",                        dur:"3:25",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1sB9g7ynZJDjW0oJbYxzTVyZb-nS5VRZ6/preview", pdfUrl:null },
+    { id:7,   title:"Control + Z — Deshacer",                                 dur:"0:31",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/16KmK9V0VAUTYd2pTudzTxtYtzro0Yyzg/preview", pdfUrl:null },
+    { id:8,   title:"Desactivar herramientas / Tecla de escape",              dur:"1:50",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1iehKbqPmYEkAo5xb_9axNuWBkasnQn7r/preview", pdfUrl:null },
+    { id:9,   title:"Eliminar dibujos",                                       dur:"0:56",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1vDSTYvxh-ATnFvgc4LkdsgFcH9VJyMQ3/preview", pdfUrl:null },
+    { id:10,  title:"Modificar / Eliminar cotas",                             dur:"1:04",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1appl-XZ4kwkChq0RsZIcX7Fc6J_5ZvYC/preview", pdfUrl:null },
+    { id:11,  title:"Alinear vista de la pieza / Normal A",                   dur:"0:31",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1JJQ7gVQ8pHsT5VGmTi8X5d6yw5Kq7WRf/preview", pdfUrl:null },
+    { id:12,  title:"Guardar pieza",                                          dur:"0:23",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1fNqlKVMqIO-zwj7MuVwdPfVKLdN_aLte/preview", pdfUrl:null },
+    { id:13,  title:"Abrir pieza",                                            dur:"0:45",  section:"Introducción al curso",              type:"video", videoUrl:"https://drive.google.com/file/d/1VXLjGWWwRA5u0xfD_ntElWsHU6vaOKN6/preview", pdfUrl:null },
+    // Práctica 1
+    { id:14,  title:"Práctica 1",                                             dur:"8:34",  section:"Práctica 1",                        type:"video", videoUrl:"https://drive.google.com/file/d/1kyeHRKk_OUmgY5LA9tscp0CSGvIsJWsc/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1MtSKbTbcQBGKAItXRdWJKwfC7gUv-aEN/view?usp=drive_link" },
+    { id:15,  title:"Agregar material y comprobar pieza",                     dur:"1:36",  section:"Práctica 1",                        type:"video", videoUrl:"https://drive.google.com/file/d/1wnPKUhvaQIftGpMwKW1IGHZikVkgGDd2/preview?usp=drive_link", pdfUrl:null },
+    { id:16,  title:"Ejercicio 1",                                            dur:"PDF",   section:"Práctica 1",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/13skYvWGW3ZP2mS_TIrCtIQe1F5iNylUl/view?usp=drive_link" },
+    { id:17,  title:"Solución: Ejercicio 1",                                  dur:"4:11",  section:"Práctica 1",                        type:"video", videoUrl:"https://drive.google.com/file/d/1xKRwJ6WIlQUjiL-zryxoSX8s9NT_HUEh/preview?usp=drive_link", pdfUrl:null },
+    { id:18,  title:"Ejercicio 1.1",                                          dur:"PDF",   section:"Práctica 1",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1mlCpGsLCOdE8OWI9zDYmTZG1C8V_BFSh/view?usp=drive_link" },
+    { id:19,  title:"Solución ejercicio 1.1",                                 dur:"2:47",  section:"Práctica 1",                        type:"video", videoUrl:"https://drive.google.com/file/d/1vqMKmkS4YJej1de83t2ntMFNKex5VTji/preview?usp=drive_link", pdfUrl:null },
+    // Clases complementarias
+    { id:20,  title:"¿Por qué mi SolidWorks no dibuja?",                      dur:"1:25",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1hsEOAjShPn3080OpRYcVb2ty5eMURor2/preview?usp=drive_link", pdfUrl:null },
+    { id:21,  title:"Activar enganche",                                       dur:"1:42",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1W1KH6BGmBrsOf_sZeGkDJLZu3POTMTEJ/preview?usp=drive_link", pdfUrl:null },
+    { id:22,  title:"Relaciones automáticas",                                 dur:"1:00",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1opJnY-yXzkp1toQ_yTZQnS5HOipKinDV/preview?usp=drive_link", pdfUrl:null },
+    { id:23,  title:"Se descompuso mi área de trabajo",                       dur:"2:31",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1ppURuC7EwqrrG61vRoziCTEiwe7p6FP2/preview?usp=drive_link", pdfUrl:null },
+    { id:24,  title:"Administrador de propiedades fuera de lugar",            dur:"0:47",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1NB-RB003UCH-1ecyluDLpeiND_oxOoh7/preview?usp=drive_link", pdfUrl:null },
+    { id:25,  title:"Se ocultan las herramientas y solo se ven las pestañas", dur:"1:03",  section:"Clases complementarias",            type:"video", videoUrl:"https://drive.google.com/file/d/1CRjitC2PDk4p2u4yPM93aWN0BDa_NuAY/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 2
+    { id:26,  title:"Práctica 2",                                             dur:"6:05",  section:"Práctica 2",                        type:"video", videoUrl:"https://drive.google.com/file/d/1Pb2zglvmnaPJ9XF3Vwfp_Tz7QrpTmfRu/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1SNCSVCgoH33D6l4IJWmw688mbGl-Z5U3/view?usp=drive_link" },
+    { id:27,  title:"Ejercicio 2",                                            dur:"PDF",   section:"Práctica 2",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1tqTZd0Ak0zmsJ-Legct-BQD99epSm0Qt/view?usp=drive_link" },
+    { id:28,  title:"Solución: Ejercicio 2",                                  dur:"4:18",  section:"Práctica 2",                        type:"video", videoUrl:"https://drive.google.com/file/d/11C12C42IPACWvNLuvddDMjk6g0w6DVsZ/preview?usp=drive_link", pdfUrl:null },
+    { id:29,  title:"Ejercicio 2.1",                                          dur:"PDF",   section:"Práctica 2",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1g1HThc1QwwwMPB31H4iLft6hkGlGahkj/view?usp=drive_link" },
+    { id:30,  title:"Solución ejercicio 2.1",                                 dur:"3:28",  section:"Práctica 2",                        type:"video", videoUrl:"https://drive.google.com/file/d/1hOjvaMHqiKaDbkqnG1u2zEmTIDk0HQLY/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 3
+    { id:31,  title:"Práctica 3",                                             dur:"4:14",  section:"Práctica 3",                        type:"video", videoUrl:"https://drive.google.com/file/d/15GwrNIpV8wjtP7I9kFTCGbi662FKTxXG/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/10EUKOfU8ErkPVvS0J-Tqnm1ybsYvlrxU/view?usp=drive_link" },
+    { id:32,  title:"Ejercicio 3",                                            dur:"PDF",   section:"Práctica 3",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1qsL2LJ6XOnf3VP3d1016CRErD2hB-30m/view?usp=drive_link" },
+    { id:33,  title:"Solución ejercicio 3",                                   dur:"4:08",  section:"Práctica 3",                        type:"video", videoUrl:"https://drive.google.com/file/d/138DtQ_ylngjmR7dSdHLbecN39aTxQbF5/preview?usp=drive_link", pdfUrl:null },
+    { id:34,  title:"Ejercicio 3.1",                                          dur:"PDF",   section:"Práctica 3",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1YG8-rdMD1Vlg4FQJPU-3wXgcg-rc8KX4/view?usp=drive_link" },
+    { id:35,  title:"Solución ejercicio 3.1",                                 dur:"5:59",  section:"Práctica 3",                        type:"video", videoUrl:"https://drive.google.com/file/d/1kDiLDCs1Anis2wiJtUQFLI1KVH-yEHfc/preview?usp=drive_link", pdfUrl:null },
+    { id:36,  title:"Ejercicio PTR 3×2",                                      dur:"PDF",   section:"Práctica 3",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1TUBDJosZYbWy2XoGA6F5QuIXSCSrgHlk/view?usp=drive_link" },
+    { id:38,  title:"Solución PTR 3×2",                                       dur:"—",     section:"Práctica 3",                        type:"video", videoUrl:"https://drive.google.com/file/d/1HZLUyMRB27zFtP5hEW_W9w9Cqt9zFx-M/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 4
+    { id:39,  title:"Práctica 4",                                             dur:"6:33",  section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1VJtSbJktmC3NFSWj_SysZKyEXR8Qwils/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1Mof6zUbrJu2Ja3uMXW4D9RpaDfh2OtL1/view?usp=drive_link" },
+    { id:40,  title:"Ejercicio 4",                                            dur:"PDF",   section:"Práctica 4",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1Ef9zkWO-VHrkQWGbXGz6qaDMQg4jytAY/view?usp=drive_link" },
+    { id:41,  title:"Solución ejercicio 4",                                   dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1q9-RMZsB_Nv8AVOjNUQFID8_ESxfcti1/preview?usp=drive_link", pdfUrl:null },
+    { id:42,  title:"Ejercicio 4.1",                                          dur:"PDF",   section:"Práctica 4",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1QmPx80SuugnwXSL4RYBV1jKb3YuIz_CV/view?usp=drive_link" },
+    { id:43,  title:"Solución ejercicio 4.1",                                 dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1YYwM7Puqr2AlNaZI2fsDQ1tSgza8EciK/preview?usp=drive_link", pdfUrl:null },
+    { id:44,  title:"Ejercicio 4.2",                                          dur:"PDF",   section:"Práctica 4",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1FiSZLhBC4BNMPvVuiZEmsWJvl_USqNZc/view?usp=drive_link" },
+    { id:45,  title:"Solución ejercicio 4.2",                                 dur:"—",     section:"Práctica 4",                        type:"video", videoUrl:"https://drive.google.com/file/d/1cvsGpA6_lqJZZZ1DADGGq3yG_pzs2T8X/preview?usp=drive_link", pdfUrl:null },
+    // Proyecto servomotor sg90
+    { id:46,  title:"Proyecto servomotor sg90",                               dur:"—",     section:"Proyecto servomotor sg90",          type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1Iot8LBr6sPu21rTPhph4quFrbBmysfbe/view?usp=drive_link" },
+    { id:48,  title:"Solución: Proyecto servomotor sg90",                     dur:"—",     section:"Proyecto servomotor sg90",          type:"video", videoUrl:"https://drive.google.com/file/d/1YNK1gnZ0IXbg0UX4Sl_XSapOBt7tTybD/preview?usp=drive_link", pdfUrl:null },
+    // Edición de croquis y operaciones
+    { id:49,  title:"Edición de croquis",                                     dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1X7XCDWvMN81SMwACNx6yztmDQF0lz54y/preview?usp=drive_link", pdfUrl:null },
+    { id:50,  title:"Edición de operaciones",                                 dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1M8AMGremJ-Z1VpDIgiDaqt0y5UCjzv93/preview?usp=drive_link", pdfUrl:null },
+    { id:51,  title:"Edición dinámica | Instant 3D",                          dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1oFQeKe846QyM79PL3uyr0wRYSwvCaHkD/preview?usp=drive_link", pdfUrl:null },
+    { id:52,  title:"Corrección de una pieza",                                dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1JiSUUrBmYHBEXSJ3NwEJiFWP4fcoq-Xc/preview?usp=drive_link", pdfUrl:null },
+    { id:127, title:"Descarga y corrige las siguientes piezas",               dur:"PDF",   section:"Edición de croquis y operaciones",  type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/drive/u/0/folders/1OdmWP6uwhp6H1vtJ5hJXPIMr3v5H7NAS" },
+    { id:53,  title:"Operación de Escala",                                    dur:"—",     section:"Edición de croquis y operaciones",  type:"video", videoUrl:"https://drive.google.com/file/d/1HCeTQLH60v8ly3g2N2f2rtdsrtj8bzA3/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 5
+    { id:54,  title:"Práctica 5",                                             dur:"—",     section:"Práctica 5",                        type:"video", videoUrl:"https://drive.google.com/file/d/1_cr1pGkxyqldc1XmzCx3h_NsKreF146Z/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1Q718k9pGc7pC_Ch71HCeOlsPQytEV3tN/view?usp=drive_link" },
+    { id:55,  title:"Ejercicio 5",                                            dur:"PDF",   section:"Práctica 5",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1OZ-Q_F4jiF_lxJgEk6_-iNYxz3YHbUb6/view?usp=drive_link" },
+    { id:56,  title:"Solución ejercicio 5",                                   dur:"—",     section:"Práctica 5",                        type:"video", videoUrl:"https://drive.google.com/file/d/16r_Pd6KaKCOrk1E-jMAxdD_tLAAafFpJ/preview?usp=drive_link", pdfUrl:null },
+    { id:57,  title:"Ejercicio 5.1",                                          dur:"PDF",   section:"Práctica 5",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1vc5NIxk2YR5BRvvecrHyudXihq9FoETn/view?usp=drive_link" },
+    { id:58,  title:"Solución ejercicio 5.1",                                 dur:"—",     section:"Práctica 5",                        type:"video", videoUrl:"https://drive.google.com/file/d/1pojIP3yEvAs5Z2aOLqzuYSe4QQU3qZYi/preview?usp=drive_link", pdfUrl:null },
+    // Relaciones geométricas
+    { id:59,  title:"Relaciones geométricas",                                 dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1PMACrSl317bKnQRBLNEhAJcleOFSD1ZI/preview?usp=drive_link", pdfUrl:null },
+    { id:60,  title:"Coincidente",                                            dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/10SZ2_iqLk3OYCPsra_T4JppCpgfxRmAd/preview?usp=drive_link", pdfUrl:null },
+    { id:61,  title:"Horizontal | Vertical",                                  dur:"3:08",  section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1U2wiAVWtkqC0xOdBHDUVnIgzIxuiK6-S/preview?usp=drive_link", pdfUrl:null },
+    { id:62,  title:"Concéntrico",                                            dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1P5RmRaCg5ZYIH_npHpsg1RTapIBhwgVA/preview?usp=drive_link", pdfUrl:null },
+    { id:63,  title:"Igualdad",                                               dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/17OVf5trTyRsXVjXyIQlScNM1hApNjxLq/preview?usp=drive_link", pdfUrl:null },
+    { id:64,  title:"Paralelo",                                               dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1QEGlpWGdeAlgddF_uQUeb0s_G6-SfiJz/preview?usp=drive_link", pdfUrl:null },
+    { id:65,  title:"Simétrico",                                              dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1SJkBnK-fwJUND_Lhr3gmy6GXfrdXNmQf/preview?usp=drive_link", pdfUrl:null },
+    { id:66,  title:"Colineal",                                               dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1ozi3H4Fc1S7mxlOQio3_wDWN3RedxCD8/preview?usp=drive_link", pdfUrl:null },
+    { id:67,  title:"Coradial",                                               dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1qgkr20FBV_u7WFHb8mR1W5aJPRB6IwIp/preview?usp=drive_link", pdfUrl:null },
+    { id:68,  title:"Tangente",                                               dur:"—",     section:"Relaciones geométricas",            type:"video", videoUrl:"https://drive.google.com/file/d/1Pj05wWAePmBC0Ny2GjZz6GsS9oPwhYH3/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 6
+    { id:69,  title:"Práctica 6",                                             dur:"9:14",  section:"Práctica 6",                        type:"video", videoUrl:"https://drive.google.com/file/d/1pHQoM7IqiHxcfBfKzUGquaK4TKjv6XvE/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1EmN9Nak2pelOlRR3s0FIyZn2LuaEhi95/view?usp=drive_link" },
+    { id:70,  title:"Ejercicio 6",                                            dur:"PDF",   section:"Práctica 6",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/190xYEcS-cWR39OvGlxfd9uUQS-afXwcW/view?usp=drive_link" },
+    { id:71,  title:"Solución ejercicio 6",                                   dur:"7:08",  section:"Práctica 6",                        type:"video", videoUrl:"https://drive.google.com/file/d/1UqZJ7jibc3fWfw32RUpytYrw3VIJw4BN/preview?usp=drive_link", pdfUrl:null },
+    { id:72,  title:"Modificar propiedades del documento",                    dur:"4:50",  section:"Práctica 6",                        type:"video", videoUrl:"https://drive.google.com/file/d/1vEjn3wnu7RP5NaBrTFLdkwXkLjHNLzny/preview?usp=drive_link", pdfUrl:null },
+    { id:73,  title:"Crear material personalizado",                           dur:"2:53",  section:"Práctica 6",                        type:"video", videoUrl:"https://drive.google.com/file/d/1xj5ZqnH7s689IxfqbjDRRGNPKgLESYJ8/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 7
+    { id:74,  title:"Práctica 7",                                             dur:"5:52",  section:"Práctica 7",                        type:"video", videoUrl:"https://drive.google.com/file/d/1JZZ7e3WqMHdUaOJ-AvEKlnvllKqxRmon/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1Cy66OWpj7X3sY6Vr_xl3sp868iFuTYz9/view?usp=drive_link" },
+    { id:75,  title:"Ejercicio 7",                                            dur:"PDF",   section:"Práctica 7",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1pHjECXOdslON6f5OSRZxExqGF6B4v9e8/view?usp=drive_link" },
+    { id:76,  title:"Solución ejercicio 7",                                   dur:"6:41",  section:"Práctica 7",                        type:"video", videoUrl:"https://drive.google.com/file/d/1PlutBGXIxUKhd0wLzNnYrXdvvMQ8M2eL/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 8
+    { id:77,  title:"Práctica 8",                                             dur:"13:40", section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1x9CrIzeg8fkLlcXrP8-yvD2dhjLEyKYb/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/17HCNXGrA4-2FzG5o6CLlylEsfikFfnp9/view?usp=drive_link" },
+    { id:78,  title:"¿Cuándo debe ir una línea tangente?",                    dur:"3:05",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1P3pw-dwSETXwUS89kGMzJr-2k7LlETvz/preview?usp=drive_link", pdfUrl:null },
+    { id:79,  title:"Ejercicio 8",                                            dur:"PDF",   section:"Práctica 8",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1XOoMlCIteAusJjKOWkR-xscmEVv_JQLl/view?usp=drive_link" },
+    { id:80,  title:"Solución ejercicio 8",                                   dur:"8:55",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1DVP6n8gn21E9cwYYpX5VDQ8nWs4l9B-9/preview?usp=drive_link", pdfUrl:null },
+    { id:81,  title:"Ejercicio 8.1",                                          dur:"PDF",   section:"Práctica 8",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1-J9o06VamgYKIANYOIHle3fBynlLrhYV/view?usp=drive_link" },
+    { id:82,  title:"Solución ejercicio 8.1",                                 dur:"3:31",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1VfhZ-SzYjLR_qBX7IeDJXksRHa-sJyQw/preview?usp=drive_link", pdfUrl:null },
+    { id:83,  title:"Ejercicio 8.2",                                          dur:"PDF",   section:"Práctica 8",                        type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/14cpl-7uihOOMOSxyyvJ_rQ3UsBX3bQVh/view?usp=drive_link" },
+    { id:84,  title:"Solución ejercicio 8.2",                                 dur:"9:53",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1PNMJXB_uf60a1kG0J-nX2-BRYw29V6HX/preview?usp=drive_link", pdfUrl:null },
+    { id:85,  title:"Vista de sección de una pieza",                          dur:"2:34",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1Z8IfgX9vpWNjJJupgyYoYWQAeSCzaYio/preview?usp=drive_link", pdfUrl:null },
+    { id:86,  title:"Ángulo de salida",                                       dur:"1:51",  section:"Práctica 8",                        type:"video", videoUrl:"https://drive.google.com/file/d/1P9428BAdnCDt_Q3FGBabY2scXzClGhyQ/preview?usp=drive_link", pdfUrl:null },
+    // Chaflán
+    { id:87,  title:"Operación de chaflán",                                   dur:"3:36",  section:"Chaflán",                           type:"video", videoUrl:"https://drive.google.com/file/d/1_QUQ7BMmzU4zFIuXOgGzIKe8JL-LDIZb/preview?usp=drive_link", pdfUrl:null },
+    { id:88,  title:"Ejercicio chaflán 1",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1J6Iq0IgfeZO_CkM9Qt5f9kRR5TZHcY93/view?usp=drive_link" },
+    { id:89,  title:"Ejercicio chaflán 2",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1bBz0FXkATUcIUWEgyOuO5NXc/view?usp=drive_link" },
+    { id:90,  title:"Ejercicio chaflán 3",                                    dur:"PDF",   section:"Chaflán",                           type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1e-JeXZ-QAsXfDPipbgNL5JeYh-2T54nu/view?usp=drive_link" },
+    // Práctica 9 — Revolución saliente base
+    { id:91,  title:"Práctica 9 — Revolución saliente base",                  dur:"6:43",  section:"Práctica 9 — Revolución saliente base", type:"video", videoUrl:"https://drive.google.com/file/d/1xoC1Im78x74gsLMAs-bfhHqiAd6_V-PX/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/176qjbyDXtqU79w13FA2tBqaYvq-TmlxU/view?usp=drive_link" },
+    { id:92,  title:"Ejercicio 9",                                            dur:"PDF",   section:"Práctica 9 — Revolución saliente base", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1p6JwNtYS-IRnOYFj3j80iZAG8DImq5QK/view?usp=drive_link" },
+    { id:93,  title:"Solución ejercicio 9",                                   dur:"9:23",  section:"Práctica 9 — Revolución saliente base", type:"video", videoUrl:"https://drive.google.com/file/d/1Dj2fh6DcXr8925HRgpi9KcjPVPLnIlPT/preview?usp=drive_link", pdfUrl:null },
+    { id:94,  title:"Polea",                                                  dur:"PDF",   section:"Práctica 9 — Revolución saliente base", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/15YQWlT0SZrtVXbdImU0ely-oXROsuSk-/view?usp=drive_link" },
+    { id:95,  title:"Solución Polea",                                         dur:"4:47",  section:"Práctica 9 — Revolución saliente base", type:"video", videoUrl:"https://drive.google.com/file/d/1B3dfHCqik93e1QLsgybNn4Py6qGPjotd/preview?usp=drive_link", pdfUrl:null },
+    { id:96,  title:"Polea doble",                                            dur:"PDF",   section:"Práctica 9 — Revolución saliente base", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1xxlg4yYdr6Hm92GGr39bXb-e7esLDfUI/view?usp=drive_link" },
+    { id:97,  title:"Solución polea doble",                                   dur:"10:30", section:"Práctica 9 — Revolución saliente base", type:"video", videoUrl:"https://drive.google.com/file/d/1Su3CBZSoDvhQRC-WG25ARKI9HKKZQ3YV/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 10 — Nervio
+    { id:98,  title:"Práctica 10",                                            dur:"10:07", section:"Práctica 10 — Nervio",              type:"video", videoUrl:"https://drive.google.com/file/d/1rD_X1Fl0VNjkjmC8hsXr_Z9YdMF81ivr/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1YkOyvwZnTSYGlLRIHeUNDrK8xvj68I4i/view?usp=drive_link" },
+    { id:99,  title:"Ejercicio 10",                                           dur:"PDF",   section:"Práctica 10 — Nervio",              type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1C6M8Nqo-_8J8z-2iW0QBFG4Jz-f2JPZm/view?usp=drive_link" },
+    { id:100, title:"Solución ejercicio 10",                                  dur:"6:41",  section:"Práctica 10 — Nervio",              type:"video", videoUrl:"https://drive.google.com/file/d/1NKcHXnUzrWlIZlTLRdO8cAWzvDJyAquc/preview?usp=drive_link", pdfUrl:null },
+    // Proyecto servomotor mg995
+    { id:101, title:"Proyecto servomotor mg995",                              dur:"—",     section:"Proyecto servomotor mg995",         type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1E668O8eMfoUImPCw-QnST5xB3NVks63Y/view?usp=drive_link" },
+    { id:102, title:"Solución proyecto servomotor mg995",                     dur:"25:18", section:"Proyecto servomotor mg995",         type:"video", videoUrl:"https://drive.google.com/file/d/1C9yJfIoN-_ufWNf_tZqEBpZJrtWWuqDN/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 11
+    { id:103, title:"Práctica 11 — Asistente para taladro",                  dur:"7:45",  section:"Práctica 11",                       type:"video", videoUrl:"https://drive.google.com/file/d/11GWEnLfQJsPX05FoMQ3W8082_hw-r0kd/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1-kZo9qiJ1XltZNeAY1mnLzDWnsTNxhXq/view?usp=drive_link" },
+    { id:104, title:"Ejercicio 11",                                           dur:"PDF",   section:"Práctica 11",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1-g-_o6KYk4ZIMoLE71zOtJsYPJL7boDz/view?usp=drive_link" },
+    { id:105, title:"Solución ejercicio 11",                                  dur:"11:25", section:"Práctica 11",                       type:"video", videoUrl:"https://drive.google.com/file/d/13V8MzCZbvxqwuGuN_9bSP-JSMrtuaty1/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 12 — Geometría de referencia
+    { id:106, title:"Geometría de referencia",                                dur:"15:45", section:"Práctica 12 — Geometría de referencia", type:"video", videoUrl:"https://drive.google.com/file/d/1bwDO0V_9S6Y4xsg74vqMzDHmTFv6-GMz/preview?usp=drive_link", pdfUrl:"https://drive.google.com/file/d/1rIWJkVMmobQEnwF-Ch3glJB4kzrJ5AFw/view?usp=drive_link" },
+    { id:107, title:"¿Cómo usar variables globales en SolidWorks?",           dur:"—",     section:"Práctica 12 — Geometría de referencia", type:"video", videoUrl:"https://www.youtube.com/watch?v=-KjHoDe66jA", pdfUrl:null },
+    // Práctica 13 — Saliente Base Barrido
+    { id:108, title:"Práctica 13",                                            dur:"6:32",  section:"Práctica 13 — Saliente Base Barrido", type:"video", videoUrl:"https://drive.google.com/file/d/1C9f57QQWSQVRXoJKKZ-BC-mUYG_Sx89u/preview?usp=drive_link", pdfUrl:"https://drive.google.com/file/d/1QVFc6pP99CipsotRaq9dCzxJVX_9Crzy/view?usp=drive_link" },
+    { id:109, title:"Ejercicio 13.1",                                         dur:"PDF",   section:"Práctica 13 — Saliente Base Barrido", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1CcrmVw7cUaEWiYDpFE_6Oxqnc1iWqWkM/view?usp=drive_link" },
+    { id:110, title:"Ejercicio 13.2",                                         dur:"PDF",   section:"Práctica 13 — Saliente Base Barrido", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1T9Bcxi9wG_IK50kOaQQhYFydNSE6DlNy/view?usp=drive_link" },
+    { id:111, title:"Ejercicio 13.3",                                         dur:"PDF",   section:"Práctica 13 — Saliente Base Barrido", type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1ZbjJ8K5KniZL0EFGcIFKiAvzNZNo2_DU/view?usp=drive_link" },
+    // Práctica 14
+    { id:112, title:"Práctica 14",                                            dur:"24:48", section:"Práctica 14",                       type:"video", videoUrl:"https://drive.google.com/file/d/1eQcGe7oIjsTGELDcuCCz8saT6VQVAIOm/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1ipSPO-uJaI69FV-Z3PNrUlrgULCq_Z3D/view?usp=drive_link" },
+    { id:113, title:"Insertar texto",                                         dur:"4:19",  section:"Práctica 14",                       type:"video", videoUrl:"https://drive.google.com/file/d/18EXsH1nIjJCkPEzZeRhsAAoi_mcWZ3J4/preview?usp=drive_link", pdfUrl:null },
+    { id:114, title:"Ejercicio 14",                                           dur:"PDF",   section:"Práctica 14",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1FFR3lVYq9_eMpwtN4mlaYV8mEyQM1RpZ/view?usp=drive_link" },
+    // Práctica 15
+    { id:115, title:"Práctica 15",                                            dur:"30:20", section:"Práctica 15",                       type:"video", videoUrl:"https://drive.google.com/file/d/1ah30-vDXIFojDAS330vcjR9vln4GkbMh/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/11C-blDzmmbGmdLMcvHXuaH1TLEMOYpju/view?usp=drive_link" },
+    { id:116, title:"Ejercicio 15",                                           dur:"PDF",   section:"Práctica 15",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1rvVWKcyqaJuBFZEscTsgl1acdSo_DcB9/view?usp=drive_link" },
+    { id:117, title:"Ejercicio 15.1",                                         dur:"PDF",   section:"Práctica 15",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1dDiiEmHvFjtr6mV62HqNVpF_dqHv4pfb/view?usp=drive_link" },
+    // Práctica 16
+    { id:118, title:"Práctica 16",                                            dur:"18:29", section:"Práctica 16",                       type:"video", videoUrl:"https://drive.google.com/file/d/1UYXota-NcJXXwj-Ng1_pAdINlEXLAPU3/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1EY9StQpHAYJ6jpCGGz9L2HwIGCEOBkCg/view?usp=drive_link" },
+    { id:119, title:"Ejercicio 16",                                           dur:"PDF",   section:"Práctica 16",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1ERpaSvFZhn90trMEXZ_Hk1I7tKqPgus7/view?usp=drive_link" },
+    // Matriz
+    { id:120, title:"Operación matriz lineal",                                dur:"5:40",  section:"Matriz",                            type:"video", videoUrl:"https://drive.google.com/file/d/1m9sb9_mtHNGmqIhALvKqVJY7inczpEBC/preview?usp=drive_link", pdfUrl:null },
+    { id:121, title:"Operación matriz circular",                              dur:"2:37",  section:"Matriz",                            type:"video", videoUrl:"https://drive.google.com/file/d/18zyds94c3Y7_K0PDMzUctlflIaDxEAKI/preview?usp=drive_link", pdfUrl:null },
+    { id:122, title:"Matriz circular de croquis",                             dur:"2:41",  section:"Matriz",                            type:"video", videoUrl:"https://drive.google.com/file/d/1zpWwipsNqrhLp57FgBc54YJD_KQ5oYGm/preview?usp=drive_link", pdfUrl:null },
+    { id:123, title:"Matriz lineal de croquis",                               dur:"2:19",  section:"Matriz",                            type:"video", videoUrl:"https://drive.google.com/file/d/1Vq9aLrkwKgKQEKHnZz_ACzvOeJJsUX33/preview?usp=drive_link", pdfUrl:null },
+    // Práctica 17
+    { id:124, title:"Práctica 17: Convertir Entidades y Equidistanciar",      dur:"9:27",  section:"Práctica 17",                       type:"video", videoUrl:"https://drive.google.com/file/d/10z-lBOgFIECGzwXGgpLnz9oGsZhREcfB/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1B2iUZe3-9U9GpGA8zl2BYSfQ6dZJmgUj/view?usp=drive_link" },
+    { id:125, title:"Plano para la siguiente clase: Florero",                 dur:"PDF",   section:"Práctica 17",                       type:"pdf",   videoUrl:null, pdfUrl:"https://drive.google.com/file/d/1clVbbAbJpHjP03nt6HHFR0v6kQkC-RHV/view?usp=drive_link" },
+    { id:126, title:"Operación de vaciado: Florero",                          dur:"3:23",  section:"Práctica 17",                       type:"video", videoUrl:"https://drive.google.com/file/d/1KcQTtvm8qPo4C4vmavigW4Ty_h7sxrk9/preview?usp=drive_link",  pdfUrl:"https://drive.google.com/file/d/1B2iUZe3-9U9GpGA8zl2BYSfQ6dZJmgUj/view?usp=drive_link" },
+    // Conclusión
+    { id:128, title:"¡Curso completado!", dur:"—", section:"Conclusión", type:"congrats" }
 ];
 
-// ============================================================
-// BLOQUE 19 — STATE (localStorage pieza_idx / pieza_done)
-// ============================================================
-// ============================================================
-// BLOQUE 19 — STATE (localStorage freecad_idx / freecad_done)
-// ============================================================
+// ── STATE ────────────────────────────────────────────────────
 let currentIdx = 0;
 let completed = new Set();
 
 function loadState() {
     try {
-        const i = localStorage.getItem('freecad_idx');
-        const c = localStorage.getItem('freecad_done');
+        const i = localStorage.getItem('pieza_idx');
+        const c = localStorage.getItem('pieza_done');
         if (i) currentIdx = Math.min(parseInt(i), lessons.length - 1);
         if (c) completed = new Set(JSON.parse(c));
     } catch {}
@@ -970,9 +1064,12 @@ function loadState() {
 
 function saveState() {
     try {
-        localStorage.setItem('freecad_idx', currentIdx);
-        localStorage.setItem('freecad_done', JSON.stringify([...completed]));
+        localStorage.setItem('pieza_idx', currentIdx);
+        localStorage.setItem('pieza_done', JSON.stringify([...completed]));
     } catch {}
+    // Sincroniza también con el Sheet (con debounce), para no perder
+    // el progreso si el alumno cambia de dispositivo o borra caché.
+    enviarProgresoRemoto();
 }
 
 function getLessonFromURL() {
@@ -987,9 +1084,8 @@ function getLessonFromURL() {
 function pushURL(idx) {
     history.pushState({ idx }, '', `?l=${lessons[idx].id}`);
 }
-// ============================================================
-// BLOQUE 20 — YOUTUBE EMBED HELPER
-// ============================================================
+
+// ── YOUTUBE ──────────────────────────────────────────────────
 function ytEmbed(url) {
     if (!url) return null;
     let id = null;
@@ -998,18 +1094,14 @@ function ytEmbed(url) {
     return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1` : null;
 }
 
-// ============================================================
-// BLOQUE 21 — PROGRESS BAR
-// ============================================================
+// ── PROGRESS ─────────────────────────────────────────────────
 function updateProgress() {
     const pct = Math.round((completed.size / lessons.length) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressText').textContent = pct + '%';
 }
 
-// ============================================================
-// BLOQUE 22 — RENDER SIDEBAR
-// ============================================================
+// ── SIDEBAR ──────────────────────────────────────────────────
 function renderSidebar() {
     const el = document.getElementById('sidebarScroll');
     el.innerHTML = '';
@@ -1067,9 +1159,7 @@ function renderSidebar() {
     if (active) active.scrollIntoView({ block: 'nearest' });
 }
 
-// ============================================================
-// BLOQUE 23 — PDF CARD HELPER
-// ============================================================
+// ── PDF CARD ─────────────────────────────────────────────────
 function pdfCard(url, title, sub) {
     return `
         <div class="pdf-card">
@@ -1084,9 +1174,7 @@ function pdfCard(url, title, sub) {
         </div>`;
 }
 
-// ============================================================
-// BLOQUE 24 — RENDER CONTENT (congrats / pdf / exam / video)
-// ============================================================
+// ── CONTENT ──────────────────────────────────────────────────
 function renderContent() {
     const el = document.getElementById('contentInner');
     const l = lessons[currentIdx];
@@ -1182,16 +1270,12 @@ function renderContent() {
         return;
     }
 
-        // ── VIDEO ──
-    const esVideoDirecto = l.videoUrl && /\.(mp4|webm|ogg)(\?.*)?$/i.test(l.videoUrl);
-
+    // ── VIDEO ──
     let embed = null;
-    if (!esVideoDirecto) {
-        if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
-            embed = l.videoUrl;
-        } else {
-            embed = ytEmbed(l.videoUrl);
-        }
+    if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
+        embed = l.videoUrl;
+    } else {
+        embed = ytEmbed(l.videoUrl);
     }
 
     let html = `<h1 class="lesson-title-main">${l.title}</h1>`;
@@ -1200,15 +1284,7 @@ function renderContent() {
         html += `<p style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px;">${l.desc}</p>`;
     }
 
-    if (esVideoDirecto) {
-        html += `
-            <div class="video-wrap">
-                <video controls controlsList="nodownload" oncontextmenu="return false;">
-                    <source src="${l.videoUrl}" type="video/mp4">
-                    Tu navegador no soporta la etiqueta de video.
-                </video>
-            </div>`;
-    } else if (embed) {
+    if (embed) {
         html += `
             <div class="video-wrap">
                 <iframe src="${embed}" allowfullscreen></iframe>
@@ -1228,9 +1304,7 @@ function renderContent() {
     requestAnimationFrame(applyVideoScale);
 }
 
-// ============================================================
-// BLOQUE 25 — ESCALA DE VIDEO EN MÓVIL
-// ============================================================
+// ── ESCALA DE VIDEO PARA MÓVIL ───────────────────────────────
 // FIX PRINCIPAL: se reemplazó transform:scale() por CSS zoom.
 //
 // El problema con transform:scale() en iframes es que escala visualmente
@@ -1277,9 +1351,7 @@ function applyVideoScale() {
 // Re-aplicar escala de video al cambiar tamaño de ventana
 window.addEventListener('resize', applyVideoScale);
 
-// ============================================================
-// BLOQUE 26 — DETECCIÓN DE CAMBIO DE SESIÓN SIN RECARGAR (multi-pestaña)
-// ============================================================
+// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR (multi-pestaña) ───
 let _lastEstado = getSessionEstado();
 
 window.addEventListener('storage', e => {
@@ -1308,9 +1380,7 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// ============================================================
-// BLOQUE 27 — REVALIDACIÓN PERIÓDICA CONTRA GOOGLE SHEETS
-// ============================================================
+// ── REVALIDACIÓN PERIÓDICA CONTRA GOOGLE SHEETS ──────────────
 // Soluciona el caso: el alumno entra como "prueba", nunca vuelve a
 // hacer login, pero compra el curso. En Sheets su estado pasa a
 // "completo", pero su localStorage local se queda estancado en
@@ -1318,7 +1388,7 @@ document.addEventListener('visibilitychange', () => {
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxEbbDW-MwWJQSorzOfWovtWb4YPGWaLp2XTMFgNPCuMI1qoTQZVgWh_W14qOJ8QoK3_g/exec';
 const SESSION_DAYS = 30;
 
-// ── Cierra la sesión de forma forzada (código inválido, sesión
+    // ── Cierra la sesión de forma forzada (código inválido, sesión
 // vieja sin código, o acceso removido) y refresca la UI para
 // que el contenido bloqueado muestre el paywall correspondiente. ──
 function cerrarSesionForzada(mensaje) {
@@ -1421,9 +1491,88 @@ revalidarSesion();
 // Revalidar cada 5 minutos mientras el curso está abierto
 setInterval(revalidarSesion, 5 * 60 * 1000);
 
-// ============================================================
-// BLOQUE 28 — AUTO-COMPLETE DE PDFs
-// ============================================================
+// ── SINCRONIZACIÓN DE PROGRESO CON GOOGLE SHEETS ─────────────
+// Guarda el progreso (lección actual + completadas) también en la
+// columna P de "Lista de alumnos", para que no dependa solo del
+// localStorage del navegador/dispositivo del alumno.
+let _guardarProgresoTimer = null;
+
+function enviarProgresoRemoto() {
+    clearTimeout(_guardarProgresoTimer);
+    // Debounce: agrupa clics/avances seguidos en una sola llamada,
+    // en vez de mandar un request por cada lección marcada.
+    _guardarProgresoTimer = setTimeout(async () => {
+        try {
+            const raw = localStorage.getItem('dg_sesion');
+            if (!raw) return;
+            const sesion = JSON.parse(raw);
+            // Solo se sincroniza si hay sesión con código activo
+            // (mismo requisito que exige el Apps Script para escribir).
+            if (!sesion.email || !sesion.codigo) return;
+
+            const progreso = JSON.stringify({ idx: currentIdx, done: [...completed] });
+            const url = WEBHOOK_URL
+                + '?action=guardarProgreso'
+                + '&email='    + encodeURIComponent(sesion.email)
+                + '&codigo='   + encodeURIComponent(sesion.codigo)
+                + '&progreso=' + encodeURIComponent(progreso);
+
+            await fetch(url);
+        } catch (err) {
+            console.error('No se pudo guardar el progreso remoto:', err);
+        }
+    }, 1500);
+}
+
+// Trae el progreso guardado en el Sheet y lo fusiona con el local:
+// une las lecciones completadas (nunca se pierde avance hecho en otro
+// dispositivo) y solo adelanta el índice actual si el remoto va más
+// avanzado que el local.
+async function cargarProgresoRemoto() {
+    try {
+        const raw = localStorage.getItem('dg_sesion');
+        if (!raw) return;
+        const sesion = JSON.parse(raw);
+        if (!sesion.email || !sesion.codigo) return;
+
+        const url = WEBHOOK_URL
+            + '?action=obtenerProgreso'
+            + '&email='  + encodeURIComponent(sesion.email)
+            + '&codigo=' + encodeURIComponent(sesion.codigo);
+
+        const res  = await fetch(url);
+        const data = await res.json();
+        if (!data.ok || !data.progreso) return;
+
+        const remoto = JSON.parse(data.progreso);
+        if (!remoto || !Array.isArray(remoto.done)) return;
+
+        let cambio = false;
+        remoto.done.forEach(idx => {
+            if (!completed.has(idx)) { completed.add(idx); cambio = true; }
+        });
+        if (typeof remoto.idx === 'number' && remoto.idx > currentIdx) {
+            currentIdx = remoto.idx;
+            cambio = true;
+        }
+
+        if (cambio) {
+            try {
+                localStorage.setItem('pieza_idx', currentIdx);
+                localStorage.setItem('pieza_done', JSON.stringify([...completed]));
+            } catch {}
+            pushURL(currentIdx);
+            renderSidebar();
+            renderContent();
+            updateProgress();
+            updateMobileNav();
+        }
+    } catch (err) {
+        console.error('No se pudo cargar el progreso remoto:', err);
+    }
+}
+
+// ── AUTO-COMPLETE ─────────────────────────────────────────────
 let autoCompleteTimer = null;
 
 function startAutoComplete(idx) {
@@ -1441,9 +1590,7 @@ function startAutoComplete(idx) {
     }
 }
 
-// ============================================================
-// BLOQUE 29 — NAVEGACIÓN
-// ============================================================
+// ── NAVIGATION ───────────────────────────────────────────────
 function navigate(idx) {
     clearTimeout(autoCompleteTimer);
     currentIdx = idx;
@@ -1463,9 +1610,7 @@ function toggleDone(idx) {
     updateProgress();
 }
 
-// ============================================================
-// BLOQUE 30 — SIDEBAR MÓVIL
-// ============================================================
+// ── MOBILE SIDEBAR ───────────────────────────────────────────
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 const menuBtn = document.getElementById('menuToggle');
@@ -1482,9 +1627,7 @@ menuBtn.addEventListener('click', () => {
 
 overlay.addEventListener('click', closeSidebar);
 
-// ============================================================
-// BLOQUE 31 — BOTONES PREV/NEXT DESKTOP
-// ============================================================
+// ── BOTONES ──────────────────────────────────────────────────
 document.getElementById('btnPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
@@ -1508,9 +1651,7 @@ window.addEventListener('popstate', e => {
     }
 });
 
-// ============================================================
-// BLOQUE 32 — POPSTATE + TEMA
-// ============================================================
+// ── TEMA ─────────────────────────────────────────────────────
 function toggleTheme() {
     const isLight = document.body.classList.toggle('light');
     localStorage.setItem('sw_theme', isLight ? 'light' : 'dark');
@@ -1526,9 +1667,7 @@ function toggleTheme() {
     }
 })();
 
-// ============================================================
-// BLOQUE 33 — INIT GENERAL
-// ============================================================
+// ── INIT ─────────────────────────────────────────────────────
 loadState();
 const urlIdx = getLessonFromURL();
 if (urlIdx !== null) currentIdx = urlIdx;
@@ -1538,9 +1677,11 @@ renderContent();
 updateProgress();
 startAutoComplete(currentIdx);
 
-// ============================================================
-// BLOQUE 34 — BARRA DE NAVEGACIÓN MÓVIL
-// ============================================================
+// Trae el progreso guardado en el Sheet (si hay sesión activa) y lo
+// fusiona con lo que ya había en localStorage.
+cargarProgresoRemoto();
+
+// ── BARRA DE NAVEGACIÓN MÓVIL ────────────────────────────────
 function updateMobileNav() {
     const prev = document.getElementById('btnFloatPrev');
     if (prev) prev.disabled = currentIdx === 0;
@@ -1562,9 +1703,7 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
     }
 });
 
-// ============================================================
-// BLOQUE 35 — TOOLTIP DE DESCUBRIMIENTO DEL MENÚ
-// ============================================================
+// ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ──────────────────────
 (function() {
     if (localStorage.getItem('sw_hint_seen')) return;
     if (window.innerWidth > 1080) return;
@@ -1582,9 +1721,7 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
     document.getElementById('menuToggle').addEventListener('click', closeHint);
 })();
 
-// ============================================================
-// BLOQUE 36 — FIX: CONTROLES ATASCADOS EN GOOGLE DRIVE
-// ============================================================
+// ── FIX: CONTROLES ATASCADOS EN GOOGLE DRIVE ─────────────────
 // Aumentado a 8s para reducir el riesgo de race condition con taps del usuario.
 // El reproductor de Drive oculta sus controles tras ~3s de inactividad,
 // así que con 8s de intervalo el overlap es mínimo.
