@@ -97,7 +97,6 @@ html, body { height: 100%; overflow: hidden; }
 body {
     font-family: 'Sora', sans-serif;
     background: var(--bg);
-    /* FIX: eliminado "background-color: white" que sobreescribía el tema oscuro */
     color: var(--text);
     display: flex;
     flex-direction: column;
@@ -237,7 +236,7 @@ body {
     border-left: 2px solid transparent;
     transition: all 0.15s;
     user-select: none;
-    touch-action: manipulation; /* elimina el delay de 300ms en Android */
+    touch-action: manipulation;
 }
 .lesson-item:hover  { background: var(--surface2); }
 .lesson-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
@@ -298,7 +297,7 @@ body {
 /* ── MAIN CONTENT ── */
 .main {
     flex: 1;
-    min-width: 0;           /* FIX: sin esto, un flex item no se encoge más allá de su contenido */
+    min-width: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -307,7 +306,7 @@ body {
 
 .content-scroll {
     flex: 1;
-    overflow-x: hidden;     /* FIX: bloquea cualquier desbordamiento horizontal */
+    overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--border2) transparent;
@@ -316,7 +315,7 @@ body {
 .content-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
 .content-inner {
-    width: 100%;            /* FIX: anclado al ancho real del padre */
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 36px 32px 60px;
@@ -332,15 +331,11 @@ body {
 }
 
 /* ── VIDEO ── */
-/* FIX: "aspect-ratio" no funciona bien con iframes de Google Drive
-   porque tienen dimensiones mínimas internas que ignoran el contenedor.
-   El truco padding-bottom fuerza la proporción 16:9 desde afuera,
-   haciendo que el iframe quede dentro sin importar su tamaño mínimo. */
 .video-wrap {
     position: relative;
     width: 100%;
-    max-width: 100%;        /* FIX: garantiza que nunca desborde su padre */
-    padding-bottom: 56.25%; /* 16 / 9 = 0.5625 */
+    max-width: 100%;
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     background: var(--surface);
@@ -480,7 +475,6 @@ body {
 }
 
 /* ── BARRA DE NAVEGACIÓN MÓVIL (2 botones) ── */
-/* Oculta en desktop. Se activa en ≤768px. */
 .mobile-nav-bar  { display: none; }
 .btn-float-prev  { display: none; }
 .btn-float-next  { display: none; }
@@ -499,7 +493,7 @@ body {
     padding: 14px 44px 14px 18px;
     border-radius: 10px;
     z-index: 200;
-    pointer-events: none; /* FIX: invisible = no intercepta taps */
+    pointer-events: none;
     opacity: 0;
     transform: translateY(-4px);
     transition: opacity 0.35s, transform 0.35s;
@@ -518,7 +512,7 @@ body {
 .menu-hint.visible {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto; /* solo intercepta cuando está visible */
+    pointer-events: auto;
 }
 .menu-hint-close {
     position: absolute;
@@ -583,15 +577,13 @@ body.light {
    RESPONSIVE
    ══════════════════════════════════════════════════ */
 
-/* ── TABLET (≤ 1080px) ──────────────────────────────
-   Sidebar se convierte en drawer. Topbar compacto.   */
 @media (max-width: 1080px) {
     .sidebar {
         position: fixed;
         left: 0; top: 0; bottom: 0;
         z-index: 95;
         transform: translateX(-100%);
-        padding-top: var(--topbar-h); /* FIX: evita que el contenido quede detrás del topbar */
+        padding-top: var(--topbar-h);
     }
     .sidebar.open   { transform: translateX(0); }
     .overlay.active { display: block; }
@@ -608,30 +600,22 @@ body.light {
     #btnNext { font-size: 12px; padding: 0 10px; }
 }
 
-/* ── MÓVIL (≤ 768px) ────────────────────────────────
-   FIX PRINCIPAL: antes se ocultaba TODA la página.
-   Ahora se adapta con botón flotante de navegación.  */
 @media (max-width: 768px) {
     :root { --sidebar-w: min(88vw, 320px); }
 
-    /* Topbar compacto */
     .topbar       { padding: 0 10px; gap: 6px; }
     .progress-bar { width: 60px; height: 8px; }
     #progressText { font-size: 11px; }
 
-    /* "Mis cursos" visible en móvil con texto completo */
     #btnMisCursos { display: flex; }
     #btnMisCursos .btn-label { display: inline; }
 
-    /* Ocultar botón Next del topbar (reemplazado por el flotante) */
     #btnNext { display: none; }
 
-    /* Padding inferior extra para no quedar debajo del botón flotante */
     .content-inner { padding: 18px 14px 100px; }
 
     .lesson-title-main { font-size: 18px; }
 
-    /* PDF card en columna */
     .pdf-card {
         flex-direction: column;
         padding: 20px;
@@ -645,17 +629,14 @@ body.light {
         font-size: 14px;
     }
 
-    /* Congrats responsive */
     .congrats-emoji { font-size: 52px; }
     .congrats-title { font-size: 22px; }
     .congrats-sub   { font-size: 14px; }
 
-    /* Items del sidebar más fáciles de tocar con el dedo */
     .lesson-item  { padding: 12px 16px; }
     .lesson-check { width: 22px; height: 22px; }
     .lesson-name  { font-size: 13px; }
 
-    /* ── BARRA DE NAVEGACIÓN INFERIOR (2 botones) ── */
     .mobile-nav-bar {
         display: flex;
         position: fixed;
@@ -666,7 +647,6 @@ body.light {
         z-index: 50;
     }
 
-    /* Botón "← Atrás" */
     .btn-float-prev {
         display: flex;
         flex: 0 0 68px;
@@ -685,7 +665,6 @@ body.light {
     .btn-float-prev:disabled { opacity: 0.25; cursor: not-allowed; }
     .btn-float-prev:not(:disabled):active { background: var(--surface); transform: scale(0.97); }
 
-    /* Botón "✓ Completar y continuar" */
     .btn-float-next {
         display: flex;
         flex: 1;
@@ -708,7 +687,6 @@ body.light {
     .btn-float-next:active { background: #2563eb; transform: scale(0.98); }
 }
 
-/* ── TELÉFONOS MUY PEQUEÑOS (≤ 380px) ── */
 @media (max-width: 380px) {
     .topbar-progress  { display: none; }
     .content-inner    { padding: 14px 10px 100px; }
@@ -720,7 +698,6 @@ body.light {
 </head>
 <body>
 
-<!-- MENSAJE MÓVIL — se muestra solo en pantallas pequeñas vía JS -->
 <div id="msgEscritorio" style="
     display: none;
     position: fixed;
@@ -743,7 +720,6 @@ body.light {
     </p>
 </div>
 
-<!-- TOP BAR -->
 <div class="topbar">
     <button class="menu-toggle" id="menuToggle">☰</button>
     <div class="topbar-brand">Crea planos técnicos Profesionales<span id="brandAccent"> — CSWA</span></div>
@@ -758,59 +734,47 @@ body.light {
     <a href="mis-cursos.html" id="btnMisCursos" class="btn-nav" style="text-decoration:none;">📚 <span class="btn-label">Mis cursos</span></a>
 </div>
 
-<!-- LAYOUT -->
 <div class="layout">
 
-    <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-scroll" id="sidebarScroll"></div>
     </div>
 
     <div class="overlay" id="overlay"></div>
 
-    <!-- MAIN -->
     <div class="main">
         <div class="content-scroll">
-            <div class="content-inner" id="contentInner"></div>
+            <div class="content-inner" id="contentInner">
+            <p style="padding:60px 20px;text-align:center;color:var(--text-dim);">Cargando tu progreso…</p>
+        </div>
         </div>
     </div>
 
 </div>
 
-<!-- BARRA DE NAVEGACIÓN INFERIOR — visible solo en móvil (≤768px) vía CSS -->
 <div class="mobile-nav-bar">
     <button class="btn-float-prev" id="btnFloatPrev">←</button>
     <button class="btn-float-next" id="btnFloatNext">✓ &nbsp;Completar y continuar</button>
 </div>
 
-<!-- TOOLTIP DE DESCUBRIMIENTO — aparece una sola vez señalando el ☰ -->
 <div class="menu-hint" id="menuHint">
     👆 Toca ☰ para ver todas las clases del curso
     <button class="menu-hint-close" id="menuHintClose">✕</button>
 </div>
 
-<!-- TOAST DE CAMBIO DE ESTADO DE SESIÓN -->
 <div class="status-toast" id="statusToast">
     <span id="statusToastIcon">🎉</span>
     <span id="statusToastText">¡Tu acceso fue actualizado!</span>
 </div>
 
+<!-- MODULO_ID identifica este curso dentro del progreso guardado en el
+     Sheet (columna P), y sirve de prefijo para sus llaves de localStorage
+     ("planos_idx", "planos_done"), igual que ya se usaba antes. -->
+<script>const MODULO_ID = 'planos';</script>
+<script src="progreso-sync.js"></script>
+
 <script>
 
-// ── VERIFICAR SESIÓN ─────────────────────────────────────────
-// DESACTIVADO TEMPORALMENTE — acceso libre hasta nuevo aviso
-// (function() {
-//     const sesion = localStorage.getItem('dg_sesion');
-//     if (sesion) {
-//         try {
-//             const { expira } = JSON.parse(sesion);
-//             if (expira && Date.now() < expira) return;
-//         } catch {}
-//     }
-//     window.location.href = 'https://diegogaona117.github.io/login/';
-// })();
-
-// ── BOTÓN COMPRAR (solo usuarios de prueba) ──────────────────
 function renderBotonComprar() {
     const existing = document.getElementById('btnComprarFloat');
     const sesion = localStorage.getItem('dg_sesion');
@@ -822,7 +786,7 @@ function renderBotonComprar() {
     try {
         const { estado } = JSON.parse(sesion);
         if (estado === 'prueba') {
-            if (existing) return; // ya está visible, no duplicar
+            if (existing) return;
             const btn = document.createElement('a');
             btn.id = 'btnComprarFloat';
             btn.href = 'https://wa.me/5214621579719?text=Hola,%20quiero%20inscribirme%20al%20curso.';
@@ -848,28 +812,18 @@ function renderBotonComprar() {
             btn.onmouseout  = () => btn.style.opacity = '1';
             document.body.appendChild(btn);
         } else {
-            // Ya no está en "prueba" (p.ej. pasó a "completo") → quitar el botón si existía
             if (existing) existing.remove();
         }
     } catch {}
 }
 renderBotonComprar();
 
-// ── MENSAJE MÓVIL ────────────────────────────────────────────
-// FIX: Eliminado el bloqueo de móvil — la plataforma ahora
-// funciona en todos los tamaños de pantalla. El div
-// #msgEscritorio se mantiene en el HTML por si se necesita
-// en el futuro, pero no se activa.
-
-// ── SESIÓN ───────────────────────────────────────────────────
-// Estados válidos para ver el contenido: solo 'activo'
-// Estados bloqueados: sin sesión, 'prueba', 'removido', expirada
 function getSessionEstado() {
     try {
         const raw = localStorage.getItem('dg_sesion');
         if (!raw) return null;
         const { estado, expira } = JSON.parse(raw);
-        if (expira && Date.now() > expira) return null; // sesión expirada
+        if (expira && Date.now() > expira) return null;
         return estado || null;
     } catch {
         return null;
@@ -881,7 +835,6 @@ function sesionValida() {
     return estado === 'activo' || estado === 'completo';
 }
 
-// ── PAYWALL ──────────────────────────────────────────────────
 function renderPaywall(el) {
     const estado = getSessionEstado();
 
@@ -908,15 +861,12 @@ function renderPaywall(el) {
         </div>`;
 }
 
-// ── LECCIONES GRATUITAS ──────────────────────────────────────
-// Secciones accesibles sin sesión activa
-const FREE_SECTIONS = []; // Este módulo es completamente de pago
+const FREE_SECTIONS = [];
 
 function isLessonFree(lesson) {
     return FREE_SECTIONS.includes(lesson.section) || lesson.free === true;
 }
 const lessons = [
-    // Fabricación Manual de planos 2D
     { id:129, title:"Documentos Asociados",               dur:"2:37",  section:"Fabricación Manual de planos 2D", type:"video", free:true, videoUrl:"https://drive.google.com/file/d/14oqNdw0Q7P_C3R4ELQMQVvhmT24AnZ_S/preview?usp=drive_link", pdfUrl:null },
     { id:130, title:"Crear nuevo documento 2D",           dur:"2:55",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1X9IAHd2544nw0x4__qx8o8rGymq_jbcV/preview?usp=drive_link", pdfUrl:null },
     { id:131, title:"Añadir margen",                      dur:"1:57",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1Mx9_ctbscx182xbaf-JuDTigsxDMGaMe/preview?usp=drive_link", pdfUrl:null },
@@ -943,29 +893,14 @@ const lessons = [
     { id:152, title:"Operación y anotación de Taladro",   dur:"9:52",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/15s0_jMs3c0NIncZy5_-XupVzQ8vdIDh4/preview?usp=drive_link", pdfUrl:null },
     { id:153, title:"Girar vista del dibujo",             dur:"0:53",  section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1osQpLFu7luZkYtxN25ggKetTIenFzOty/preview?usp=drive_link", pdfUrl:null },
     { id:154, title:"Servomotor MG995 — Generar plano en 2D", dur:"9:08", section:"Fabricación Manual de planos 2D", type:"video", videoUrl:"https://drive.google.com/file/d/1DfZFwkS0xpQcJ7CexeE_V9t-eGd1PCkf/preview?usp=drive_link", pdfUrl:null },
-    // Conclusión
     { id:125, title:"¡Curso completado!", dur:"—", section:"Conclusión", type:"congrats" }
 ];
 
-// ── STATE ────────────────────────────────────────────────────
+// saveState() la provee progreso-sync.js (manda el progreso al
+// Sheet). El progreso ya NO se guarda en localStorage — se carga
+// desde el Sheet al inicio, vía iniciarProgreso() (ver INIT).
 let currentIdx = 0;
 let completed = new Set();
-
-function loadState() {
-    try {
-        const i = localStorage.getItem('planos_idx');
-        const c = localStorage.getItem('planos_done');
-        if (i) currentIdx = Math.min(parseInt(i), lessons.length - 1);
-        if (c) completed = new Set(JSON.parse(c));
-    } catch {}
-}
-
-function saveState() {
-    try {
-        localStorage.setItem('planos_idx', currentIdx);
-        localStorage.setItem('planos_done', JSON.stringify([...completed]));
-    } catch {}
-}
 
 function getLessonFromURL() {
     const id = new URLSearchParams(location.search).get('l');
@@ -980,7 +915,6 @@ function pushURL(idx) {
     history.pushState({ idx }, '', `?l=${lessons[idx].id}`);
 }
 
-// ── YOUTUBE ──────────────────────────────────────────────────
 function ytEmbed(url) {
     if (!url) return null;
     let id = null;
@@ -989,14 +923,12 @@ function ytEmbed(url) {
     return id ? `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1` : null;
 }
 
-// ── PROGRESS ─────────────────────────────────────────────────
 function updateProgress() {
     const pct = Math.round((completed.size / lessons.length) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressText').textContent = pct + '%';
 }
 
-// ── SIDEBAR ──────────────────────────────────────────────────
 function renderSidebar() {
     const el = document.getElementById('sidebarScroll');
     el.innerHTML = '';
@@ -1054,7 +986,6 @@ function renderSidebar() {
     if (active) active.scrollIntoView({ block: 'nearest' });
 }
 
-// ── PDF CARD ─────────────────────────────────────────────────
 function pdfCard(url, title, sub) {
     return `
         <div class="pdf-card">
@@ -1069,21 +1000,17 @@ function pdfCard(url, title, sub) {
         </div>`;
 }
 
-// ── CONTENT ──────────────────────────────────────────────────
 function renderContent() {
     const el = document.getElementById('contentInner');
     const l = lessons[currentIdx];
 
     document.getElementById('btnPrev').disabled = currentIdx === 0;
 
-    // ── VERIFICAR SESIÓN ──
-    // Sin sesión activa → mostrar paywall, excepto en lecciones gratuitas
     if (!sesionValida() && !isLessonFree(l)) {
         renderPaywall(el);
         return;
     }
 
-    // ── CONGRATS ──
     if (l.type === 'congrats') {
         const total = lessons.length - 1;
         const done = completed.size;
@@ -1141,7 +1068,6 @@ function renderContent() {
         return;
     }
 
-    // ── PDF ──
     if (l.type === 'pdf') {
         el.innerHTML = `
             <h1 class="lesson-title-main">${l.title}</h1>
@@ -1149,8 +1075,6 @@ function renderContent() {
         return;
     }
 
-    // ── EXAMEN ──
-    // FIX: movido aquí antes del bloque de video para evitar doble escritura en el.innerHTML
     if (l.type === 'exam') {
         el.innerHTML = `
             <h1 class="lesson-title-main">${l.title}</h1>
@@ -1168,7 +1092,6 @@ function renderContent() {
         return;
     }
 
-    // ── VIDEO ──
     let embed = null;
     if (l.videoUrl && l.videoUrl.includes('drive.google.com')) {
         embed = l.videoUrl;
@@ -1199,14 +1122,9 @@ function renderContent() {
 
     el.innerHTML = html;
 
-    // Escalar el video si el contenedor es más angosto que el mínimo del iframe
     requestAnimationFrame(applyVideoScale);
 }
 
-// ── ESCALA DE VIDEO PARA MÓVIL ───────────────────────────────
-// Google Drive embeds no se renderizan a menos de ~560px internamente.
-// Solución: dejar que el iframe renderice a 560px y escalarlo hacia abajo
-// con transform:scale() para que quepa en pantallas más angostas.
 const VIDEO_MIN_W = 560;
 
 function applyVideoScale() {
@@ -1219,13 +1137,11 @@ function applyVideoScale() {
 
     if (containerW < VIDEO_MIN_W) {
         const scale = containerW / VIDEO_MIN_W;
-        // El iframe se renderiza a su mínimo real y se encoge visualmente
         iframe.style.width          = VIDEO_MIN_W + 'px';
         iframe.style.height         = (VIDEO_MIN_W * 9 / 16) + 'px';
         iframe.style.transform      = `scale(${scale})`;
         iframe.style.transformOrigin = 'top left';
     } else {
-        // Desktop/tablet: comportamiento normal
         iframe.style.width          = '100%';
         iframe.style.height         = '100%';
         iframe.style.transform      = '';
@@ -1233,10 +1149,8 @@ function applyVideoScale() {
     }
 }
 
-// ── DETECTAR CAMBIO DE SESIÓN SIN RECARGAR ───────────────────
 let _lastEstado = getSessionEstado();
 
-// Caso 1: el login ocurrió en otra pestaña
 window.addEventListener('storage', e => {
     if (e.key === 'dg_sesion') {
         _lastEstado = getSessionEstado();
@@ -1247,8 +1161,6 @@ window.addEventListener('storage', e => {
     }
 });
 
-// Caso 2: el usuario regresa a esta pestaña después de hacer login
-// Solo re-renderiza si el estado de sesión cambió, para no interrumpir taps
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
         const estadoActual = getSessionEstado();
@@ -1259,23 +1171,13 @@ document.addEventListener('visibilitychange', () => {
             updateProgress();
             renderBotonComprar();
         }
-        // Además de comparar localStorage, revalidamos contra el Sheet
-        // por si el estado cambió mientras la pestaña estaba en segundo plano.
         revalidarSesion();
     }
 });
 
-// ── REVALIDACIÓN PERIÓDICA CONTRA GOOGLE SHEETS ──────────────
-// Soluciona el caso: el alumno entra como "prueba", nunca vuelve a
-// hacer login, pero compra el curso. En Sheets su estado pasa a
-// "completo", pero su localStorage local se queda estancado en
-// "prueba" hasta que este chequeo lo actualiza.
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxEbbDW-MwWJQSorzOfWovtWb4YPGWaLp2XTMFgNPCuMI1qoTQZVgWh_W14qOJ8QoK3_g/exec';
 const SESSION_DAYS = 30;
 
-    // ── Cierra la sesión de forma forzada (código inválido, sesión
-// vieja sin código, o acceso removido) y refresca la UI para
-// que el contenido bloqueado muestre el paywall correspondiente. ──
 function cerrarSesionForzada(mensaje) {
     localStorage.removeItem('dg_sesion');
     _lastEstado = null;
@@ -1298,17 +1200,15 @@ function mostrarToastEstado(mensaje, icono = '🎉') {
 let _revalidando = false;
 
 async function revalidarSesion() {
-    if (_revalidando) return; // evita llamadas solapadas
+    if (_revalidando) return;
     _revalidando = true;
     try {
         const raw = localStorage.getItem('dg_sesion');
         if (!raw) return;
 
         const sesion = JSON.parse(raw);
-        if (!sesion.email) return; // sesión antigua sin email guardado
+        if (!sesion.email) return;
 
-        // Sesión guardada antes del sistema de código de seguridad:
-        // ya no es válida por definición, se cierra directo.
         if (!sesion.codigo) {
             cerrarSesionForzada('Tu sesión ya no es válida. Inicia sesión de nuevo.');
             return;
@@ -1323,7 +1223,6 @@ async function revalidarSesion() {
         const data = await res.json();
 
         if (!data.ok) {
-            // El correo ya no existe en el Sheet
             cerrarSesionForzada('Tu acceso ya no está disponible.');
             return;
         }
@@ -1331,8 +1230,6 @@ async function revalidarSesion() {
         const estado = (data.estado || '').toString().trim().toLowerCase();
 
         if (!data.sesionValida || estado === 'removido') {
-            // El código ya no coincide (alguien más inició sesión con
-            // este correo desde entonces) o el acceso fue removido.
             cerrarSesionForzada(
                 !data.sesionValida
                     ? 'Tu sesión se abrió en otro dispositivo. Inicia sesión de nuevo.'
@@ -1341,8 +1238,6 @@ async function revalidarSesion() {
             return;
         }
 
-        // Sesión sigue siendo la activa: solo actualizamos el estado
-        // si cambió (ej. "prueba" -> "completo" tras una compra).
         const estadoAnterior = sesion.estado;
 
         if (estado && estado !== estadoAnterior) {
@@ -1369,18 +1264,12 @@ async function revalidarSesion() {
         _revalidando = false;
     }
 }
-// Revalidar al cargar la página
 revalidarSesion();
 
-// Revalidar cada 5 minutos mientras el curso está abierto
 setInterval(revalidarSesion, 5 * 60 * 1000);
 
-// Re-aplicar escala de video al cambiar tamaño de ventana
 window.addEventListener('resize', applyVideoScale);
 
-// ── AUTO-COMPLETE ─────────────────────────────────────────────
-// FIX: solo aplica auto-complete a PDFs (3 seg). Los videos no se auto-completan
-// porque el usuario puede pausar y sería marcado como visto sin verlo
 let autoCompleteTimer = null;
 
 function startAutoComplete(idx) {
@@ -1398,7 +1287,6 @@ function startAutoComplete(idx) {
     }
 }
 
-// ── NAVIGATION ───────────────────────────────────────────────
 function navigate(idx) {
     clearTimeout(autoCompleteTimer);
     currentIdx = idx;
@@ -1418,7 +1306,6 @@ function toggleDone(idx) {
     updateProgress();
 }
 
-// ── MOBILE SIDEBAR ───────────────────────────────────────────
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 const menuBtn = document.getElementById('menuToggle');
@@ -1435,13 +1322,10 @@ menuBtn.addEventListener('click', () => {
 
 overlay.addEventListener('click', closeSidebar);
 
-// ── BOTONES ──────────────────────────────────────────────────
 document.getElementById('btnPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
 
-// FIX: eliminadas las llamadas redundantes a saveState/updateProgress/renderSidebar
-// ya que navigate() las ejecuta internamente
 document.getElementById('btnNext').addEventListener('click', () => {
     completed.add(currentIdx);
     saveState();
@@ -1461,7 +1345,6 @@ window.addEventListener('popstate', e => {
     }
 });
 
-// ── TEMA ─────────────────────────────────────────────────────
 function toggleTheme() {
     const isLight = document.body.classList.toggle('light');
     localStorage.setItem('sw_theme', isLight ? 'light' : 'dark');
@@ -1477,31 +1360,20 @@ function toggleTheme() {
     }
 })();
 
-// ── INIT ─────────────────────────────────────────────────────
-loadState();
-const urlIdx = getLessonFromURL();
-if (urlIdx !== null) currentIdx = urlIdx;
-pushURL(currentIdx);
-renderSidebar();
-renderContent();
-updateProgress();
-startAutoComplete(currentIdx);
-
-// ── BARRA DE NAVEGACIÓN MÓVIL ────────────────────────────────
-
-// Sincroniza el estado del botón "← Atrás" flotante
 function updateMobileNav() {
     const prev = document.getElementById('btnFloatPrev');
     if (prev) prev.disabled = currentIdx === 0;
 }
-updateMobileNav();
 
-// Botón "← Atrás"
+// ── INIT ─────────────────────────────────────────────────────
+// Trae el progreso real desde el Sheet (fuente de verdad) y recién
+// entonces dibuja todo — así nunca se ve un 0% momentáneo.
+iniciarProgreso();
+
 document.getElementById('btnFloatPrev').addEventListener('click', () => {
     if (currentIdx > 0) navigate(currentIdx - 1);
 });
 
-// Botón "✓ Completar y continuar"
 document.getElementById('btnFloatNext').addEventListener('click', () => {
     completed.add(currentIdx);
     saveState();
@@ -1513,8 +1385,6 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
     }
 });
 
-// ── TOOLTIP DE DESCUBRIMIENTO DEL MENÚ ──────────────────────
-// Aparece una sola vez. El usuario lo cierra con la ✕.
 (function() {
     if (localStorage.getItem('sw_hint_seen')) return;
     if (window.innerWidth > 1080) return;
@@ -1527,13 +1397,8 @@ document.getElementById('btnFloatNext').addEventListener('click', () => {
         localStorage.setItem('sw_hint_seen', '1');
     }
 
-    // Aparece después de 1.2s
     setTimeout(() => hint.classList.add('visible'), 1200);
-
-    // Cerrar con la X
     document.getElementById('menuHintClose').addEventListener('click', closeHint);
-
-    // También cerrar si toca el ☰
     document.getElementById('menuToggle').addEventListener('click', closeHint);
 })();
 
